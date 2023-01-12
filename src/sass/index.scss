@@ -1,3 +1,9 @@
+@import './utils/vars';
 @import './src/sass/base/common';
+@import './base/reset';
+@import './utils/visually-hidden';
+@import './utils/mixins';
 @import './src/sass/base/reset';
-@import './src/sass/layouts/snow';
+// @import './src/sass/layouts/snow';
+@import './layouts/header';
+
