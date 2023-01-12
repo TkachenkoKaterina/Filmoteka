@@ -1,5 +1,6 @@
 @import './base/common';
 @import './base/reset';
+@import './utils/mixins';
 @import './components/section';
 @import './components/container';
 @import './layouts/header';
@@ -12,6 +13,5 @@
 @import './utils/decimals';
 @import './utils/vars';
 @import './utils/visually-hidden';
-@import './utils/mixins';
-@import './src/sass/layouts/snow';
-
+// @import './src/sass/layouts/snow';
+@import './layouts/snow';
