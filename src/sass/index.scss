@@ -1,3 +1,14 @@
-@import './src/sass/base/common';
-@import './src/sass/base/reset';
+@import './base/common';
+@import './base/reset';
+@import './components/button';
+@import './components/section';
+@import './components/container';
+@import './components/current';
+@import './components/mobile-button';
+@import './layouts/header';
+@import './layouts/single-card-film';
+@import './layouts/footer';
 @import './src/sass/layouts/snow';
+@import './utils/decimals';
+@import './utils/vars';
+@import './utils/visually-hidden';
