@@ -1,9 +1,17 @@
-@import './utils/vars';
-@import './src/sass/base/common';
+@import './base/common';
 @import './base/reset';
+@import './components/section';
+@import './components/container';
+@import './layouts/header';
+@import './components/button';
+@import './components/current';
+@import './components/mobile-button';
+@import './layouts/header';
+@import './layouts/single-card-film';
+@import './layouts/footer';
+@import './utils/decimals';
+@import './utils/vars';
 @import './utils/visually-hidden';
 @import './utils/mixins';
-@import './src/sass/base/reset';
-// @import './src/sass/layouts/snow';
-@import './layouts/header';
+@import './src/sass/layouts/snow';
 
