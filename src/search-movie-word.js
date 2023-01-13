@@ -59,7 +59,7 @@ const articleElement = articls => {
          
     <div class="philm-card">
   <a class="gallery__item" href="${backdrop_path}">
-  <img class="gallery__image" src="${poster_path}" alt="${original_title}" title="${title}" width="360" height="294"loading="lazy" />
+  <img class="gallery__image" src="http://image.tmdb.org/t/p/original${poster_path}" alt="${original_title}" title="${title}" width="360" height="294"loading="lazy" />
  </a>
   <div class="info">
     <p class="info-item">
