@@ -5,15 +5,16 @@ import { API_KEY } from './vars';
 var debounce = require('lodash.debounce');
 import Notiflix from 'notiflix';
 
-import axiosPhoto from './axiosPhilm.js';
+import axiosPhilm from './axiosPhilm.js';
 import axiosAllGenres from './axiosAllGenres';
 let allGenres = [];
+
 axiosAllGenres(API_KEY)
   .then(res => res)
   .then(resl => resl.data)
-  .then(rersalts => {
-    allGenres = rersalts.genres;
-    console.log(rersalts.genres);
+  .then(resalts => {
+    allGenres = resalts.genres;
+    //  console.log(rersalts.genres);
   })
   .catch(err => {
     console.log(err);
@@ -58,7 +59,7 @@ const articleElement = articls => {
         return `
          
     <div class="philm-card">
-  <a class="gallery__item" href="${backdrop_path}">
+  <a class="gallery__item" href="http://image.tmdb.org/t/p/original${backdrop_path}">
   <img class="gallery__image" src="http://image.tmdb.org/t/p/original${poster_path}" alt="${original_title}" title="${title}" width="360" height="294"loading="lazy" />
  </a>
   <div class="info">
@@ -82,14 +83,14 @@ const articleElement = articls => {
     .join('');
 };
 function searchGenres(arrays, lengthArr) {
-  console.log(arrays);
-  console.log(lengthArr);
+  //  console.log(arrays);
+  //  console.log(lengthArr);
   let strRes = '';
   if (lengthArr === 0) return 'n/a';
   else {
     arrays.forEach(array => {
-      console.log(array);
-      console.log(allGenres);
+      // console.log(array);
+      // console.log(allGenres);
       allGenres.map(allGenre => {
         if (array === allGenre.id) {
           strRes += allGenre.name + '  ';
@@ -130,7 +131,7 @@ const onInput = event => {
 inputEl.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 //inputEl.addEventListener('input', onInput);
 
-const searchPhoto = async event => {
+const searchPhilm = async event => {
   try {
     event.preventDefault();
     //console.log(event.currentTarget.elements[0]);
@@ -140,12 +141,12 @@ const searchPhoto = async event => {
     //} = event.currentTarget;
     if (valuesString === '') {
       return alert(
-        '"Sorry, there are no images matching your search query. Please try again."'
+        '"Sorry, there are no films matching your search query. Please try again."'
       );
     }
 
     // console.log(valuesString);
-    const res = await axiosPhoto(
+    const res = await axiosPhilm(
       API_KEY,
       valuesString,
       namberPage,
@@ -170,7 +171,7 @@ const searchPhoto = async event => {
     if (datatotalHits === 0) {
       divEl.innerHTML = '';
       Notiflix.Notify.failure(
-        'Sorry, there are no images matching your search query. Please try again.'
+        'Sorry, there are no films matching your search query. Please try again.'
       );
       //if (articls.status === 404) {
       //  divEl.innerHTML = '';
@@ -179,17 +180,17 @@ const searchPhoto = async event => {
       //  );
       return;
     } else {
-      if (namberPage === 1) {
-        //  spanEl.classList.add('input_box');
-        //  buttonEl.classList.add('btn_class');
-        //  inputEl.classList.add('input_class');
-        //divEl.innerHTML = '';
-        Notiflix.Notify.info(`Hooray! We found ${datatotalHits} images.`);
-        divEl.innerHTML = articleElement(articls);
-      } else {
-        // const divAddEl = document.querySelector('.photo-card');
-        divEl.insertAdjacentHTML('beforeend', articleElement(articls));
-      }
+      //if (namberPage === 1) {
+      //  spanEl.classList.add('input_box');
+      //  buttonEl.classList.add('btn_class');
+      //  inputEl.classList.add('input_class');
+      //divEl.innerHTML = '';
+      //  Notiflix.Notify.info(`Hooray! We found ${datatotalHits} films.`);
+      divEl.innerHTML = articleElement(articls);
+      // } else {
+      // const divAddEl = document.querySelector('.photo-card');
+      //divEl.insertAdjacentHTML('beforeend', articleElement(articls));
+      // }
       if (pageTotal === namberPage) {
         //buttonEl.classList.add('disabled');
         //spanEl.classList.remove('input_box');
@@ -217,4 +218,4 @@ const searchPhoto = async event => {
   }
 };
 
-formEl.addEventListener('submit', searchPhoto);
+formEl.addEventListener('submit', searchPhilm);
