@@ -71,7 +71,7 @@ const articleElement = articls => {
     </p>
     <p class="info-item">
       
-      <span>${release_date}</span>
+      <span>${release_date.slice(0, 4)}</span>
     </p>
     
   </div>
