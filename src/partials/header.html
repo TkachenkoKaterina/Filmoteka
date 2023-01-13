@@ -7,10 +7,10 @@
       </a>
       <ul class="header__list">
         <li class="header__list-item">
-          <a class="header__item-link" href="">Home</a>
+          <a class="header__item-link header__item-link--current" href="./index.html">Home</a>
         </li>
         <li class="header__list-item">
-          <a class="header__item-link" href="">My library</a>
+          <a class="header__item-link" href="./my-library.html">My library</a>
         </li>
       </ul>
     </nav>
@@ -26,10 +26,9 @@
       <button class="header__search-button" type="submit">
         <img src="./images/icons/search-icon.svg" alt="icon" />
       </button>
+      <p class="header__error-text header__error-text--hidden">
+        Search result not successful. Enter the correct movie name.
+      </p>
     </form>
-
-    <p class="error js-header__text-error visually-hidden">
-      Search result not successful. Enter the correct movie name.
-    </p>
   </div>
 </header>

@@ -3,18 +3,23 @@
 }
 
 .header {
-  // padding: 40px 20px 44px 20px;
-
   background-image: url('../images/header-background-mobile-1x.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   width: 100%;
-  height: 230px;
+
+  &-container {
+    padding: 40px 20px 92px 20px;
+  }
 
   &__list {
     display: flex;
-    margin-left: 112px;
+    margin-left: auto;
+  }
+
+  &__logo{
+    display: flex;
   }
 
   &__logo-title {
@@ -39,21 +44,27 @@
     font-size: 12px;
     line-height: 14px;
     text-transform: uppercase;
+
+    &--current {
+      border-bottom: 3px solid #FF001B;
+    }
   }
 
   &__search-form {
+    width: 280px;
+    position: relative;
     display: flex;
+    align-items: center;
     margin: 0 auto;
-    max-width: 320px;
-    border-bottom: 1px solid #ffffff;
   }
 
   &__search-input {
+    width: 100%;
     border: none;
     padding: 4px 0px;
     outline: none;
     background: none;
-    width: 100%;
+    border-bottom: 1px solid #ffffff;
 
     font-family: 'Roboto';
     font-style: normal;
@@ -68,6 +79,8 @@
   }
 
   &__search-button {
+    position: absolute;
+    right: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,6 +88,24 @@
     margin: 0;
     border: none;
     width: 12px;
+  }
+
+  &__error-text {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #FF001B;
+  }
+
+  &__error-text--hidden{
+    display: none;
   }
 
   @include retina {
@@ -88,17 +119,36 @@
       background-image: url('../images/header-background-tablet-2x.jpg');
     }
 
-    // padding: 40px 32px 45px 32px;
+    &-container {
+      padding: 40px 32px 81px 32px;
+    }
+    
     height: 216px;
 
     &__logo-title {
-      display: inline;
+      display: flex;
+      margin-left: 8px;
+
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 30px;
+      line-height: 35px;
+      color: #ffffff;
     }
 
     &__navigation {
       display: flex;
       align-items: center;
       margin-bottom: 11px;
+    }
+
+    &__error-text {
+      margin-top: 20px;
+    }
+
+    &__search-form {
+      width: 336px;
     }
   }
 
@@ -108,5 +158,32 @@
     @include retina {
       background-image: url('../images/header-background-desktop-2x.jpg');
     }
+
+    &-container {
+      padding: 40px 32px 80px 32px;
+    }
+
+    &__logo-title {
+      display: flex;
+      margin-left: 10px;
+
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 30px;
+      line-height: 35px;
+      color: #ffffff;
+    }
+
+    &__navigation {
+      display: flex;
+      align-items: center;
+      margin-bottom: 41px;
+    }
+
+    &__search-form {
+      width: 394px;
+    }
+
   }
 }
