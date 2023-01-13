@@ -18,7 +18,10 @@ h6 {
 ul {
     margin: 0;
     padding: 0;
-    list-style: none;
+    }
+
+li {
+  list-style: none;
 }
 
 a {
@@ -47,33 +50,102 @@ img {
 } */
 
 .movie__img {
-    width: 394px;
-    height: 574px;
+    
     border-radius: 5px;
+
+@media screen and (min-width: 480px) {
+    background-imgage: url(/src/images/no-Film-Img280x402.jpg);
+    background-repeat: no-repeat, repeat;
+            width: 280px;
+            height: 402px;
+           
+        }
+    
+@media screen and (min-width: 768px) {
+    background-imgage: url(/src/images/no-Film-Img336x455.jpg);
+    background-repeat: no-repeat, repeat;
+            width: 336px;
+            height: 455px;
+           
+        }
+    
+@media screen and (min-width: 1200px) {
+    background-imgage: url(/src/images/no-Film-Img.jpg);
+    background-repeat: no-repeat, repeat;
+            width: 394px;
+            height: 574px;
+            
+        }
 }
 
 .movie__card__textbox {
-    margin-top: 12px;
+    
     position: inherit;
+@media screen and (min-width: 480px) {
+            margin-top: 10px;
+    
+        }
+    
+@media screen and (min-width: 768px) {
+            margin-top: 8px;
+    
+        }
+    
+@media screen and (min-width: 1200px) {
+            margin-top: 12px;
+    
+        }
   
 }
-.movie__link {}
+/* .movie__link {} */
 
 .movie__title {
 
     text-transform: uppercase;
     color: var(--primary-text-color);
     font-style: normal;
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 24px;
+    font-weight: 500;
+        
+@media screen and (min-width: 480px) {
+                    font-size: 12px;
+                    line-height: 16px;
+        
+            }
+        
+@media screen and (min-width: 768px) {
+                    font-size: 12px;
+                    line-height: 16px;
+        
+            }
+        
+@media screen and (min-width: 1200px) {
+                font-size: 20px;
+                line-height: 24px;
+        
+            }
 }
 
 .movie__details {
     color: var(--accent-color);
     font-style: normal;
         font-weight: 500;
-        font-size: 20px;
-        line-height: 24px;
+@media screen and (min-width: 480px) {
+                font-size: 12px;
+                line-height: 16px;
+        
+            }
+        
+@media screen and (min-width: 768px) {
+                font-size: 12px;
+                line-height: 16px;
+        
+            }
+        
+@media screen and (min-width: 1200px) {
+                font-size: 20px;
+                line-height: 24px;
+        
+            }
+        
 }
 
