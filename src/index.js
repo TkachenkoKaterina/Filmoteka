@@ -1,2 +1,7 @@
-import { API_KEY } from './vars';
-console.log(API_KEY);
+import { getFilms } from './getTrendFilms'
+
+document.addEventListener("DOMContentLoaded", getFilms());
+
+export function makerender(arr) {
+    console.log(arr);
+}
