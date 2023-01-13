@@ -1,1 +1,0 @@
-{"mappings":"AAEAA,QAAQC,ICFQ","sources":["src/index.js","src/vars.js"],"sourcesContent":["import { API_KEY } from './vars';\n\nconsole.log(API_KEY);\n","const API_KEY = 'c861fc623ae12b9b041c6dade1c99e57';\n\nexport { API_KEY };\n"],"names":["console","log"],"version":3,"file":"index.0288a0aa.js.map"}
