@@ -1,5 +1,5 @@
 import { API_KEY } from './vars';
-import {makerender} from './index'
+import {makerender} from '../index'
 import axios from 'axios';
 
 export async function getFilms () {
