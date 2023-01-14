@@ -14,7 +14,7 @@ const inputEl = document.querySelector('.header__search-input');
 const buttonEl = document.querySelector('.header__search-button');
 const pEl = document.querySelector('.header__error-text');
 //const pVisualEl = document.querySelector('#visually-hidden');
-const divEl = document.querySelector('#gallery');
+const ulEl = document.querySelector('.movie__collection');
 //const spanEl = document.querySelector('#search-form span');
 
 //console.log(pVisualEl);
@@ -27,30 +27,38 @@ let namberPer_page = 40;
 let namberPage = 1;
 let datatotalHits = 0;
 let pageTotal = 0;
+
 //-----------------------------------------------------------------------------------------------------------------------------------------
 axiosAllGenres(API_KEY)
   .then(res => res)
   .then(resl => resl.data)
   .then(resalts => {
     allGenres = resalts.genres;
-    //  console.log(rersalts.genres);
   })
   .catch(err => {
     console.log(err);
   });
 //-----------------------------------------------------------------------------------------------------------------------------------------
 function searchGenres(arrays, lengthArr) {
-  //  console.log(arrays);
-  //  console.log(lengthArr);
+  let count = lengthArr;
+  if (lengthArr > 3) {
+    lengthArr = 3;
+  }
+
   let strRes = '';
   if (lengthArr === 0) return 'n/a';
   else {
     arrays.forEach(array => {
+      count = count - 1;
       // console.log(array);
       // console.log(allGenres);
       allGenres.map(allGenre => {
         if (array === allGenre.id) {
-          strRes += allGenre.name + '  ';
+          if (count === 0) {
+            strRes += allGenre.name;
+          } else {
+            strRes += allGenre.name + ', ';
+          }
         } else {
           strRes += '';
         }
@@ -59,6 +67,19 @@ function searchGenres(arrays, lengthArr) {
   }
   return strRes;
 }
+//---------------------------------------------------------------------------------------------------------------------------
+function notFoto(stringURL) {
+  let str = '';
+  if (stringURL === null) {
+    str = `./images/no-Film-Img.jpg`;
+    console.log(str);
+    return str;
+  } else {
+    str = 'https://image.tmdb.org/t/p/original' + stringURL;
+    return str;
+  }
+}
+
 //----------------------------------------------------------------------------------------------------------------------------
 const articleElement = articls => {
   return articls
@@ -77,31 +98,30 @@ const articleElement = articls => {
         vote_count,
         genre_ids,
       }) => {
-        return `
-         
-    <div class="philm-card">
-  <a class="gallery__item" href="">
-  <img class="gallery__image" src="https://image.tmdb.org/t/p/original${poster_path}" alt="${original_title}" title="${title}" width="360" height="294"loading="lazy" />
- </a>
-  <div class="info">
-    <p class="info-item">
-            <span class="info-item-text"> ${original_title} </span>
-    </p>
-    <p class="info-item">
-      
-      <span class="info-item-text">${searchGenres(
-        Object.values(genre_ids),
-        genre_ids.length
-      )}</span>
-    </p>
-    <p class="info-item">
-      
-      <span class="info-item-text">${release_date.slice(0, 4)}</span>
-    </p>
-    
-  </div>
-  
-</div> `;
+        return ` 
+            
+     <li class="movie__card">
+        <a class="movie__link open__modal--js link" href="">
+          <div class="movie__img__box">
+            <img
+              class="movie__img"
+              src="${notFoto(poster_path)}"
+              alt="./images/no-Film-Img.jpg"
+              name="Poster"
+            />
+          </div>
+        </a>
+        <div class="movie__card__textbox">
+          <a class="movie__link open__modal--js link" href="">
+            <h3 class="movie__title">${original_title}</h3>
+            <span class="movie__details">${searchGenres(
+              Object.values(genre_ids),
+              genre_ids.length
+            )} | </span
+            ><span class="movie__details">${release_date.slice(0, 4)}</span>
+          </a>
+        </div>
+      </li> `;
       }
     )
     .join('');
@@ -132,55 +152,38 @@ inputEl.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 const searchFilm = async event => {
   try {
     event.preventDefault();
-
-    // pVisualEl.classList.remove('visually-hidden');
     if (valuesString === '') {
       return alert(
         '"Sorry, there are no films matching your search query. Please try again."'
       );
     }
 
-    // pVisualEl.classList.remove('visually-hidden');
     const res = await axiosFilm(
       API_KEY,
       valuesString,
       namberPage,
       namberPer_page
     );
-    ///onsole.log(res);
     const articls = res.data.results;
     console.log(articls);
     datatotalHits = res.data.total_results;
-    // console.log(datatotalHits);
     pageTotal = res.data.total_pages;
-    //console.log(pageTotal);
+
     if (datatotalHits === 0) {
-      // divEl.innerHTML = '';
-      //pVisualEl.classList.add('visually-hidden');
-      // pEl.textContent =        'Search result not successful. Enter the correct movie name.';
       pEl.classList.remove('header__error-text--hidden');
       Notiflix.Notify.failure(
         'Search result not successful. Enter the correct movie name.'
       );
-      //if (articls.status === 404) {
-      //  divEl.innerHTML = '';
-      //  Notiflix.Notify.failure(
-      //    '"Sorry, there are no images matching your search query. Please try again."'
-      //  );
+
       return;
     } else {
-      //pVisualEl.classList.add('visually-hidden');
-      divEl.innerHTML = articleElement(articls);
+      ulEl.innerHTML = articleElement(articls);
       if (pageTotal === namberPage) {
         buttonEl.classList.add('disebl_button_form');
-        // pVisualEl.classList.add('visually-hidden');
-
         Notiflix.Notify.info(
           "We're sorry, but you've reached the end of search results."
         );
       } else {
-        //buttonEl.textContent = 'next page ?';
-        //pVisualEl.classList.add('visually-hidden');
         let resM = pageTotal - namberPage;
         Notiflix.Notify.info(`You can also view ${resM} pages`);
         namberPage = namberPage + 1;
@@ -188,10 +191,7 @@ const searchFilm = async event => {
     }
   } catch (error) {
     console.log(error.message);
-
-    // inputEl.classList.remove('input_class');
-    // buttonEl.classList.remove('btn_class');
-    divEl.innerHTML = '';
+    ulEl.innerHTML = '';
   }
 };
 
