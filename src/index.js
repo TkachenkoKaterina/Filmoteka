@@ -1,3 +1,7 @@
-import { API_KEY } from './vars';
+import { getFilms } from './partials-js/getTrendFilms';
 
-console.log(API_KEY);
+document.addEventListener('DOMContentLoaded', getFilms());
+
+export function makerender(arr) {
+  console.log(arr);
+}

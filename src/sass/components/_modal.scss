@@ -1,0 +1,40 @@
+.modal__title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.15;
+    text-transform: uppercase;
+}
+
+.modal__item {
+    width: 67px;
+    height: 16px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
+
+    color: #8C8C8C;
+}
+
+.modal__btn {
+    width: 110px;
+    height: 44px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33x;
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    border: 1px solid #000000;
+    border-radius: 5px;
+
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+.modal__btn:hover, 
+.modal__btn:focus {
+    background-color: #FF6B01;
+    color: #FFFFFF;
+}
+
