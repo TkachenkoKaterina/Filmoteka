@@ -83,7 +83,7 @@ function notFotoTab(stringURL) {
     console.log(str);
     return str;
   } else {
-    str = 'https://image.tmdb.org/t/p/w1280' + stringURL;
+    str = 'https://image.tmdb.org/t/p/w780' + stringURL;
     return str;
   }
 }
@@ -95,7 +95,7 @@ function notFotoDesktop(stringURL) {
     console.log(str);
     return str;
   } else {
-    str = 'https://image.tmdb.org/t/p/w780' + stringURL;
+    str = 'https://image.tmdb.org/t/p/w1280' + stringURL;
     return str;
   }
 }
