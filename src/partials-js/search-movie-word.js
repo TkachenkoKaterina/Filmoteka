@@ -200,7 +200,7 @@ const searchFilm = async event => {
     event.preventDefault();
     if (valuesString === '') {
       return alert(
-        '"Sorry, there are no films matching your search query. Please try again."'
+        "Sorry, there are no films matching your search query. Please try again."
       );
     }
     // spanEl.classList.add('visually-hidden');
@@ -227,6 +227,12 @@ const searchFilm = async event => {
     } else {
       ulEl.innerHTML = articleElement(articls);
       if (pageTotal === namberPage) {
+        //buttonEl.classList.add('disabled');
+        //spanEl.classList.remove('input_box');
+        // buttonEl.classList.remove('btn_class');
+        //inputEl.classList.remove('input_class');
+        // buttonEl.textContent = 'submit';
+        //buttonEl.textContent = 'Search';
         buttonEl.classList.add('disebl_button_form');
         Notiflix.Notify.info(
           "We're sorry, but you've reached the end of search results."

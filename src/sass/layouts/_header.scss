@@ -16,6 +16,7 @@
 
   &__logo {
     display: flex;
+    align-items: center;
 
     animation-name: pulse;
     -webkit-animation-name: pulse;
@@ -25,6 +26,11 @@
 
     animation-iteration-count: infinite;
     -webkit-animation-iteration-count: infinite;
+  }
+
+  &__logo-icon{
+    width: 24px;
+    height: 24px;
   }
 
   &__logo-title {
@@ -113,10 +119,6 @@
     font-size: 14px;
     line-height: 16px;
     color: #ff001b;
-  }
-
-  &__error-text--hidden {
-    display: none;
   }
 
   @include retina {
