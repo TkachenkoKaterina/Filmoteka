@@ -141,7 +141,7 @@ const searchPhilm = async event => {
     //} = event.currentTarget;
     if (valuesString === '') {
       return alert(
-        '"Sorry, there are no films matching your search query. Please try again."'
+        "Sorry, there are no films matching your search query. Please try again."
       );
     }
 
@@ -197,7 +197,7 @@ const searchPhilm = async event => {
         // buttonEl.classList.remove('btn_class');
         //inputEl.classList.remove('input_class');
         // buttonEl.textContent = 'submit';
-        //buttonEl.textContent = 'Search';
+        //buttonEl.textContent = 'Serch';
         Notiflix.Notify.info(
           "We're sorry, but you've reached the end of search results."
         );
