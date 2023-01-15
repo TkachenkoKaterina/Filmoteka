@@ -1,14 +1,21 @@
 <!-- Модальне вікно -->
+
 <div class="backdrop is-hidden data-modal">
   <div class="modal">
     <button class="modal__close-btn" data-modal-close>
       <svg class="modal__icon" width="14" height="14">
         <use
-          class="modal__img" href="./images/icons/icons.svg#icon-close"></use>
+          class="modal__img"
+          href="./images/icons/icons.svg#icon-close"
+        ></use>
       </svg>
     </button>
     <!-- Зображення фільму на модалці -->
-    <img class="modal-img" src="./images/no-Film-Img.jpg" alt="картинка фільму">
+    <img
+      class="modal-img"
+      src="./images/no-Film-Img.jpg"
+      alt="картинка фільму"
+    />
     <div id="container-img"></div>
     <!-- Опис фільму -->
     <h2 class="modal__title"></h2>
@@ -23,6 +30,7 @@
       <li id="popularity"></li>
       <li id="origin-title"></li>
       <li id="genre"></li>
+      <li class="movieID">idMovieCurrent</li>
     </ul>
     <h3 class="modal__subtitle"></h3>
     <p class="modal__text"></p>
@@ -30,7 +38,7 @@
       ADD TO WATCHED
     </button>
     <button class="modal__btn" id="btn-queue" type="submit">
-      ADD TO QUEUE
+      ADD TO QUEUED
     </button>
   </div>
 </div>
