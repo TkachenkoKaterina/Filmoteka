@@ -1,5 +1,5 @@
 //import { API_KEY } from './vars';
-import { API_KEY, MAIN_PART_URL } from './vars';
+import { API_KEY, MAIN_PART_URL, BASE_URL } from './vars';
 //import './css/styles.css';
 
 var debounce = require('lodash.debounce');
@@ -64,38 +64,38 @@ function searchGenres(arrays, lengthArr) {
   return strRes;
 }
 //---------------------------------------------------------------------------------------------------------------------------
-function notFotoMob(stringURL) {
+function notFotoMob(stringURL, BASE_URL) {
   let str = '';
   if (stringURL === null) {
     str = `./images/no-Film-Img.jpg`;
     console.log(str);
     return str;
   } else {
-    str = 'https://image.tmdb.org/t/p/w300' + stringURL;
+    str = `${BASE_URL}w300${stringURL}`;
     return str;
   }
 }
 //-----------------------------------------------------------------------------------------------------------------------------
-function notFotoTab(stringURL) {
+function notFotoTab(stringURL, BASE_URL) {
   let str = '';
   if (stringURL === null) {
     str = `./images/no-Film-Img.jpg`;
     console.log(str);
     return str;
   } else {
-    str = 'https://image.tmdb.org/t/p/w780' + stringURL;
+    str = `${BASE_URL}w780${stringURL}`;
     return str;
   }
 }
 //----------------------------------------------------------------------------------------------------------------------------
-function notFotoDesktop(stringURL) {
+function notFotoDesktop(stringURL, BASE_URL) {
   let str = '';
   if (stringURL === null) {
-    str = `./images/no-Film-Img.jpg`;
+    str = './images/no-Film-Img.jpg';
     console.log(str);
     return str;
   } else {
-    str = 'https://image.tmdb.org/t/p/w1280' + stringURL;
+    str = `${BASE_URL}w1280${stringURL}`;
     return str;
   }
 }
@@ -128,21 +128,21 @@ const articleElement = articls => {
           <picture class="film-list__img">
                     <source
                       srcset="
-                      ${notFotoDesktop(poster_path)}
+                      ${notFotoDesktop(poster_path, BASE_URL)}
                         
                       "
                       media="screen and (min-width:1200px)"
                     />
                     <source
                       srcset="
-                      ${notFotoTab(poster_path)}
+                      ${notFotoTab(poster_path, BASE_URL)}
                         
                       "
                       media="(min-width:768px)"
                     />
                     <source
                       srcset="
-                      ${notFotoMob(poster_path)}
+                      ${notFotoMob(poster_path, BASE_URL)}
                         
                       "
                       media="(max-width:767px)"
