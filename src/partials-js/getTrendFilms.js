@@ -1,9 +1,9 @@
-import { API_KEY } from './vars';
+import { API_KEY, MAIN_PART_URL } from './vars';
 import { makerender } from '../index';
 import axios from 'axios';
 import { pagination } from './tuiPagination';
 export async function getFilms() {
-  const urlApi = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`;
+  const urlApi = `${MAIN_PART_URL}trending/movie/week${API_KEY}`;
 
   await axios
     .get(urlApi)
