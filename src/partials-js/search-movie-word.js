@@ -13,13 +13,10 @@ const formEl = document.querySelector('#search-form');
 const inputEl = document.querySelector('.header__search-input');
 const buttonEl = document.querySelector('.header__search-button');
 const pEl = document.querySelector('.header__error-text');
-//const pVisualEl = document.querySelector('#visually-hidden');
+const spanEl = document.querySelector('#visually-hidden');
 const ulEl = document.querySelector('.movie__collection');
-//const spanEl = document.querySelector('#search-form span');
 
-//console.log(pVisualEl);
 buttonEl.classList.add('disebl_button_form');
-//pEl.textContent = ' ';
 
 let valuesString = '';
 const DEBOUNCE_DELAY = 300;
@@ -27,6 +24,8 @@ let namberPer_page = 40;
 let namberPage = 1;
 let datatotalHits = 0;
 let pageTotal = 0;
+
+//'w300', 'w780', 'w1280', 'original';
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
 axiosAllGenres(API_KEY)
@@ -44,14 +43,11 @@ function searchGenres(arrays, lengthArr) {
   if (lengthArr > 3) {
     lengthArr = 3;
   }
-
   let strRes = '';
   if (lengthArr === 0) return 'n/a';
   else {
     arrays.forEach(array => {
       count = count - 1;
-      // console.log(array);
-      // console.log(allGenres);
       allGenres.map(allGenre => {
         if (array === allGenre.id) {
           if (count === 0) {
@@ -68,14 +64,38 @@ function searchGenres(arrays, lengthArr) {
   return strRes;
 }
 //---------------------------------------------------------------------------------------------------------------------------
-function notFoto(stringURL) {
+function notFotoMob(stringURL) {
   let str = '';
   if (stringURL === null) {
     str = `./images/no-Film-Img.jpg`;
     console.log(str);
     return str;
   } else {
-    str = 'https://image.tmdb.org/t/p/original' + stringURL;
+    str = 'https://image.tmdb.org/t/p/w300' + stringURL;
+    return str;
+  }
+}
+//-----------------------------------------------------------------------------------------------------------------------------
+function notFotoTab(stringURL) {
+  let str = '';
+  if (stringURL === null) {
+    str = `./images/no-Film-Img.jpg`;
+    console.log(str);
+    return str;
+  } else {
+    str = 'https://image.tmdb.org/t/p/w1280' + stringURL;
+    return str;
+  }
+}
+//----------------------------------------------------------------------------------------------------------------------------
+function notFotoDesktop(stringURL) {
+  let str = '';
+  if (stringURL === null) {
+    str = `./images/no-Film-Img.jpg`;
+    console.log(str);
+    return str;
+  } else {
+    str = 'https://image.tmdb.org/t/p/w780' + stringURL;
     return str;
   }
 }
@@ -101,14 +121,41 @@ const articleElement = articls => {
         return ` 
             
      <li class="movie__card">
-        <a class="movie__link open__modal--js link" href="">
+        <a class="movie__link open__modal--js link" id="${id}" href="">
           <div class="movie__img__box">
-            <img
+
+
+          <picture class="film-list__img">
+                    <source
+                      srcset="
+                      ${notFotoDesktop(poster_path)}
+                        
+                      "
+                      media="screen and (min-width:1200px)"
+                    />
+                    <source
+                      srcset="
+                      ${notFotoTab(poster_path)}
+                        
+                      "
+                      media="(min-width:768px)"
+                    />
+                    <source
+                      srcset="
+                      ${notFotoMob(poster_path)}
+                        
+                      "
+                      media="(max-width:767px)"
+                    />
+                    <img
               class="movie__img"
-              src="${notFoto(poster_path)}"
-              alt="./images/no-Film-Img.jpg"
+              src="./images/no-Film-Img.jpg"
+              alt="картинка фільму"
+              width="450"
+              height="294"
               name="Poster"
             />
+                  </picture>           
           </div>
         </a>
         <div class="movie__card__textbox">
@@ -131,7 +178,6 @@ const articleElement = articls => {
 const onInput = event => {
   event.preventDefault();
   pEl.classList.add('header__error-text--hidden');
-  //console.log(event.target.value.length);
   const valuelongth = event.target.value.length;
   valuesString = event.target.value;
   let element = '';
@@ -157,7 +203,7 @@ const searchFilm = async event => {
         '"Sorry, there are no films matching your search query. Please try again."'
       );
     }
-
+    // spanEl.classList.add('visually-hidden');
     const res = await axiosFilm(
       API_KEY,
       valuesString,
@@ -170,6 +216,7 @@ const searchFilm = async event => {
     pageTotal = res.data.total_pages;
 
     if (datatotalHits === 0) {
+      //spanEl.classList.add('visually-hidden');
       pEl.classList.remove('header__error-text--hidden');
       Notiflix.Notify.failure(
         'Search result not successful. Enter the correct movie name.'
