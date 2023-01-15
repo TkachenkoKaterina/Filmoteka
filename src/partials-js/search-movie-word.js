@@ -1,5 +1,5 @@
-import { API_KEY } from './vars';
-
+//import { API_KEY } from './vars';
+import { API_KEY, MAIN_PART_URL } from './vars';
 //import './css/styles.css';
 
 var debounce = require('lodash.debounce');
