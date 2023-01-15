@@ -1,8 +1,98 @@
+// modal window
+
+.no-scroll {
+    overflow: hidden;
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000; 
+
+    opacity: 1;
+    visibility: visible;
+    pointer-events: initial;
+
+    background: rgba(0, 0, 0, 0.2);
+    transition: opacity 250ms, visibility 250ms;
+}
+
+.backdrop.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    padding: 48px 20px; 
+    width: 280px;
+    height: 940px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+
+    // overflow-y: scroll;
+}
+
+.modal__close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0;
+    margin-top: 8px;
+    margin-right: 8px;
+
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    // background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+
+}
+
+.modal__icon {
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+// стилі модального вікна
+
+
 .modal__title {
     font-weight: 500;
     font-size: 20px;
     line-height: 1.15;
     text-transform: uppercase;
+
+    @media screen and (min-width: 1200px) {
+        font-size: 30px;
+        line-height: 1.17;
+    }
+}
+
+.modal-img {
+    width: 240px;
+    // height: 357px;
+
+    @media screen and (min-width: 768px) {
+        width: 264px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        width: 375px;
+    }
 }
 
 .modal__item {
@@ -13,6 +103,38 @@
     line-height: 1.33;
 
     color: #8C8C8C;
+}
+
+.modal__subtitle {
+    width: 39px;
+    height: 16px;
+    font-size: 12px;
+    line-height: 1.33;
+
+    @media screen and (min-width: 768px) {
+        width: 78px;
+        height: 16px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        width: 65px;
+        height: 16px;
+    }
+}
+
+.modal__text {
+    font-size: 12px;
+    line-height: 1.67;
+
+    width: 240px;
+
+    @media screen and (min-width: 768px) {
+        width: 264px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        width: 391px;
+    }
 }
 
 .modal__btn {
@@ -36,5 +158,6 @@
 .modal__btn:focus {
     background-color: #FF6B01;
     color: #FFFFFF;
+    border: transparent;
 }
 
