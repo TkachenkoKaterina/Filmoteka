@@ -28,7 +28,7 @@ let pageTotal = 0;
 //'w300', 'w780', 'w1280', 'original';
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
-axiosAllGenres(API_KEY)
+axiosAllGenres(API_KEY, MAIN_PART_URL)
   .then(res => res)
   .then(resl => resl.data)
   .then(resalts => {
@@ -206,6 +206,7 @@ const searchFilm = async event => {
     // spanEl.classList.add('visually-hidden');
     const res = await axiosFilm(
       API_KEY,
+      MAIN_PART_URL,
       valuesString,
       namberPage,
       namberPer_page
