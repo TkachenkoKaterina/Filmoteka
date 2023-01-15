@@ -1,7 +1,13 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
 
-
 body {
   font-family: var(--dominant-font), sans-serif;
   font-size: 12px;
+}
+.list {
+  list-style: none;
+}
+
+.link {
+  text-decoration: none;
 }

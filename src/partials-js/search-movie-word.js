@@ -1,44 +1,106 @@
-import { API_KEY } from './vars';
-
+//import { API_KEY } from './vars';
+import { API_KEY, MAIN_PART_URL, BASE_URL } from './vars';
 //import './css/styles.css';
 
 var debounce = require('lodash.debounce');
 import Notiflix from 'notiflix';
 
-import axiosPhilm from './axiosPhilm.js';
+import axiosFilm from './axiosFilm.js';
 import axiosAllGenres from './axiosAllGenres';
 let allGenres = [];
 
-axiosAllGenres(API_KEY)
+const formEl = document.querySelector('#search-form');
+const inputEl = document.querySelector('.header__search-input');
+const buttonEl = document.querySelector('.header__search-button');
+const pEl = document.querySelector('.header__error-text');
+const spanEl = document.querySelector('#visually-hidden');
+const ulEl = document.querySelector('.movie__collection');
+
+buttonEl.classList.add('disebl_button_form');
+
+let valuesString = '';
+const DEBOUNCE_DELAY = 300;
+let namberPer_page = 40;
+let namberPage = 1;
+let datatotalHits = 0;
+let pageTotal = 0;
+
+//'w300', 'w780', 'w1280', 'original';
+
+//-----------------------------------------------------------------------------------------------------------------------------------------
+axiosAllGenres(API_KEY, MAIN_PART_URL)
   .then(res => res)
   .then(resl => resl.data)
   .then(resalts => {
     allGenres = resalts.genres;
-    //  console.log(rersalts.genres);
   })
   .catch(err => {
     console.log(err);
   });
+//-----------------------------------------------------------------------------------------------------------------------------------------
+function searchGenres(arrays, lengthArr) {
+  let count = lengthArr;
+  if (lengthArr > 3) {
+    lengthArr = 3;
+  }
+  let strRes = '';
+  if (lengthArr === 0) return 'n/a';
+  else {
+    arrays.forEach(array => {
+      count = count - 1;
+      allGenres.map(allGenre => {
+        if (array === allGenre.id) {
+          if (count === 0) {
+            strRes += allGenre.name;
+          } else {
+            strRes += allGenre.name + ', ';
+          }
+        } else {
+          strRes += '';
+        }
+      });
+    });
+  }
+  return strRes;
+}
+//---------------------------------------------------------------------------------------------------------------------------
+function notFotoMob(stringURL, BASE_URL) {
+  let str = '';
+  if (stringURL === null) {
+    str = `./images/no-Film-Img.jpg`;
+    console.log(str);
+    return str;
+  } else {
+    str = `${BASE_URL}w300${stringURL}`;
+    return str;
+  }
+}
+//-----------------------------------------------------------------------------------------------------------------------------
+function notFotoTab(stringURL, BASE_URL) {
+  let str = '';
+  if (stringURL === null) {
+    str = `./images/no-Film-Img.jpg`;
+    console.log(str);
+    return str;
+  } else {
+    str = `${BASE_URL}w780${stringURL}`;
+    return str;
+  }
+}
+//----------------------------------------------------------------------------------------------------------------------------
+function notFotoDesktop(stringURL, BASE_URL) {
+  let str = '';
+  if (stringURL === null) {
+    str = './images/no-Film-Img.jpg';
+    console.log(str);
+    return str;
+  } else {
+    str = `${BASE_URL}w1280${stringURL}`;
+    return str;
+  }
+}
 
-const inputEl = document.querySelector('.header__search-input');
-//const spanEl = document.querySelector('#search-form span');
-const buttonEl = document.querySelector('.header__search-button');
-const divEl = document.querySelector('#gallery');
-//const bodyEl = document.querySelector('body');
-
-const formEl = document.querySelector('#search-form');
-console.log(formEl);
-//buttonEl.classList.add('disabled');
-//bodyEl.classList.add('body_class');
-let valuesString = '';
-
-const DEBOUNCE_DELAY = 300;
-let namberPer_page = 40;
-let namberPage = 1;
-//let dataTotal = 0;
-let datatotalHits = 0;
-let pageTotal = 0;
-
+//----------------------------------------------------------------------------------------------------------------------------
 const articleElement = articls => {
   return articls
     .map(
@@ -56,166 +118,129 @@ const articleElement = articls => {
         vote_count,
         genre_ids,
       }) => {
-        return `
-         
-    <div class="philm-card">
-  <a class="gallery__item" href="http://image.tmdb.org/t/p/original${backdrop_path}">
-  <img class="gallery__image" src="http://image.tmdb.org/t/p/original${poster_path}" alt="${original_title}" title="${title}" width="360" height="294"loading="lazy" />
- </a>
-  <div class="info">
-    <p class="info-item">
-            <span> ${original_title} </span>
-    </p>
-    <p class="info-item">
-      
-      <span>${searchGenres(Object.values(genre_ids), genre_ids.length)}</span>
-    </p>
-    <p class="info-item">
-      
-      <span>${release_date.slice(0, 4)}</span>
-    </p>
-    
-  </div>
-  
-</div> `;
+        return ` 
+            
+     <li class="movie__card">
+        <a class="movie__link open__modal--js link" id="${id}" href="">
+          <div class="movie__img__box">
+
+
+          <picture class="film-list__img">
+                    <source
+                      srcset="
+                      ${notFotoDesktop(poster_path, BASE_URL)}
+                        
+                      "
+                      media="screen and (min-width:1200px)"
+                    />
+                    <source
+                      srcset="
+                      ${notFotoTab(poster_path, BASE_URL)}
+                        
+                      "
+                      media="(min-width:768px)"
+                    />
+                    <source
+                      srcset="
+                      ${notFotoMob(poster_path, BASE_URL)}
+                        
+                      "
+                      media="(max-width:767px)"
+                    />
+                    <img
+              class="movie__img"
+              src="./images/no-Film-Img.jpg"
+              alt="картинка фільму"
+              width="450"
+              height="294"
+              name="Poster"
+            />
+                  </picture>           
+          </div>
+        </a>
+        <div class="movie__card__textbox">
+          <a class="movie__link open__modal--js link" href="">
+            <h3 class="movie__title">${original_title}</h3>
+            <span class="movie__details">${searchGenres(
+              Object.values(genre_ids),
+              genre_ids.length
+            )} | </span
+            ><span class="movie__details">${release_date.slice(0, 4)}</span>
+          </a>
+        </div>
+      </li> `;
       }
     )
     .join('');
 };
-function searchGenres(arrays, lengthArr) {
-  //  console.log(arrays);
-  //  console.log(lengthArr);
-  let strRes = '';
-  if (lengthArr === 0) return 'n/a';
-  else {
-    arrays.forEach(array => {
-      // console.log(array);
-      // console.log(allGenres);
-      allGenres.map(allGenre => {
-        if (array === allGenre.id) {
-          strRes += allGenre.name + '  ';
-        } else {
-          strRes += '';
-        }
-      });
-    });
-  }
-  return strRes;
-}
 
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
 const onInput = event => {
   event.preventDefault();
-
-  console.log(event.target.value.length);
+  pEl.classList.add('header__error-text--hidden');
   const valuelongth = event.target.value.length;
   valuesString = event.target.value;
   let element = '';
   for (let index = 0; index < valuelongth; index++) {
     element = element + ' ';
   }
-  //console.log(event.target.value === element);
-
   if (valuesString === element) return (valuesString = '');
   else {
-    // console.log(valuesString);
-    // buttonEl.classList.remove('disabled');
-    // buttonEl.textContent = 'Search';
+    buttonEl.classList.remove('disebl_button_form');
     valuesString = valuesString.trim();
-    // console.log(valuesString);
     namberPage = 1;
-    // console.log(namberPage);
-    // return valuesString;
   }
 };
 
 inputEl.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
-//inputEl.addEventListener('input', onInput);
 
-const searchPhilm = async event => {
+//------------------------------------------------------------------------------------------------------------------------------------
+const searchFilm = async event => {
   try {
     event.preventDefault();
-    //console.log(event.currentTarget.elements[0]);
-
-    //const {
-    //  elements: { searchQuery },
-    //} = event.currentTarget;
     if (valuesString === '') {
       return alert(
         '"Sorry, there are no films matching your search query. Please try again."'
       );
     }
-
-    // console.log(valuesString);
-    const res = await axiosPhilm(
+    // spanEl.classList.add('visually-hidden');
+    const res = await axiosFilm(
       API_KEY,
+      MAIN_PART_URL,
       valuesString,
       namberPage,
       namberPer_page
     );
-    //res =>
-    //{
-    console.log(res);
     const articls = res.data.results;
     console.log(articls);
-    //dataTotal = res.data.total_results;
-    //console.log(dataTotal);
     datatotalHits = res.data.total_results;
-    console.log(datatotalHits);
-    // if (dataTotal > datatotalHits) {
-    //   pageTotal = Math.ceil(datatotalHits / namberPer_page);
-    // } else {
-    //   pageTotal = Math.ceil(dataTotal / namberPer_page);
-    // }
     pageTotal = res.data.total_pages;
-    console.log(pageTotal);
+
     if (datatotalHits === 0) {
-      divEl.innerHTML = '';
+      //spanEl.classList.add('visually-hidden');
+      pEl.classList.remove('header__error-text--hidden');
       Notiflix.Notify.failure(
-        'Sorry, there are no films matching your search query. Please try again.'
+        'Search result not successful. Enter the correct movie name.'
       );
-      //if (articls.status === 404) {
-      //  divEl.innerHTML = '';
-      //  Notiflix.Notify.failure(
-      //    '"Sorry, there are no images matching your search query. Please try again."'
-      //  );
+
       return;
     } else {
-      //if (namberPage === 1) {
-      //  spanEl.classList.add('input_box');
-      //  buttonEl.classList.add('btn_class');
-      //  inputEl.classList.add('input_class');
-      //divEl.innerHTML = '';
-      //  Notiflix.Notify.info(`Hooray! We found ${datatotalHits} films.`);
-      divEl.innerHTML = articleElement(articls);
-      // } else {
-      // const divAddEl = document.querySelector('.photo-card');
-      //divEl.insertAdjacentHTML('beforeend', articleElement(articls));
-      // }
+      ulEl.innerHTML = articleElement(articls);
       if (pageTotal === namberPage) {
-        //buttonEl.classList.add('disabled');
-        //spanEl.classList.remove('input_box');
-        // buttonEl.classList.remove('btn_class');
-        //inputEl.classList.remove('input_class');
-        // buttonEl.textContent = 'submit';
-        //buttonEl.textContent = 'Search';
+        buttonEl.classList.add('disebl_button_form');
         Notiflix.Notify.info(
           "We're sorry, but you've reached the end of search results."
         );
       } else {
-        //buttonEl.textContent = 'next page ?';
         let resM = pageTotal - namberPage;
         Notiflix.Notify.info(`You can also view ${resM} pages`);
         namberPage = namberPage + 1;
-        // console.log(namberPage);
       }
     }
   } catch (error) {
     console.log(error.message);
-    // spanEl.classList.remove('input_box');
-    // inputEl.classList.remove('input_class');
-    // buttonEl.classList.remove('btn_class');
-    divEl.innerHTML = '';
+    ulEl.innerHTML = '';
   }
 };
 
-formEl.addEventListener('submit', searchPhilm);
+formEl.addEventListener('submit', searchFilm);
