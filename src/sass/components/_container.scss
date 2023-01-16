@@ -31,6 +31,17 @@
   &__footer {
     padding-top: 30px;
     padding-bottom: 30px;
+    display: flex;
+    justify-content: center;
+  
+    @media screen and (min-width: 320px) {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+    }
   }
 }
 
