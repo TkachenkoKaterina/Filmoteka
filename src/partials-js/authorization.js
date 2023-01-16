@@ -120,10 +120,12 @@ const nameSignup = document.querySelector('[name=nameSignup]');
 const emailSignup = document.querySelector('[name=emailSignup]');
 const pswdSignup = document.querySelector('[name=pswdSignup]');
 const pswdSignupConf = document.querySelector('[name=pswdSignupConf]');
-const error = document.querySelector('.err');
+const errorIn = document.querySelector('.errIn');
+const errorUp = document.querySelector('.errUp');
 
 const defaultErrorText = () => {
-  error.textContent = '';
+  errorIn.textContent = '';
+  errorUp.textContent = '';
   //   error.textContent = 'enter email and password';
   //   error.textContent = 'new user';
 };
@@ -153,7 +155,7 @@ loginForm.addEventListener('submit', async ev => {
     //const message = res.data.error.message.replaceAll('_', ' ');
 
     //console.log(message);
-    error.textContent = message;
+    errorIn.textContent = message;
     loginForm.addEventListener('click', defaultErrorText);
     //console.log(message.includes('email'));
     if (message.includes('EMAIL')) {
@@ -190,7 +192,7 @@ signupForm.addEventListener('submit', async ev => {
 
   if ((await res.status) != 200) {
     const message = res.response.data.error.message.replaceAll('_', ' ');
-    error.textContent = message;
+    errorUp.textContent = message;
     signupForm.addEventListener('click', defaultErrorText);
 
     return;
