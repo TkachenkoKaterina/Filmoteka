@@ -67,7 +67,7 @@ function searchGenres(arrays, lengthArr) {
 function notFotoMob(stringURL, BASE_URL) {
   let str = '';
   if (stringURL === null) {
-    str = './images/no-Film-Img.jpg';
+    str = '/images/no-Film-Img.jpg';
     console.log(str);
     return str;
   } else {
@@ -79,7 +79,7 @@ function notFotoMob(stringURL, BASE_URL) {
 function notFotoTab(stringURL, BASE_URL) {
   let str = '';
   if (stringURL === null) {
-    str = `./images/no-Film-Img.jpg`;
+    str = '/images/no-Film-Img.jpg';
     console.log(str);
     return str;
   } else {
@@ -91,7 +91,7 @@ function notFotoTab(stringURL, BASE_URL) {
 function notFotoDesktop(stringURL, BASE_URL) {
   let str = '';
   if (stringURL === null) {
-    str = `./images/no-Film-Img.jpg`;
+    str = '/images/no-Film-Img.jpg';
     console.log(str);
     return str;
   } else {
@@ -127,8 +127,7 @@ const articleElement = articls => {
 
           <picture class="film-list__img">
                     <source
-                      srcset="
-                      ${notFotoDesktop(poster_path, BASE_URL)}
+                      srcset="${notFotoDesktop(poster_path, BASE_URL)}
                         
                       "
                       media="screen and (min-width:1200px)"
@@ -149,8 +148,8 @@ const articleElement = articls => {
                     />
                     <img
               class="movie__img"
-              src="../images/no-Film-Img.jpg"
-              alt="картинка фільму"
+              src="/images/no-Film-Img.jpg"
+              alt="Картинка фільму"
               width="450"
               height="294"
               name="Poster"
