@@ -36,10 +36,10 @@ closeButton.addEventListener('click', () => {
 
 //-------- auth request
 const loginText = document.querySelector('.title-text .login');
-const loginForm = document.querySelector('form.signinform');
-const signupForm = document.querySelector('form.signupform');
-const loginBtn = document.querySelector('label.login');
-const signupBtn = document.querySelector('label.signup');
+const loginForm = document.querySelector('form#signinform');
+const signupForm = document.querySelector('form#signupform');
+const loginBtn = document.querySelector('button#loginsubmit');
+const signupBtn = document.querySelector('button#signupsubmit');
 
 const createUser = async (email, password) => {
   const baseURL =
@@ -70,10 +70,12 @@ const authUser = async (email, password) => {
       password,
       returnSecureToken: true,
     });
-    // console.log(data);
+    console.log(data);
     return data;
   } catch (error) {
     // console.log(error.response.data.error.message.replace('_', ' '));
+    console.log('-----------------------------');
+    console.log(error);
     return error;
   }
 };
@@ -112,15 +114,16 @@ const postDb = async item => {
 //const loginForm = document.querySelector('form.login');
 const mailLogin = document.querySelector('[name=mailLogin]');
 const pswdLogin = document.querySelector('[name=pswdLogin]');
-const error = document.querySelector('#error');
+//const error = document.querySelector('#error');
 
 const nameSignup = document.querySelector('[name=nameSignup]');
 const emailSignup = document.querySelector('[name=emailSignup]');
 const pswdSignup = document.querySelector('[name=pswdSignup]');
 const pswdSignupConf = document.querySelector('[name=pswdSignupConf]');
-const error = document.querySelector('#err');
+const error = document.querySelector('.err');
 
 const defaultErrorText = () => {
+  error.textContent = '';
   //   error.textContent = 'enter email and password';
   //   error.textContent = 'new user';
 };
@@ -138,14 +141,18 @@ defaultErrorText();
 
 loginForm.addEventListener('submit', async ev => {
   ev.preventDefault();
+  console.log(mailLogin.value, pswdLogin.value);
   if (!mailLogin.value || !pswdLogin.value) return;
 
   mailLogin.value.trim();
   const res = await authUser(mailLogin.value, pswdLogin.value);
-  // console.log(res);
+  console.log(await res);
 
   if ((await res.status) != 200) {
     const message = res.response.data.error.message.replaceAll('_', ' ');
+    //const message = res.data.error.message.replaceAll('_', ' ');
+
+    console.log(message);
     error.textContent = message;
     loginForm.addEventListener('click', defaultErrorText);
     return;
@@ -155,10 +162,12 @@ loginForm.addEventListener('submit', async ev => {
 
   if (userInfo.status == 200) {
     loginForm.removeEventListener('click', defaultErrorText);
+    defaultErrorText();
     clearFields();
+    document.location.href = 'http://ru.stackoverflow.com';
   }
 
-  const itemId = mailLogin.value.replace('@', '').replaceAll('.', '');
+  //const itemId = mailLogin.value.replace('@', '').replaceAll('.', '');
 });
 
 signupForm.addEventListener('submit', async ev => {
@@ -191,6 +200,7 @@ signupForm.addEventListener('submit', async ev => {
   const userInfo = await postDb(userItem);
   if (userInfo.status == 200) {
     signupForm.removeEventListener('click', defaultErrorText);
+    defaultErrorText();
     clearFields();
   }
   //console.log(idItem);
