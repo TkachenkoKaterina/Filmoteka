@@ -53,7 +53,7 @@
     color: var(--second-color);
     font-weight: 500;
     font-size: 12px;
-    line-height: 14px;
+    line-height: 1.16;
     text-transform: uppercase;
 
     &--current {
@@ -82,7 +82,7 @@
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-    line-height: 16px;
+    line-height: 1.14;
     color: #ffffff;
 
     &:focus ~ .header__search-button {
@@ -107,19 +107,30 @@
     width: 12px;
   }
 
-  &__error-text {
-    margin-top: 16px;
+  &__error-text-wrapper{
+    position: relative;
     display: flex;
     justify-content: center;
-    align-items: center;
+  }
+
+  &__error-text {
+    position: absolute;
+    top: 16px;
+    width: 280px;
 
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-    line-height: 16px;
+    line-height: 1.14;
     color: #ff001b;
   }
+
+  &__error-text--disable{
+    display: none;
+  }
+
+
 
   @include retina {
     background-image: url('../images/header-background-mobile-2x.jpg');
@@ -144,7 +155,7 @@
       font-style: normal;
       font-weight: 500;
       font-size: 30px;
-      line-height: 35px;
+      line-height: 1.16;
       color: #ffffff;
     }
 
@@ -154,8 +165,10 @@
       margin-bottom: 11px;
     }
 
+
     &__error-text {
-      margin-top: 20px;
+      top: 20px;
+      width: auto;
     }
 
     &__search-form {
@@ -182,7 +195,7 @@
       font-style: normal;
       font-weight: 500;
       font-size: 30px;
-      line-height: 35px;
+      line-height: 1.16;
       color: #ffffff;
     }
 
