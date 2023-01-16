@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// auth modal
+// auth modal login & signup
 const signUp = document.querySelector('#signupbox');
 const signIn = document.querySelector('#signinbox');
 
@@ -19,6 +19,22 @@ btnIn.addEventListener('click', () => {
   signIn.style.display = 'block';
 });
 
+//--------------
+//-----close auth modal
+const closeButton = document.querySelector('button.auth-close');
+const authModalRef = document.querySelector('.login-backdrop');
+
+const fnCloseButton = () => {
+  authModalRef.classList.add('is-hidden');
+  authModalRef.classList.add('full-close');
+};
+
+closeButton.addEventListener('click', () => {
+  fnCloseButton();
+});
+//----------------------
+
+//-------- auth request
 const loginText = document.querySelector('.title-text .login');
 const loginForm = document.querySelector('form.signinform');
 const signupForm = document.querySelector('form.signupform');
@@ -177,10 +193,5 @@ signupForm.addEventListener('submit', async ev => {
     signupForm.removeEventListener('click', defaultErrorText);
     clearFields();
   }
-
-  console.log(idItem);
-  // console.log(userItem);
-
-  // console.log('----0---------');
-  // console.log(userInfo);
+  //console.log(idItem);
 });
