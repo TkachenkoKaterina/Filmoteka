@@ -6,14 +6,17 @@ const storageForQueued = JSON.parse(localStorage.getItem(QUEUE_KEY)) || [];
 console.log(storageForQueued);
 
 const buttonAddWatched = document.querySelector('#btn-watched');
+console.log(buttonAddWatched);
 const buttonAddToQueued = document.querySelector('#btn-queue');
 const idMovie = document.querySelector('.movieID').textContent;
+console.log(idMovie);
 
 buttonAddWatched.addEventListener('click', addWatchedtoLocalStorage);
 buttonAddToQueued.addEventListener('click', addQueuedToLocalStorage);
 
 const strLOcalS = localStorage.getItem(WATCHED_KEY);
 const parsStr = JSON.parse(strLOcalS);
+console.log(parsStr);
 if (parsStr && parsStr.includes(idMovie)) {
   buttonAddWatched.textContent = 'REMOVE FROM WATCHED';
 }
@@ -26,6 +29,12 @@ if (parsStrQ && parsStrQ.includes(idMovie)) {
 
 function addWatchedtoLocalStorage() {
   if (buttonAddWatched.textContent === 'ADD TO WATCHED') {
+    if (buttonAddToQueued.textContent === 'REMOVE FROM QUEUED') {
+      const IndexElQ = storageForQueued.indexOf(idMovie);
+      storageForQueued.splice(IndexElQ, 1);
+      localStorage.setItem(QUEUE_KEY, JSON.stringify(storageForQueued));
+      buttonAddToQueued.textContent = 'ADD TO QUEUED';
+    }
     storageForWatched.push(idMovie);
     localStorage.setItem(WATCHED_KEY, JSON.stringify(storageForWatched));
     buttonAddWatched.textContent = 'REMOVE FROM WATCHED';
@@ -41,7 +50,14 @@ function addWatchedtoLocalStorage() {
   }
 }
 function addQueuedToLocalStorage() {
+  console.log(buttonAddWatched);
   if (buttonAddToQueued.textContent === 'ADD TO QUEUED') {
+    if (buttonAddWatched.textContent === 'REMOVE FROM WATCHED') {
+      const IndexEl = storageForWatched.indexOf(idMovie);
+      storageForWatched.splice(IndexEl, 1);
+      localStorage.setItem(WATCHED_KEY, JSON.stringify(storageForWatched));
+      buttonAddWatched.textContent = 'ADD WATCHED';
+    }
     storageForQueued.push(idMovie);
     console.log(storageForQueued);
     localStorage.setItem(QUEUE_KEY, JSON.stringify(storageForQueued));
