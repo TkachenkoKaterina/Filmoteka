@@ -7,6 +7,12 @@ import { getFilms } from './partials-js/getTrendFilms';
 import { POSTER_SIZES, BASE_URL } from './partials-js/vars';
 import './partials-js/themeSwitch';
 
+console.log(
+  getFilms().then(result => {
+    console.log(result);
+  })
+);
+
 const galleryRef = document.querySelector('#gallery');
 document.addEventListener('DOMContentLoaded', getFilms());
 export function makerender(arr) {
