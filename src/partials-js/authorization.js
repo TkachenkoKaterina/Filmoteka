@@ -112,17 +112,17 @@ const postDb = async item => {
 //const loginForm = document.querySelector('form.login');
 const mailLogin = document.querySelector('[name=mailLogin]');
 const pswdLogin = document.querySelector('[name=pswdLogin]');
-const errorLogin = document.querySelector('#error');
+const error = document.querySelector('#error');
 
 const nameSignup = document.querySelector('[name=nameSignup]');
 const emailSignup = document.querySelector('[name=emailSignup]');
 const pswdSignup = document.querySelector('[name=pswdSignup]');
 const pswdSignupConf = document.querySelector('[name=pswdSignupConf]');
-const errorSignup = document.querySelector('#err');
+const error = document.querySelector('#err');
 
 const defaultErrorText = () => {
-  errorLogin.textContent = 'enter email and password';
-  errorSignup.textContent = 'new user';
+  //   error.textContent = 'enter email and password';
+  //   error.textContent = 'new user';
 };
 
 const clearFields = () => {
@@ -146,7 +146,7 @@ loginForm.addEventListener('submit', async ev => {
 
   if ((await res.status) != 200) {
     const message = res.response.data.error.message.replaceAll('_', ' ');
-    errorLogin.textContent = message;
+    error.textContent = message;
     loginForm.addEventListener('click', defaultErrorText);
     return;
   }
@@ -173,7 +173,7 @@ signupForm.addEventListener('submit', async ev => {
 
   if ((await res.status) != 200) {
     const message = res.response.data.error.message.replaceAll('_', ' ');
-    errorSignup.textContent = message;
+    error.textContent = message;
     signupForm.addEventListener('click', defaultErrorText);
     return;
   }
