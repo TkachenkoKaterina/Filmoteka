@@ -35,11 +35,11 @@ closeButton.addEventListener('click', () => {
 //----------------------
 
 //-------- auth request
-const loginText = document.querySelector('.title-text .login');
+//const loginText = document.querySelector('.title-text .login');
 const loginForm = document.querySelector('form#signinform');
 const signupForm = document.querySelector('form#signupform');
-const loginBtn = document.querySelector('button#loginsubmit');
-const signupBtn = document.querySelector('button#signupsubmit');
+//const loginBtn = document.querySelector('button#loginsubmit');
+//const signupBtn = document.querySelector('button#signupsubmit');
 
 const createUser = async (email, password) => {
   const baseURL =
@@ -51,11 +51,11 @@ const createUser = async (email, password) => {
       password,
       returnSecureToken: true,
     });
-    console.log(data);
+    //console.log(data);
     return data;
   } catch (error) {
     //console.log(error.response.data.error.message.replaceAll('_', ' '));
-    console.log(error);
+    //console.log(error);
     return error;
   }
 };
@@ -70,12 +70,12 @@ const authUser = async (email, password) => {
       password,
       returnSecureToken: true,
     });
-    console.log(data);
+    //console.log(data);
     return data;
   } catch (error) {
     // console.log(error.response.data.error.message.replace('_', ' '));
-    console.log('-----------------------------');
-    console.log(error);
+    //console.log('-----------------------------');
+    //console.log(error);
     return error;
   }
 };
@@ -138,23 +138,31 @@ const clearFields = () => {
 };
 
 defaultErrorText();
-
+//console.dir(mailLogin);
 loginForm.addEventListener('submit', async ev => {
   ev.preventDefault();
-  console.log(mailLogin.value, pswdLogin.value);
+  //console.log(mailLogin.value, pswdLogin.value);
   if (!mailLogin.value || !pswdLogin.value) return;
 
   mailLogin.value.trim();
   const res = await authUser(mailLogin.value, pswdLogin.value);
-  console.log(await res);
+  //console.log(await res);
 
   if ((await res.status) != 200) {
     const message = res.response.data.error.message.replaceAll('_', ' ');
     //const message = res.data.error.message.replaceAll('_', ' ');
 
-    console.log(message);
+    //console.log(message);
     error.textContent = message;
     loginForm.addEventListener('click', defaultErrorText);
+    //console.log(message.includes('email'));
+    if (message.includes('EMAIL')) {
+      mailLogin.classList.add('error-border');
+    }
+    console.log(message.includes('PASSWORD'));
+    if (message.includes('PASSWORD')) {
+      pswdLogin.classList.add('error-border');
+    }
     return;
   }
 
@@ -172,18 +180,19 @@ loginForm.addEventListener('submit', async ev => {
 
 signupForm.addEventListener('submit', async ev => {
   ev.preventDefault();
-  console.log(ev);
+  //                      console.log(ev);
   if (!emailSignup.value || !pswdSignup.value) return;
   if (pswdSignup.value !== pswdSignupConf.value) return;
   mailLogin.value.trim();
 
   const res = await createUser(emailSignup.value, pswdSignup.value);
-  console.log(res);
+  //console.log(res);
 
   if ((await res.status) != 200) {
     const message = res.response.data.error.message.replaceAll('_', ' ');
     error.textContent = message;
     signupForm.addEventListener('click', defaultErrorText);
+
     return;
   }
 
