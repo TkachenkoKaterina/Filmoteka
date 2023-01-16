@@ -67,7 +67,7 @@ function searchGenres(arrays, lengthArr) {
 function notFotoMob(stringURL, BASE_URL) {
   let str = '';
   if (stringURL === null) {
-    str = `./images/no-Film-Img.jpg`;
+    str = './images/no-Film-Img.jpg';
     console.log(str);
     return str;
   } else {
@@ -91,7 +91,7 @@ function notFotoTab(stringURL, BASE_URL) {
 function notFotoDesktop(stringURL, BASE_URL) {
   let str = '';
   if (stringURL === null) {
-    str = './images/no-Film-Img.jpg';
+    str = `./images/no-Film-Img.jpg`;
     console.log(str);
     return str;
   } else {
@@ -149,7 +149,7 @@ const articleElement = articls => {
                     />
                     <img
               class="movie__img"
-              src="./images/no-Film-Img.jpg"
+              src="../images/no-Film-Img.jpg"
               alt="картинка фільму"
               width="450"
               height="294"
@@ -200,7 +200,7 @@ const searchFilm = async event => {
     event.preventDefault();
     if (valuesString === '') {
       return alert(
-        "Sorry, there are no films matching your search query. Please try again."
+        'Sorry, there are no films matching your search query. Please try again.'
       );
     }
     // spanEl.classList.add('visually-hidden');
