@@ -1,5 +1,30 @@
 import axios from 'axios';
 
+// auth modal
+const signUp = document.querySelector('#signupbox');
+const signIn = document.querySelector('#signinbox');
+
+const btnIn = document.querySelector('.btn-in');
+const btnUp = document.querySelector('.btn-up');
+
+// // Switches to 'Create Account'
+btnUp.addEventListener('click', () => {
+  signUp.style.display = 'block';
+  signIn.style.display = 'none';
+});
+
+// // Switches to 'Sign In'
+btnIn.addEventListener('click', () => {
+  signUp.style.display = 'none';
+  signIn.style.display = 'block';
+});
+
+const loginText = document.querySelector('.title-text .login');
+const loginForm = document.querySelector('form.signinform');
+const signupForm = document.querySelector('form.signupform');
+const loginBtn = document.querySelector('label.login');
+const signupBtn = document.querySelector('label.signup');
+
 const createUser = async (email, password) => {
   const baseURL =
     'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyC9fG7Shg0PcLy-7vLSSNqMkxzduprzfqU';
@@ -8,13 +33,13 @@ const createUser = async (email, password) => {
     const data = await axios.post(baseURL, {
       email,
       password,
-      user,
       returnSecureToken: true,
     });
-    // console.log(data);
+    console.log(data);
     return data;
   } catch (error) {
-    // console.log(error.response.data.error.message.replaceAll('_', ' '));
+    //console.log(error.response.data.error.message.replaceAll('_', ' '));
+    console.log(error);
     return error;
   }
 };
@@ -113,7 +138,7 @@ loginForm.addEventListener('submit', async ev => {
   const userInfo = await getDb();
 
   if (userInfo.status == 200) {
-    signupForm.removeEventListener('click', defaultErrorText);
+    loginForm.removeEventListener('click', defaultErrorText);
     clearFields();
   }
 
@@ -122,12 +147,13 @@ loginForm.addEventListener('submit', async ev => {
 
 signupForm.addEventListener('submit', async ev => {
   ev.preventDefault();
+  console.log(ev);
   if (!emailSignup.value || !pswdSignup.value) return;
   if (pswdSignup.value !== pswdSignupConf.value) return;
   mailLogin.value.trim();
 
   const res = await createUser(emailSignup.value, pswdSignup.value);
-  // console.log(res);
+  console.log(res);
 
   if ((await res.status) != 200) {
     const message = res.response.data.error.message.replaceAll('_', ' ');
@@ -152,7 +178,7 @@ signupForm.addEventListener('submit', async ev => {
     clearFields();
   }
 
-  // console.log(idItem);
+  console.log(idItem);
   // console.log(userItem);
 
   // console.log('----0---------');

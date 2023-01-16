@@ -1,177 +1,176 @@
-.wrapper {
-  overflow: hidden;
-  max-width: 390px;
-  background: #fff;
-  padding: 30px;
-  border-radius: 5px;
-  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
-}
-.wrapper .title-text {
-  display: flex;
-  width: 200%;
-}
-.wrapper .title {
-  width: 50%;
-  font-size: 35px;
-  font-weight: 600;
-  text-align: center;
-  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-.wrapper .slide-controls {
-  position: relative;
-  display: flex;
-  height: 50px;
-  width: 100%;
-  overflow: hidden;
-  margin: 30px 0 10px 0;
-  justify-content: space-between;
-  border: 1px solid lightgrey;
-  border-radius: 5px;
-}
-.slide-controls .slide {
-  height: 100%;
-  width: 100%;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 500;
-  text-align: center;
-  line-height: 48px;
-  cursor: pointer;
-  z-index: 1;
-  transition: all 0.6s ease;
-}
-.slide-controls label.signup {
-  color: #000;
-}
-.slide-controls .slider-tab {
-  position: absolute;
-  height: 100%;
-  width: 50%;
+// .bgline {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   height: 100vh;
+//   width: 100%;
+//   z-index: -1;
+// }
+
+// .header-logo {
+//   width: 100%;
+//   height: 40px;
+//   float: left;
+//   margin: 30px 0 40px 0;
+// }
+
+// .login {
+//   height: 100vh;
+//   width: 100%;
+//   max-width: 450px;
+//   margin: 0 auto;
+// }
+
+.login-backdrop {
+  position: fixed;
+  top: 0;
   left: 0;
-  z-index: 0;
-  border-radius: 5px;
-  background: -webkit-linear-gradient(left, #4e0000, #202020, #4e0000);
-  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-input[type='radio'] {
-  display: none;
-}
-#signup:checked ~ .slider-tab {
-  left: 50%;
-}
-#signup:checked ~ label.signup {
-  color: #fff;
-  cursor: default;
-  user-select: none;
-}
-#signup:checked ~ label.login {
-  color: #000;
-}
-#login:checked ~ label.signup {
-  color: #000;
-}
-#login:checked ~ label.login {
-  cursor: default;
-  user-select: none;
-}
-.wrapper .form-container {
   width: 100%;
-  overflow: hidden;
-}
-.form-container .form-inner {
-  display: flex;
-  width: 200%;
-}
-.form-container .form-inner form {
-  width: 50%;
-  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-.form-inner form .field {
-  height: 50px;
-  width: 100%;
-  margin-top: 20px;
-}
-.form-inner form .field input {
   height: 100%;
-  width: 100%;
-  outline: none;
-  padding-left: 15px;
-  border-radius: 5px;
-  border: 1px solid lightgrey;
-  border-bottom-width: 2px;
-  font-size: 17px;
-  transition: all 0.3s ease;
-}
-.form-inner form .field input:focus {
-  border-color: #ff6b08;
-  /* box-shadow: inset 0 0 3px #fb6aae; */
-}
-.form-inner form .field input::placeholder {
-  color: #999;
-  transition: all 0.3s ease;
-}
-form .field input:focus::placeholder {
-  color: #b3b3b3;
-}
-.form-inner form .pass-link {
-  margin-top: 5px;
-}
-.form-inner form .signup-link {
-  text-align: center;
-  margin-top: 30px;
-}
-.form-inner form .pass-link a,
-.form-inner form .signup-link a {
-  color: #7c0202;
-  text-decoration: none;
-}
-.form-inner form .pass-link a:hover,
-.form-inner form .signup-link a:hover {
-  text-decoration: underline;
-}
-form .btn {
-  height: 50px;
-  width: 100%;
-  border-radius: 5px;
-  position: relative;
-  overflow: hidden;
-}
-form .btn .btn-layer {
-  height: 100%;
-  width: 300%;
-  position: absolute;
-  left: -100%;
-  background: -webkit-linear-gradient(
-    right,
-    #4e0000,
-    #202020,
-    #4e0000,
-    #202020
-  );
-  border-radius: 5px;
-  transition: all 0.4s ease;
-}
-form .btn:hover .btn-layer {
-  left: 0;
-}
-form .btn input[type='submit'] {
-  height: 100%;
-  width: 100%;
-  z-index: 1;
-  position: relative;
-  background: none;
-  border: none;
-  color: #fff;
-  padding-left: 0;
-  border-radius: 5px;
-  font-size: 20px;
-  font-weight: 500;
-  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.4);
+
+  transition-property: opacity, visibility;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.4, 1);
 }
 
-.info {
-  margin-top: 10px;
+.login-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  background: rgba(21, 21, 54, 0.9);
+  width: calc(100% - 140px);
+  max-width: 500px;
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  //padding: calc(50vh - 259px) 70px;
+  overflow: auto;
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+
+  @media screen and (min-width: 768px) {
+    padding: calc(50vh - 259px) 70px;
+  }
 }
-.error {
-  color: #ff001b;
+
+.login-wrap .header__logo {
+  justify-content: center;
+  margin-bottom: 50px;
+}
+#signinbox {
+  display: block;
+  float: left;
+  text-align: center;
+  //margin-bottom: 114px;
+}
+
+@media (max-height: 518px) {
+  #signinbox {
+    margin-bottom: calc((100vh - 404px));
+  }
+}
+
+#signupbox {
+  display: none;
+  float: left;
+}
+
+.inputfield {
+  height: 42px;
+  width: calc(100% - 22px);
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0);
+  border: white solid 1px;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.inputsubmit {
+  height: 42px;
+  width: 100%;
+  font-size: 14px;
+  border: none;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.25);
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.inputsubmit:active {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.submitfunc:after {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(0, 0, 0, 0.25),
+    rgba(0, 0, 0, 0.25) 10px,
+    rgba(0, 0, 0, 0) 10px,
+    rgba(0, 0, 0, 0) 20px
+  );
+  -webkit-animation: AnimationProgress 5s linear infinite;
+  animation: AnimationProgress 5s linear infinite;
+  background-size: 300% 300%;
+  height: 40px;
+  width: 100%;
+  border: 0;
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 40px;
+  transition: all 1s ease-in-out;
+}
+
+@-webkit-keyframes AnimationProgress {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 94% 0%;
+  }
+}
+
+@keyframes AnimationProgress {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 94% 0%;
+  }
+}
+
+.spf {
+  width: 100%;
+  line-height: 20px;
+  margin-top: 30px;
+  color: #fff;
+  float: left;
+  margin-bottom: 30px;
+}
+
+.spf a {
+  width: 100%;
+  float: right;
+}
+
+.err {
+  margin-bottom: 20px;
+  font-size: 14px;
+  text-align: center;
+  color: red;
 }
