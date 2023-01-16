@@ -164,7 +164,7 @@ loginForm.addEventListener('submit', async ev => {
     loginForm.removeEventListener('click', defaultErrorText);
     defaultErrorText();
     clearFields();
-    document.location.href = 'http://ru.stackoverflow.com';
+    document.location.href = './my-library.html';
   }
 
   //const itemId = mailLogin.value.replace('@', '').replaceAll('.', '');
