@@ -32,5 +32,5 @@ export function pagination(totalPages, currentPage) {
     },
   };
 
-  const pagination = new Pagination('tui-pagination-container', options);
+  // const pagination = new Pagination('tui-pagination-container', options);
 }

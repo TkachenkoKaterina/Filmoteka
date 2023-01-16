@@ -1,3 +1,8 @@
+import {
+  addWatchedtoLocalStorage,
+  addQueuedToLocalStorage,
+} from './partials-js/addToWatch';
+
 import { getFilms } from './partials-js/getTrendFilms';
 import { POSTER_SIZES, BASE_URL } from './partials-js/vars';
 import './partials-js/themeSwitch';
@@ -32,3 +37,5 @@ export function makerender(arr) {
     }
   );
 }
+// addQueuedToLocalStorage();
+// addWatchedtoLocalStorage();

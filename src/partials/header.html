@@ -14,12 +14,16 @@
 
     <nav class="header__navigation">
       <a href="./index.html" class="header__logo">
-        <img src="./images/icons/logo-icon.svg" alt="logo" />
+        <img class="header__logo-icon" src="./images/icons/logo-icon.svg" alt="logo" />
         <h1 class="header__logo-title">Filmoteka</h1>
       </a>
       <ul class="header__list">
         <li class="header__list-item">
-          <a class="header__item-link header__item-link--current" href="./index.html">Home</a>
+          <a
+            class="header__item-link header__item-link--current"
+            href="./index.html"
+            >Home</a
+          >
         </li>
         <li class="header__list-item">
           <a class="header__item-link" href="./my-library.html">My library</a>
@@ -33,9 +37,6 @@
       <button class="header__search-button" type="submit">
         <img src="./images/icons/search-icon.svg" alt="icon" />
       </button>
-      <p class="header__error-text header__error-text--hidden">
-        Search result not successful. Enter the correct movie name.
-      </p>
     </form>
   </div>
 </header>
