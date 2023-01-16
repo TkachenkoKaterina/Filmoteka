@@ -81,38 +81,41 @@ function searchGenres(arrays, lengthArr) {
 }
 //---------------------------------------------------------------------------------------------------------------------------
 function notFotoMob(stringURL, BASE_URL) {
-  let str = '';
+  let strM = '';
+  console.log(stringURL === null);
   if (stringURL === null) {
-    str = `./images/no-Film-Img.jpg`;
-    console.log(str);
-    return str;
+    strM = `./images/no-Film-Img280x402.jpg`;
+    console.log(strM);
+    return strM;
   } else {
-    str = `${BASE_URL}w300${stringURL}`;
-    return str;
+    strM = `${BASE_URL}w300${stringURL}`;
+    return strM;
   }
 }
 //-----------------------------------------------------------------------------------------------------------------------------
 function notFotoTab(stringURL, BASE_URL) {
-  let str = '';
+  let strT = '';
+  console.log(stringURL === null);
   if (stringURL === null) {
-    str = `./images/no-Film-Img.jpg`;
-    console.log(str);
-    return str;
+    strT = `./images/no-Film-Img336x455.jpg`;
+    console.log(strT);
+    return strT;
   } else {
-    str = `${BASE_URL}w780${stringURL}`;
-    return str;
+    strT = `${BASE_URL}w780${stringURL}`;
+    return strT;
   }
 }
 //----------------------------------------------------------------------------------------------------------------------------
 function notFotoDesktop(stringURL, BASE_URL) {
-  let str = '';
+  let strD = '';
+  console.log(stringURL === null);
   if (stringURL === null) {
-    str = './images/no-Film-Img.jpg';
-    console.log(str);
-    return str;
+    strD = `./images/no-Film-Img.jpg`;
+    console.log(strD);
+    return strD;
   } else {
-    str = `${BASE_URL}w1280${stringURL}`;
-    return str;
+    strD = `${BASE_URL}w1280${stringURL}`;
+    return strD;
   }
 }
 
@@ -143,29 +146,20 @@ const articleElement = articls => {
 
           <picture class="film-list__img">
                     <source
-                      srcset="
-                      ${notFotoDesktop(poster_path, BASE_URL)}
-                        
-                      "
+                      srcset="${notFotoDesktop(poster_path, BASE_URL)}"
                       media="screen and (min-width:1200px)"
                     />
                     <source
-                      srcset="
-                      ${notFotoTab(poster_path, BASE_URL)}
-                        
-                      "
+                      srcset="${notFotoTab(poster_path, BASE_URL)}"
                       media="(min-width:768px)"
                     />
                     <source
-                      srcset="
-                      ${notFotoMob(poster_path, BASE_URL)}
-                        
-                      "
+                      srcset="${notFotoMob(poster_path, BASE_URL)}"
                       media="(max-width:767px)"
                     />
                     <img
               class="movie__img"
-              src="./images/no-Film-Img.jpg"
+              src="./images/no-Film-Img.jpg""
               alt="картинка фільму"
               width="450"
               height="294"
@@ -204,6 +198,7 @@ const onInput = event => {
   else {
     buttonEl.classList.remove('disebl_button_form');
     valuesString = valuesString.trim();
+    console.log(valuesString);
     namberPage = 1;
   }
 };
@@ -214,6 +209,7 @@ inputEl.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 const searchFilm = async event => {
   try {
     event.preventDefault();
+    console.log(valuesString === '');
     if (valuesString === '') {
       return alert(
         'Sorry, there are no films matching your search query. Please try again.'
@@ -228,6 +224,7 @@ const searchFilm = async event => {
       namberPer_page
     );
     const articls = res.data.results;
+    console.log(res);
     console.log(articls);
     datatotalHits = res.data.total_results;
     pageTotal = res.data.total_pages;
