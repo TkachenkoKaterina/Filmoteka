@@ -1,26 +1,44 @@
 <section>
   <container>
     <ul class="movie__collection list">
-      <li class="movie__card">
-        <a class="movie__link open__modal--js" data-id="" href="#">
+      <!-- <li class="movie__card">
+        <a class="movie__link open__modal--js link"  data-id="${id}" href="">
           <div class="movie__img__box">
-            <img
+          <picture class="film-list__img">
+                    <source
+                      srcset="${notFotoDesktop(poster_path, BASE_URL)}"
+                      media="screen and (min-width:1200px)"
+                    />
+                    <source
+                      srcset="${notFotoTab(poster_path, BASE_URL)}"
+                      media="(min-width:768px)"
+                    />
+                    <source
+                      srcset="${notFotoMob(poster_path, BASE_URL)}"
+                      media="(max-width:767px)"
+                    />
+                    <img
               class="movie__img"
-              src="#"
-              alt="Нажаль, хтось не намалював крутий постер до цього фільму)"
-              width="394"
+              src="./images/no-Film-Img.jpg""
+              alt="Постер до фільму"
+              width="450"
+              height="294"
               name="Poster"
             />
+                  </picture>           
           </div>
         </a>
         <div class="movie__card__textbox">
-          <a class="movie__link open__modal--js link" href="">
-            <h3 class="movie__title">Назва фільму</h3>
-            <span class="movie__details">Жанри | </span
-            ><span class="movie__details">Рік</span>
+          <a class="movie__link open__modal--js link" data-id="${id}" href="">
+            <h3 class="movie__title">${original_title}</h3>
+            <span class="movie__details">${searchGenres(
+              Object.values(genre_ids),
+              genre_ids.length
+            )} | </span
+            ><span class="movie__details">${release_date.slice(0, 4)}</span>
           </a>
         </div>
-      </li>
+      </li> -->
     </ul>
   </container>
 </section>
