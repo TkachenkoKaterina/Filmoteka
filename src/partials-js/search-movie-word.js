@@ -257,8 +257,10 @@ const searchFilm = async event => {
       }
     }
   } catch (error) {
+    console.log(error);
+    console.log(error.value);
     console.log(error.message);
-    ulEl.innerHTML = '';
+    //ulEl.innerHTML = '';
   }
 };
 

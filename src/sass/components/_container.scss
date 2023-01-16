@@ -40,17 +40,18 @@
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
+    
     }
     &__card {
     width: 100%;
     height: auto;
 
   @include tablet {
-    width: calc((100% - 60px) / 2);
+    width: calc((100% - 64px) / 2);
   }
 
   @include desktop {
-    width: calc((100% - 90px) / 3);
+    width: calc((100% - 32px) / 3);
   }
 }
  &__link {
