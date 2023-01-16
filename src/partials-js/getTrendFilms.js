@@ -4,7 +4,7 @@ import axios from 'axios';
 // import { pagination } from './tuiPagination';
 export async function getFilms() {
   const urlApi = `${MAIN_PART_URL}trending/movie/week${API_KEY}`;
-
+  const galleryRef = document.querySelector('.movie__collection');
   await axios
     .get(urlApi)
     .then(function (response) {
@@ -15,7 +15,7 @@ export async function getFilms() {
       return response.data;
     })
     .then(results => {
-      makerender(results.results);
+      galleryRef.innerHTML = makerender(results.results);
       // console.log(results);
       // pagination(results.total_pages, results.page);
     })

@@ -28,6 +28,19 @@ let pageTotal = 0;
 //'w300', 'w780', 'w1280', 'original';
 //-------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------------------------------------
+//async () => {
+//event.preventDefault();
+//  try {
+//    const result = await axiosAllGenres(API_KEY, MAIN_PART_URL);
+//    allGenres = result.data.genres;
+//  } catch (err) {
+//   console.log(err);
+// }
+//};
+//--------------------------------------------------------------------------------------------------
+//s;
+//console.log(s);
+
 axiosAllGenres(API_KEY, MAIN_PART_URL)
   .then(res => res)
   .then(resl => resl.data)
@@ -40,16 +53,19 @@ axiosAllGenres(API_KEY, MAIN_PART_URL)
 //-----------------------------------------------------------------------------------------------------------------------------------------
 function searchGenres(arrays, lengthArr) {
   let count = lengthArr;
+  //.console.log(lengthArr);
   if (lengthArr > 3) {
     lengthArr = 3;
   }
   let strRes = '';
   if (lengthArr === 0) return 'n/a';
   else {
-    arrays.forEach(array => {
+    // arrays.forEach(array =>
+    for (let index = 0; index < lengthArr; index++) {
       count = count - 1;
+
       allGenres.map(allGenre => {
-        if (array === allGenre.id) {
+        if (arrays[index] === allGenre.id) {
           if (count === 0) {
             strRes += allGenre.name;
           } else {
@@ -59,7 +75,7 @@ function searchGenres(arrays, lengthArr) {
           strRes += '';
         }
       });
-    });
+    }
   }
   return strRes;
 }
@@ -121,7 +137,7 @@ const articleElement = articls => {
         return ` 
             
      <li class="movie__card">
-        <a class="movie__link open__modal--js link" id="${id}" href="">
+        <a class="movie__link open__modal--js link"  data-id="${id}" href="">
           <div class="movie__img__box">
 
 
@@ -158,7 +174,7 @@ const articleElement = articls => {
           </div>
         </a>
         <div class="movie__card__textbox">
-          <a class="movie__link open__modal--js link" href="">
+          <a class="movie__link open__modal--js link" data-id="${id}" href="">
             <h3 class="movie__title">${original_title}</h3>
             <span class="movie__details">${searchGenres(
               Object.values(genre_ids),

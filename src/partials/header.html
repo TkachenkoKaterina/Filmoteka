@@ -1,7 +1,5 @@
 <header class="header">
   <div class="container header-container">
-
-
     <!-- Theme Switch -->
 
     <div id="switch">
@@ -9,12 +7,13 @@
       <div class="icon"></div>
     </div>
 
-
-
-
     <nav class="header__navigation">
       <a href="./index.html" class="header__logo">
-        <img class="header__logo-icon" src="./images/icons/logo-icon.svg" alt="logo" />
+        <img
+          class="header__logo-icon"
+          src="./images/icons/logo-icon.svg"
+          alt="logo"
+        />
         <h1 class="header__logo-title">Filmoteka</h1>
       </a>
       <ul class="header__list">
@@ -31,12 +30,20 @@
       </ul>
     </nav>
 
-
     <form class="header__search-form js-header-form" id="search-form">
-      <input class="header__search-input" type="text" name="query" autocomplete="off" placeholder="Movie search" />
+      <input
+        class="header__search-input"
+        type="text"
+        name="query"
+        autocomplete="off"
+        placeholder="Movie search"
+      />
       <button class="header__search-button" type="submit">
         <img src="./images/icons/search-icon.svg" alt="icon" />
       </button>
+      <p class="header__error-text header__error-text--hidden">
+        Search result not successful. Enter the correct movie name.
+      </p>
     </form>
   </div>
 </header>
