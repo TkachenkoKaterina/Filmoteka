@@ -145,7 +145,7 @@ const articleElement = articls => {
           <picture class="film-list__img">
                     <source
                       srcset="${notFotoDesktop(poster_path, BASE_URL)}"
-                      media="screen and (min-width:1200px)"
+                      media="screen and (min-width:1280px)"
                     />
                     <source
                       srcset="${notFotoTab(poster_path, BASE_URL)}"

@@ -33,12 +33,12 @@
     padding-bottom: 30px;
     display: flex;
     justify-content: center;
-  
+
     @media screen and (min-width: 320px) {
       flex-direction: column;
       align-items: center;
     }
-  
+
     @media screen and (min-width: 768px) {
       flex-direction: row;
     }
@@ -46,11 +46,16 @@
 }
 
 .movie {
+  @include tablet-desktop {
+    flex-grow: 1;
+  }
+
   &__collection {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 16px;
   }
+
   &__card {
     width: 100%;
     height: auto;
@@ -63,6 +68,7 @@
       width: calc((100% - 32px) / 3);
     }
   }
+
   &__link {
     text-decoration: none;
     /*transition-duration: var(--animation-time);*/

@@ -43,7 +43,7 @@ export function makerender(arr) {
                       ${BASE_URL}w1280${poster_path}
                         
                       "
-                      media="screen and (min-width:1200px)"
+                      media="screen and (min-width:1280px)"
                     />
                     <source
                       srcset="
