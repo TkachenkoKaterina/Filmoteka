@@ -168,10 +168,10 @@ export const articleElement = articls => {
         <div class="movie__card__textbox">
           <a class="movie__link open__modal--js link" data-id="${id}" href="#">
             <h3 class="movie__title">${original_title}</h3>
-            <span class="movie__details">${searchGenres}(
+            <span class="movie__details">${searchGenres(
               Object.values(genre_ids),
               genre_ids.length
-            ) </span>
+            )} </span>
             <span class="movie__details">${release_date.slice(0, 4)}</span>
           </a>
         </div>
