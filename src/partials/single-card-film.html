@@ -1,9 +1,8 @@
 <section>
   <container>
     <ul class="movie__collection list">
-      <!-- <li class="movie__card">
-        <a class="movie__link open__modal--js link"  data-id="${id}" href="">
-          <div class="movie__img__box">
+      <!-- <li class="movie__card open__modal--js link"  data-id="${id}">
+         <div class="movie__img__box">
           <picture class="film-list__img">
                     <source
                       srcset="${notFotoDesktop(poster_path, BASE_URL)}"
@@ -29,8 +28,7 @@
           </div>
         </a>
         <div class="movie__card__textbox">
-          <a class="movie__link open__modal--js link" data-id="${id}" href="">
-            <h3 class="movie__title">${original_title}</h3>
+           <h3 class="movie__title">${original_title}</h3>
             <span class="movie__details">${searchGenres(
               Object.values(genre_ids),
               genre_ids.length
