@@ -1,7 +1,6 @@
 import { MOBILE_SIZES, DESKTOP_SIZES, TABLET_SIZES, BASE_URL, API_KEY } from './vars';
 
 const testEl = document.querySelector('.test')
-document.addEventListener('DOMContentLoaded', makerender());
 
 export function makerender(arr) {
 
@@ -13,18 +12,15 @@ export function makerender(arr) {
           <div class="movie__img__box">
            <picture class="film-list__img">
             <source
-                srcset="
-                ${BASE_URL}${DESKTOP_SIZES}${API_KEY}"
+                srcset="${BASE_URL}${DESKTOP_SIZES}${API_KEY}"
                 media="screen and (min-width:1200px)"
             />
             <source
-                srcset="
-                ${BASE_URL}${TABLET_SIZES}${API_KEY} "
+                srcset="${BASE_URL}${TABLET_SIZES}${API_KEY}"
                 media="(min-width:768px)"
             />
             <source
-                srcset="
-                ${BASE_URL}${MOBILE_SIZES}${API_KEY}"
+                srcset="${BASE_URL}${MOBILE_SIZES}${API_KEY}"
                 media="(max-width:767px)"
             />
             <img
@@ -46,10 +42,10 @@ export function makerender(arr) {
           </a>
         </div>
       </li> `;
-   });
+   }).join('');
     
 
-    testEl.insertAdjacentHTML('beforeend', renderEl.join(''))
+    testEl.insertAdjacentHTML('beforeend', renderEl)
   
 }
 
