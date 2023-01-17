@@ -8,8 +8,8 @@
     font-size: 14px;
     text-decoration: underline;
     @media screen and (min-width: 768px) {
-            font-size: 16px;
-        }
+        font-size: 16px;
+    }
 }
 
 .footer__title {
@@ -43,20 +43,10 @@ img {
     padding-left: 0;
 }
 
-.modal__footer {
-    margin-bottom: 15px;
-    /* width: 700px; */
-    max-width: 920px;
-    height: 550px;
-    border-radius: 25px;
-    /* display: flex;
-  justify-content: center; */
-    background-color: white;
-}
+
 
 .team-title {
-      margin-bottom: 30px;
-    /* font-weight: 700; */
+    margin-bottom: 30px;
     font-size: 18px;
     line-height: 1.17;
     text-align: center;
@@ -65,7 +55,6 @@ img {
 }
 
 .team-list {
-    /* /* display: flex; */
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
@@ -79,64 +68,88 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    
+    @media screen and (min-width: 768px) {
+        padding-top: 15px;
+        
+    }  
 }
 
 .team-member {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 100px;
-     border-radius: 0px 0px 4px 4px;
-    background-color: var(--secondary-text-color);
+
 }
 
 
 .team-member-title {
-    margin-bottom: 10px;
     text-align: center;
 
     font-weight: 500;
-    font-size: 14px;
+    font-size: 10px;
     line-height: 1.19;
 
-    color: var(--title-text-color);
+    color: var(--accent-color);
+    @media screen and (min-width: 768px) {
+        margin-bottom: 10px;
+        font-size: 12px;
+    
+    }
+
+    @media screen and (min-width: 1200px) {
+        font-size: 14px;
+    }
 }
 
 .team-member-position {
-    margin-bottom: 16px;
+    margin-bottom: 5px;
     margin-top: 5px;
     text-align: center;
-    font-size: 14px;
+    font-size: 10px;
     line-height: 1.19;
 
-    color: var(--primary-text-color);
+    color: var(--dominant-color);
+
+    @media screen and (min-width: 768px) {
+        font-size: 12px;
+        margin-bottom: 10px;
+        margin-top: 5px;
+        }
+    
+    @media screen and (min-width: 1200px) {
+        font-size: 14px;
+        margin-bottom: 16px;
+        margin-top: 5px;
+    }
 }
 
 .thumb {
     vertical-align: middle;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
     object-fit: contain;
     overflow: hidden;
     box-shadow: 2px 5px 10px rgba(0, 0, 0, 1), 2px 5px 10px rgba(0, 0, 0, 0.25), 2px 5px 20px rgba(0, 0, 0, 0.2);
+
+    @media screen and (min-width: 320px) {
+        display: none;   
+    }
+
+    @media screen and (min-width: 768px) {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 60px;
+        height: 60px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        display: block;
+        width: 100px;
+        height: 100px;
+    }
 }
 
-
-
-// .box__img {
-//     @media screen and (min-width:320px) {
-//         width: 100%;
-//         // height: 460px;
-//     }
-
-//     @media screen and (min-width:768px) {
-//         width: 354px;
-//         // height: 374px;
-//     }
-
-//     @media screen and (min-width:1200px) {
-//         width: 270px;
-//         // height: 260px;
-//     }
-
-// }
