@@ -6,7 +6,6 @@ import './partials-js/authorization';
 import './partials-js/search-movie-word';
 import './partials-js/axiosAllGenres';
 import './partials-js/axiosFilm';
-import './partials-js/getTrendFilms';
 import './partials-js/makeRenderFilms';
 import './partials-js/openModal';
 import './partials-js/addToWatch';

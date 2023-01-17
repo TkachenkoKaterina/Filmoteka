@@ -1,14 +1,14 @@
-import { getFilms } from './getTrendFilms';
-import { FULL_URL_TRENDS } from './vars';
+import { requestGet } from './requestGet';
+import { MAIN_PART_URL, TRENDS_REQUEST_PART, API_KEY } from './vars';
 import { makerender } from './makeRenderFilms';
 
-export function onLoadPage (){
-let arrFilms;
-
-getFilms(FULL_URL_TRENDS).then((res) => {
+export function onLoadPage() {
+    let arrFilms;
+    requestGet(MAIN_PART_URL, TRENDS_REQUEST_PART, API_KEY).then((res) => {
+    
     arrFilms = res.data.results;
-    console.log(arrFilms);
     makerender(arrFilms);
- 
-})
-}
+ })}
+
+
+

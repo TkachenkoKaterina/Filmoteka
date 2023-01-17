@@ -6,11 +6,9 @@ import {
   API_KEY,
 } from './vars';
 
-const testEl = document.querySelector('.test');
+const trendsContainerEL = document.querySelector('.movie__collection');
 
 export function makerender(arr) {
-  console.log(arr);
-
   const renderEl = arr
     .map(({ id, original_title, release_date }) => {
       return `<li class="movie__card">
@@ -51,7 +49,7 @@ export function makerender(arr) {
     })
     .join('');
 
-  testEl.insertAdjacentHTML('beforeend', renderEl);
+  trendsContainerEL.insertAdjacentHTML('beforeend', renderEl);
 }
 
 // console.log(arr);
@@ -72,12 +70,12 @@ export function makerender(arr) {
 //                   <h3 class="movie__title">${original_title}</h3>
 //                   <span class="movie__details">Жанри | </span><span
 //                   class="movie__details">${release_date.slice(0, 4)}</span>
-//
+
 //          </a>
 //          </div>
 //      </li>
 //   `;
-//
+
 // galleryRef.insertAdjacentHTML('beforeend', renderEl);
 //  }
-//);
+// );
