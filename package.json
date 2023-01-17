@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@glidejs/glide": "^3.6.0",
+    "@parcel/bundler-default": "^2.8.2",
     "axios": "^1.2.2",
     "basiclightbox": "^5.0.4",
     "handlebars": "^4.7.7",

@@ -18,10 +18,11 @@ const glide = new Glide('.glide', {
 glide.mount();
 
 function renderTrendy() {
-  const url = `https://api.themoviedb.org/3/trending/all/day?api_key=d91911ebb88751cf9e5c4b8fdf4412c9`;
+  const url = `https://api.themoviedb.org/3/trending/all/day?api_key=c861fc623ae12b9b041c6dade1c99e57`;
   return fetch(url)
     .then(response => response.json())
     .then(({ results }) => {
+      console.log(results);
       return results;
     })
     .then(renderSliderFilms)
@@ -31,6 +32,6 @@ function renderTrendy() {
     });
 }
 
-function renderSliderFilms(articles) {
-  sliderContainer.innerHTML = filmsCardSliderTpl(articles);
+function renderSliderFilms(cards) {
+  sliderContainer.innerHTML = filmsCardSliderTpl(cards);
 }
