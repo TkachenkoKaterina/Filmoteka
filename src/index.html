@@ -12,20 +12,24 @@
       rel="stylesheet"
     />
 
-    <!--========== Normalize styles ========== -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css"
-      integrity="sha512-wpPYUAdjBVSE4KJnH1VR1HeZfpl1ub8YT/NKx4PuQ5NmX2tKuGu6U/JRp5y+Y8XG2tV+wKQpNHVUX03MfMFn9Q=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-
     <!--========== Main styles ========== -->
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
     </style>
     <link rel="stylesheet" href="./sass/index.scss" />
+    <!-- Required Core stylesheet for Slider -->
+    <link
+      rel="stylesheet"
+      href="../node_modules/@glidejs/glide/dist/css/glide.core.min.css"
+      href="node_modules/@glidejs/glide/dist/css/glide.core.min.css"
+    />
+
+    <!-- Optional Theme stylesheet -->
+    <!-- <link
+      rel="stylesheet"
+      href="node_modules/@glidejs/glide/dist/css/glide.theme.min.css"
+    /> -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="module" src="./index.js"></script>
     <link
@@ -39,11 +43,12 @@
     <div class="test"></div>
     <!-- ❗️❗️❗️ Add partials like so for every page -->
     <include src="./partials/header.html"></include>
+    <include src="./partials/authorization.html"></include>
     <include src="./partials/container.html"></include>
-    <include src="./partials/snow.html"></include>
     <include src="./partials/loader.html"></include>
+    <include src="./partials/slider.html"></include>
     <include src="./partials/footer.html"></include>
     <include src="./partials/modal-template.html"></include>
-    <include src="./partials/authorization.html"></include>
+    <include src="./partials/snow.html"></include>
   </body>
 </html>
