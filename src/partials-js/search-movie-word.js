@@ -12,7 +12,7 @@ let allGenres = [];
 const formEl = document.querySelector('#search-form');
 const inputEl = document.querySelector('.header__search-input');
 const buttonEl = document.querySelector('.header__search-button');
-const pEl = document.querySelector('.header__error-text');
+const divEl = document.querySelector('.header__error-text--disable');
 const spanEl = document.querySelector('#visually-hidden');
 const ulEl = document.querySelector('.movie__collection');
 
@@ -185,7 +185,7 @@ const articleElement = articls => {
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 const onInput = event => {
   event.preventDefault();
-  pEl.classList.add('header__error-text--hidden');
+  divEl.classList.add('header__error-text--disable');
   const valuelongth = event.target.value.length;
   valuesString = event.target.value;
   let element = '';
@@ -229,7 +229,7 @@ const searchFilm = async event => {
 
     if (datatotalHits === 0) {
       //spanEl.classList.add('visually-hidden');
-      pEl.classList.remove('header__error-text--hidden');
+      divEl.classList.remove('header__error-text--disable');
       Notiflix.Notify.failure(
         'Search result not successful. Enter the correct movie name.'
       );
