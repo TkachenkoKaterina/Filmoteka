@@ -3,10 +3,12 @@
 }
 
 .footer__link {
+    cursor: pointer;
     margin-left: 5px;
     color: inherit;
     font-size: 14px;
     text-decoration: underline;
+  
     @media screen and (min-width: 768px) {
         font-size: 16px;
     }
@@ -51,7 +53,7 @@ img {
     line-height: 1.17;
     text-align: center;
 
-    color: var(--title-text-color);
+    color:#545454;
 }
 
 .team-list {
