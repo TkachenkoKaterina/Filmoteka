@@ -74,3 +74,4 @@ function addQueuedToLocalStorage() {
 }
 
 export { addWatchedtoLocalStorage, addQueuedToLocalStorage };
+console.log(5);
