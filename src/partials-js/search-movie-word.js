@@ -142,12 +142,10 @@ const articleElement = articls => {
      <li class="movie__card">
         <a class="movie__link open__modal--js link"  data-id="${id}" href="">
           <div class="movie__img__box">
-
-
           <picture class="film-list__img">
                     <source
                       srcset="${notFotoDesktop(poster_path, BASE_URL)}"
-                      media="screen and (min-width:1200px)"
+                      media="screen and (min-width:1280px)"
                     />
                     <source
                       srcset="${notFotoTab(poster_path, BASE_URL)}"
@@ -159,10 +157,10 @@ const articleElement = articls => {
                     />
                     <img
               class="movie__img"
-              src="./images/no-Film-Img.jpg""
-              alt="картинка фільму"
-              width="450"
-              height="294"
+              src="./images/no-Film-Img.jpg"
+              alt="Постер до фільму"
+              width="264"
+              height="374"
               name="Poster"
             />
                   </picture>           
