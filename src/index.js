@@ -5,6 +5,7 @@ import {
 
 import { getFilms } from './partials-js/getTrendFilms';
 import { POSTER_SIZES, BASE_URL } from './partials-js/vars';
+
 import './partials-js/themeSwitch';
 
 const galleryRef = document.querySelector('#gallery');

@@ -1,5 +1,11 @@
 import { refs } from './refs';
 
+// const refs = {
+//     checkbox: document.querySelector('.checkbox'),
+//     body: document.querySelector("body"),
+
+// }
+
 $('#switch').click(function () {
     $("#switch").toggleClass("checkLight");
 });
@@ -12,6 +18,7 @@ const Theme = {
 };
 
 refs.checkbox.addEventListener('change', themeChange);
+
 
 function themeChange(event) {
     const onChecked = event.target.checked;
