@@ -12,7 +12,7 @@ import './partials-js/openModal';
 import './partials-js/addToWatch';
 import './partials-js/tuiPagination';
 import './partials-js/footer-modal';
-
+import './partials-js/requestGet';
 import { onLoadPage } from './partials-js/onLoadPage';
 
 document.addEventListener('DOMContentLoaded', onLoadPage());
