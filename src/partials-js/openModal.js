@@ -14,6 +14,7 @@ refs.closeModalBtn.addEventListener('click', onCloseModal);
 refs.backdrop.addEventListener('click', onBackdropClick);
 
 function onOpenModal (element) {
+    element.preventDefault();
     console.log(element);
     document.body.classList.add('show-modal');
 }
@@ -33,6 +34,9 @@ function onBackdropClick(e) {
 // });
 
 
-// onclick="onOpenModal()"
 
+
+
+
+// element.preventDefault();
 
