@@ -7,8 +7,7 @@ export const BASE_IMG_URL = 'https://image.tmdb.org/t/p/';
 
 export const GENRE_REQUEST_PART = 'genre/movie/list';
 
-export const FULL_URL_TRENDS =
-  'https://api.themoviedb.org/3/trending/movie/week?api_key=c861fc623ae12b9b041c6dade1c99e57';
+export const TRENDS_REQUEST_PART = 'trending/movie/week';
 export const PATH_TRENDS = 'trending/movie/week';
 export const SEARCH_MOVIE = 'search/movie';
 export const POSTER_SIZES = 'w500';

@@ -8,7 +8,7 @@ import * as vars from './vars';
 // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
 let query = '&query=Avatar';
 let lang = '&language=en-US';
-async function requestGet(base_url, path, key, ...parameters) {
+export async function requestGet(base_url, path, key, ...parameters) {
   let requestURL = `${base_url}${path}${key}${parameters.join('')}`;
   const response = await axios.get(requestURL);
   console.log(response);
