@@ -7,11 +7,23 @@ import { getFilms } from './partials-js/getTrendFilms';
 import { POSTER_SIZES, BASE_URL } from './partials-js/vars';
 import './partials-js/themeSwitch';
 
-console.log(
+// let arr = [];
+
+// getFilms().then(result => {
+//   console.log(result);
+//   arr.push(result);
+//   console.log(arr);
+// });
+
+function createArr() {
   getFilms().then(result => {
     console.log(result);
-  })
-);
+    const arr = result.data;
+    console.log(arr);
+  });
+}
+
+createArr();
 
 const galleryRef = document.querySelector('#gallery');
 document.addEventListener('DOMContentLoaded', getFilms());
