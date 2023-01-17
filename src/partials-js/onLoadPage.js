@@ -7,7 +7,6 @@ export function onLoadPage() {
     requestGet(MAIN_PART_URL, TRENDS_REQUEST_PART, API_KEY).then((res) => {
 
         arrFilms = res.data.results;
-        console.log(arrFilms);
         makerender(arrFilms);
     })
 }
