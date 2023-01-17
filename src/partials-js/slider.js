@@ -4,7 +4,8 @@ import axios from 'axios';
 
 // import filmsCardSliderTpl from '../templates/card-films-slider.hbs';
 // import trailer from './trailers.js';
-import { makerender } from './makeRenderFilms';
+// import { makerender } from './makeRenderFilms';
+import { articleElement } from './search-movie-word';
 
 import {
   MAIN_PART_URL,
@@ -14,7 +15,6 @@ import {
   MOBILE_SIZES,
   BASE_IMG_URL,
   GENRE_REQUEST_PART,
-  BASE_IMG_URL,
   PATH_TRENDS,
   SEARCH_MOVIE,
   POSTER_SIZES,
@@ -22,7 +22,7 @@ import {
 
 const sliderUlRef = document.querySelector('.glide__slides');
 console.log(sliderUlRef);
-sliderRender();
+console.log(articleElement());
 
 const glide = new Glide('.glide', {
   type: 'slider',
@@ -35,20 +35,20 @@ const glide = new Glide('.glide', {
 
 glide.mount();
 
-async function sliderRender() {
-  try {
-    console.log(BASE_IMG_URL);
-    const response = await axios.get(BASE_IMG_URL);
-    const arr = response.data.results;
-    console.log(arr);
-    // const rusults = response.json();
-    // console.log(rusults);
-    makerender(arr);
-  } catch (error) {
-    console.log(error);
-  }
-  return sliderUlRef.insertAdjacentHTML('beforeend', sliderUlRef);
-}
+// async function sliderRender() {
+//   try {
+//     console.log(BASE_IMG_URL);
+//     const response = await axios.get(BASE_IMG_URL);
+//     const arr = response.data.results;
+//     console.log(arr);
+//     // const rusults = response.json();
+//     // console.log(rusults);
+//     makerender(arr);
+//   } catch (error) {
+//     console.log(error);
+//   }
+//   return sliderUlRef.insertAdjacentHTML('beforeend', sliderUlRef);
+// }
 
 // function makerender(articles) {
 //   sliderUlRef.innerHTML = filmsCardSliderTpl(articles);

@@ -58,8 +58,9 @@ function searchGenres(arrays, lengthArr) {
     lengthArr = 3;
   }
   let strRes = '';
-  if (lengthArr === 0) return 'n/a';
-  else {
+  if (lengthArr === 0) {
+    return 'n/a';
+  } else {
     // arrays.forEach(array =>
     for (let index = 0; index < lengthArr; index++) {
       count = count - 1;
@@ -120,7 +121,7 @@ function notFotoDesktop(stringURL, BASE_IMG_URL) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------------
-const articleElement = articls => {
+export const articleElement = articls => {
   return articls
     .map(
       ({
@@ -137,10 +138,8 @@ const articleElement = articls => {
         vote_count,
         genre_ids,
       }) => {
-        return ` 
-            
-     <li class="movie__card">
-        <a class="movie__link open__modal--js link"  data-id="${id}" href="">
+        return `<li class="movie__card">
+        <a class="movie__link open__modal--js link"  data-id="${id}" href="#">
           <div class="movie__img__box">
           <picture class="film-list__img">
                     <source
@@ -167,13 +166,13 @@ const articleElement = articls => {
           </div>
         </a>
         <div class="movie__card__textbox">
-          <a class="movie__link open__modal--js link" data-id="${id}" href="">
+          <a class="movie__link open__modal--js link" data-id="${id}" href="#">
             <h3 class="movie__title">${original_title}</h3>
-            <span class="movie__details">${searchGenres(
+            <span class="movie__details">${searchGenres}(
               Object.values(genre_ids),
               genre_ids.length
-            )} | </span
-            ><span class="movie__details">${release_date.slice(0, 4)}</span>
+            ) </span>
+            <span class="movie__details">${release_date.slice(0, 4)}</span>
           </a>
         </div>
       </li> `;
@@ -192,8 +191,9 @@ const onInput = event => {
   for (let index = 0; index < valuelongth; index++) {
     element = element + ' ';
   }
-  if (valuesString === element) return (valuesString = '');
-  else {
+  if (valuesString === element) {
+    return (valuesString = '');
+  } else {
     buttonEl.classList.remove('disebl_button_form');
     valuesString = valuesString.trim();
     console.log(valuesString);
