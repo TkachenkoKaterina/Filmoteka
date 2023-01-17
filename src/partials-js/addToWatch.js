@@ -24,16 +24,16 @@ if (parsStr && parsStr.includes(idMovie)) {
 const strQULS = localStorage.getItem(QUEUE_KEY);
 const parsStrQ = JSON.parse(strQULS);
 if (parsStrQ && parsStrQ.includes(idMovie)) {
-  buttonAddToQueued.textContent = 'REMOVE FROM QUEUED';
+  buttonAddToQueued.textContent = 'REMOVE FROM QUEUE';
 }
 
 function addWatchedtoLocalStorage() {
   if (buttonAddWatched.textContent === 'ADD TO WATCHED') {
-    if (buttonAddToQueued.textContent === 'REMOVE FROM QUEUED') {
+    if (buttonAddToQueued.textContent === 'REMOVE FROM QUEUE') {
       const IndexElQ = storageForQueued.indexOf(idMovie);
       storageForQueued.splice(IndexElQ, 1);
       localStorage.setItem(QUEUE_KEY, JSON.stringify(storageForQueued));
-      buttonAddToQueued.textContent = 'ADD TO QUEUED';
+      buttonAddToQueued.textContent = 'ADD TO QUEUE';
     }
     storageForWatched.push(idMovie);
     localStorage.setItem(WATCHED_KEY, JSON.stringify(storageForWatched));
@@ -51,7 +51,7 @@ function addWatchedtoLocalStorage() {
 }
 function addQueuedToLocalStorage() {
   console.log(buttonAddWatched);
-  if (buttonAddToQueued.textContent === 'ADD TO QUEUED') {
+  if (buttonAddToQueued.textContent === 'ADD TO QUEUE') {
     if (buttonAddWatched.textContent === 'REMOVE FROM WATCHED') {
       const IndexEl = storageForWatched.indexOf(idMovie);
       storageForWatched.splice(IndexEl, 1);
@@ -61,14 +61,14 @@ function addQueuedToLocalStorage() {
     storageForQueued.push(idMovie);
     console.log(storageForQueued);
     localStorage.setItem(QUEUE_KEY, JSON.stringify(storageForQueued));
-    buttonAddToQueued.textContent = 'REMOVE FROM QUEUED';
+    buttonAddToQueued.textContent = 'REMOVE FROM QUEUE';
   } else {
     const IndexElQ = storageForQueued.indexOf(idMovie);
     console.log(IndexElQ);
     storageForQueued.splice(IndexElQ, 1);
     console.log(storageForQueued);
     localStorage.setItem(QUEUE_KEY, JSON.stringify(storageForQueued));
-    buttonAddToQueued.textContent = 'ADD TO QUEUED';
+    buttonAddToQueued.textContent = 'ADD TO QUEUE';
   }
 }
 
