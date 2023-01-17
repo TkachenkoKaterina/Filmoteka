@@ -8,6 +8,7 @@ export const BASE_IMG_URL = 'https://image.tmdb.org/t/p/';
 export const GENRE_REQUEST_PART = 'genre/movie/list';
 
 export const TRENDS_REQUEST_PART = 'trending/movie/week';
+export const MOVIE_BY_ID_PART = 'movie/';
 export const PATH_TRENDS = 'trending/movie/week';
 export const SEARCH_MOVIE = 'search/movie';
 export const POSTER_SIZES = 'w500';
