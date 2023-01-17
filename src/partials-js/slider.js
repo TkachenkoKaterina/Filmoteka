@@ -5,7 +5,7 @@ import axios from 'axios';
 // import filmsCardSliderTpl from '../templates/card-films-slider.hbs';
 // import trailer from './trailers.js';
 // import { makerender } from './makeRenderFilms';
-import { articleElement } from './search-movie-word';
+import { requestGet } from './requestGet';
 
 import {
   MAIN_PART_URL,
@@ -15,14 +15,67 @@ import {
   MOBILE_SIZES,
   BASE_IMG_URL,
   GENRE_REQUEST_PART,
+  TRENDS_REQUEST_PART,
   PATH_TRENDS,
   SEARCH_MOVIE,
   POSTER_SIZES,
 } from './vars';
 
+// const containerRef = document.querySelector('.container__slider');
+
 const sliderUlRef = document.querySelector('.glide__slides');
-console.log(sliderUlRef);
-console.log(articleElement());
+// console.log(sliderUlRef);
+
+const BtnRef = document.querySelector('.glide__arrow');
+// console.log(BtnRef);
+
+BtnRef.addEventListener('click', () => {
+  requestGet()
+    .then(data => renderSlider(data))
+    .catch(error => console.log(error));
+});
+
+// async function fetchForSlider() {
+//   const { response } = await requestGet(
+//     MAIN_PART_URL,
+//     TRENDS_REQUEST_PART,
+//     API_KEY
+//   );
+//   console.log(response);
+//   console.log(response.data);
+
+//   return response.data;
+// }
+
+function renderSlider(data) {
+  const markup = data
+    .map(results => {
+      return `
+          <li class="glide__slide"></li>
+        <li class="glide__slide"></li>
+        <li class="glide__slide"></li>
+        <li class="glide__slide"></li>
+        <li class="glide__slide"></li>
+        <li class="glide__slide"></li>
+        <li class="glide__slide"></li>
+        <li class="glide__slide"></li>
+        <li class="glide__slide"></li>
+        <li class="glide__slide"></li>
+        <li class="glide__slide"></li>
+        <li class="glide__slide"></li>
+        <li class="glide__slide"></li>
+        <li class="glide__slide"></li>
+        <li class="glide__slide"></li>
+        <li class="glide__slide"></li>
+        <li class="glide__slide"></li>
+        <li class="glide__slide"></li>
+        <li class="glide__slide"></li>
+        <li class="glide__slide"></li>
+      `;
+    })
+    .join('');
+  sliderUlRef.innerHTML = markup;
+}
 
 const glide = new Glide('.glide', {
   type: 'slider',
