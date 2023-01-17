@@ -163,7 +163,7 @@ export const articleElement = articls => {
                       media="screen and (min-width:1280px)"
                     />
                     <source
-                      srcset="${noFoto(BASE_IMG_URL,LAPTOP_SIZES,poster_path,LAPTOP_STUB)}"
+                      srcset="${noFoto(BASE_IMG_URL,LAPTOP_SIZES,poster_path,TABLET_STUB)}"
                       media="(min-width:768px)"
                     />
                     <source
