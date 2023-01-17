@@ -41,17 +41,12 @@ img {
 }
 
 
-
-/* .movie__img__box{
-    
-} */
-
 .movie__img {
     
     border-radius: 5px;
 
-@media screen and (min-width: 320px) {
-    background-imgage: url(/src/images/no-Film-Img280x402.jpg);
+@media screen and (max-width: 767px) {
+    background-image: url(/src/images/no-Film-Img280x402.jpg);
     background-repeat: no-repeat, repeat;
             width: 280px;
             height: 402px;
@@ -59,7 +54,7 @@ img {
         }
     
 @media screen and (min-width: 768px) {
-    background-imgage: url(/src/images/no-Film-Img336x455.jpg);
+    background-image: url(/src/images/no-Film-Img336x455.jpg);
     background-repeat: no-repeat, repeat;
             width: 336px;
             height: 455px;
@@ -67,12 +62,17 @@ img {
         }
     
 @media screen and (min-width: 1280px) {
-    background-imgage: url(/src/images/no-Film-Img.jpg);
+    background-image: url(/src/images/no-Film-Img.jpg);
     background-repeat: no-repeat, repeat;
-            width: 394px;
+            width: 396px;
             height: 574px;
             
         }
+}
+
+.movie__card:hover {
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4), 0px 4px 4px rgba(0, 0, 0, 0.4), 1px 4px 6px rgba(0, 0, 0, 0.4);
+        transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .movie__card__textbox {
@@ -94,9 +94,10 @@ img {
         }
   
 }
-/* .movie__link {} */
+
 
 .movie__title {
+    cursor: pointer;
 
     text-transform: uppercase;
     color: var(--primary-text-color);
@@ -123,6 +124,7 @@ img {
 }
 
 .movie__details {
+    cursor: pointer;
     color: var(--accent-color);
     font-style: normal;
     font-weight: 500;
