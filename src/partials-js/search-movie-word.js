@@ -1,5 +1,5 @@
 //import { API_KEY } from './vars';
-import { API_KEY, MAIN_PART_URL, BASE_URL } from './vars';
+import { API_KEY, MAIN_PART_URL, BASE_IMG_URL } from './vars';
 //import './css/styles.css';
 
 var debounce = require('lodash.debounce');
@@ -80,7 +80,7 @@ function searchGenres(arrays, lengthArr) {
   return strRes;
 }
 //---------------------------------------------------------------------------------------------------------------------------
-function notFotoMob(stringURL, BASE_URL) {
+function notFotoMob(stringURL, BASE_IMG_URL) {
   let strM = '';
   console.log(stringURL === null);
   if (stringURL === null) {
@@ -88,12 +88,12 @@ function notFotoMob(stringURL, BASE_URL) {
     console.log(strM);
     return strM;
   } else {
-    strM = `${BASE_URL}w300${stringURL}`;
+    strM = `${BASE_IMG_URL}w300${stringURL}`;
     return strM;
   }
 }
 //-----------------------------------------------------------------------------------------------------------------------------
-function notFotoTab(stringURL, BASE_URL) {
+function notFotoTab(stringURL, BASE_IMG_URL) {
   let strT = '';
   console.log(stringURL === null);
   if (stringURL === null) {
@@ -101,12 +101,12 @@ function notFotoTab(stringURL, BASE_URL) {
     console.log(strT);
     return strT;
   } else {
-    strT = `${BASE_URL}w780${stringURL}`;
+    strT = `${BASE_IMG_URL}w780${stringURL}`;
     return strT;
   }
 }
 //----------------------------------------------------------------------------------------------------------------------------
-function notFotoDesktop(stringURL, BASE_URL) {
+function notFotoDesktop(stringURL, BASE_IMG_URL) {
   let strD = '';
   console.log(stringURL === null);
   if (stringURL === null) {
@@ -114,7 +114,7 @@ function notFotoDesktop(stringURL, BASE_URL) {
     console.log(strD);
     return strD;
   } else {
-    strD = `${BASE_URL}w1280${stringURL}`;
+    strD = `${BASE_IMG_URL}w1280${stringURL}`;
     return strD;
   }
 }
@@ -144,15 +144,15 @@ const articleElement = articls => {
           <div class="movie__img__box">
           <picture class="film-list__img">
                     <source
-                      srcset="${notFotoDesktop(poster_path, BASE_URL)}"
+                      srcset="${notFotoDesktop(poster_path, BASE_IMG_URL)}"
                       media="screen and (min-width:1280px)"
                     />
                     <source
-                      srcset="${notFotoTab(poster_path, BASE_URL)}"
+                      srcset="${notFotoTab(poster_path, BASE_IMG_URL)}"
                       media="(min-width:768px)"
                     />
                     <source
-                      srcset="${notFotoMob(poster_path, BASE_URL)}"
+                      srcset="${notFotoMob(poster_path, BASE_IMG_URL)}"
                       media="(max-width:767px)"
                     />
                     <img
