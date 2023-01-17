@@ -14,7 +14,7 @@ import {
   MOBILE_SIZES,
   BASE_IMG_URL,
   GENRE_REQUEST_PART,
-  FULL_URL_TRENDS,
+  BASE_IMG_URL,
   PATH_TRENDS,
   SEARCH_MOVIE,
   POSTER_SIZES,
@@ -37,8 +37,8 @@ glide.mount();
 
 async function sliderRender() {
   try {
-    console.log(FULL_URL_TRENDS);
-    const response = await axios.get(FULL_URL_TRENDS);
+    console.log(BASE_IMG_URL);
+    const response = await axios.get(BASE_IMG_URL);
     const arr = response.data.results;
     console.log(arr);
     // const rusults = response.json();
