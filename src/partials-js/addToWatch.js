@@ -8,7 +8,8 @@ console.log(storageForQueued);
 const buttonAddWatched = document.querySelector('#btn-watched');
 console.log(buttonAddWatched);
 const buttonAddToQueued = document.querySelector('#btn-queue');
-const idMovie = document.querySelector('.movieID').textContent;
+// const idMovie = document.querySelector('.movieID').textContent;
+const idMovie = document.querySelector('.movieID');
 console.log(idMovie);
 
 buttonAddWatched.addEventListener('click', addWatchedtoLocalStorage);
