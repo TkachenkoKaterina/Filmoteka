@@ -5,10 +5,8 @@ import { makerender } from './makeRenderFilms';
 export function onLoadPage() {
     let arrFilms;
     requestGet(MAIN_PART_URL, TRENDS_REQUEST_PART, API_KEY).then((res) => {
-    
-    arrFilms = res.data.results;
-    makerender(arrFilms);
- })}
 
-
-
+        arrFilms = res.data.results;
+        makerender(arrFilms);
+    })
+}
