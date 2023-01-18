@@ -1,27 +1,26 @@
-
 import {
   MOBILE_SIZES,
-  TABLET_SIZES, 
+  TABLET_SIZES,
   DESKTOP_SIZES,
   BASE_IMG_URL,
 } from './vars';
 
-
 const trendsContainerEL = document.querySelector('.movie__collection');
 
 export function makerender(arr, collectioinGenres) {
-  console.log(arr);
+  trendsContainerEL.replaceChildren();
   const renderEl = arr
-  .map(({ original_title, release_date, poster_path, genre_ids }) => {
-    
-    let genresInCard = [];
-    genre_ids.map(ID => collectioinGenres.forEach(({ id, name }) => {
-      if (ID === id) {
-          genresInCard.push(name)
-        }
-      }) )
-          
-    return `<li class="movie__card">
+    .map(({ original_title, release_date, poster_path, genre_ids }) => {
+      let genresInCard = [];
+      genre_ids.map(ID =>
+        collectioinGenres.forEach(({ id, name }) => {
+          if (ID === id) {
+            genresInCard.push(name);
+          }
+        })
+      );
+
+      return `<li class="movie__card">
             
           <div class="movie__img__box">
            <picture class="film-list__img">
@@ -47,7 +46,10 @@ export function makerender(arr, collectioinGenres) {
           <div class="movie__card__textbox">
               <h3 class="movie__title">${original_title}</h3>
                 <span class="movie__details">${filterArrGenres(genresInCard)} | 
-                </span><span class="movie__details">${release_date.slice(0, 4)}</span>
+                </span><span class="movie__details">${release_date.slice(
+                  0,
+                  4
+                )}</span>
             </div>
         </li> `;
     })
@@ -57,9 +59,7 @@ export function makerender(arr, collectioinGenres) {
 }
 
 function filterArrGenres(arrGenres) {
-  if (arrGenres.length > 3){
-    return [arrGenres[0], arrGenres[1], 'others']
-  } else 
-  return arrGenres
+  if (arrGenres.length > 3) {
+    return [arrGenres[0], arrGenres[1], 'others'];
+  } else return arrGenres;
 }
-
