@@ -14,7 +14,7 @@ import {
   ALL_GENRES,
 } from './vars';
 import { requestGet } from './requestGet';
-import { pagination } from './tuiPagination';
+import { pagination, changePage } from './tuiPagination';
 var debounce = require('lodash.debounce');
 import Notiflix from 'notiflix';
 
@@ -48,6 +48,7 @@ requestGet(MAIN_PART_URL, GENRE_REQUEST_PART, API_KEY)
 function searchGenres(arrays, lengthArr) {
   let count = lengthArr;
   let stat = 0;
+
   let strRes = '';
   if (lengthArr > 3) {
     lengthArr = 3;
@@ -179,7 +180,14 @@ const searchFilm = async event => {
     requestGet(MAIN_PART_URL, SEARCH_MOVIE, API_KEY, ADULT, valuesString).then(
       res => {
         if (res.data.total_pages > 1) {
-          pagination(res.data.total_pages, res.data.page);
+          const pagInst = pagination(res.data.total_results, res.data.page);
+          pagInst.on('afterMove', function (eventData) {
+            ulEl.replaceChildren();
+            changePage(res.request.responseURL, eventData.page).then(res => {
+              ulEl.innerHTML = articleElement(res.data.results);
+            });
+          });
+
         }
         const articls = res.data.results;
         datatotalHits = res.data.total_results;
