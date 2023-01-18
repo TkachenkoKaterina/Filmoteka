@@ -90,8 +90,7 @@ const articleElement = articls => {
   return articls
     .map(({ id, original_title, poster_path, release_date, genre_ids }) => {
       return `<li class="movie__card">
-        <a class="movie__link open__modal--js link"  data-id="${id}" href="#">
-          <div class="movie__img__box">
+              <div class="movie__img__box">
           <picture class="film-list__img">
                     <source
                       srcset="${noFoto(
@@ -121,7 +120,7 @@ const articleElement = articls => {
                       media="(max-width:767px)"
                     />
                     <img
-              class="movie__img"
+              class="movie__img data-id="${id}"
               src="./images/no-Film-Img.jpg"
               alt="Постер до фільму"
               width="264"
@@ -130,17 +129,14 @@ const articleElement = articls => {
             />
                   </picture>           
           </div>
-        </a>
-        <div class="movie__card__textbox">
-          <a class="movie__link open__modal--js link" data-id="${id}" href="#">
+          <div class="movie__card__textbox">
             <h3 class="movie__title">${original_title}</h3>
             <span class="movie__details">${searchGenres(
               Object.values(genre_ids),
               genre_ids.length
             )} | </span>
             <span class="movie__details">${release_date.slice(0, 4)}</span>
-          </a>
-        </div>
+            </div>
       </li> `;
     })
     .join('');
@@ -190,6 +186,7 @@ const searchFilm = async event => {
 
         }
         const articls = res.data.results;
+        console.log(articls);
         datatotalHits = res.data.total_results;
         pageTotal = res.data.total_pages;
         if (datatotalHits === 0) {
