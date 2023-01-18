@@ -13,17 +13,17 @@ function sliderFetch() {
   });
 }
 
-sliderRender();
+// sliderRender();
 
-function sliderRender(arr) {
-  const markup = arr
-    .map(arrItem => {
-      return `<li>
-          <p><b>Name</b>: ${user.name}</p>
-          <p><b>Email</b>: ${user.email}</p>
-          <p><b>Company</b>: ${user.company.name}</p>
-        </li>`;
-    })
-    .join('');
-  userList.innerHTML = markup;
-}
+// function sliderRender(arr) {
+//   const markup = arr
+//     .map(arrItem => {
+//       return `<li>
+//           <p><b>Name</b>: ${user.name}</p>
+//           <p><b>Email</b>: ${user.email}</p>
+//           <p><b>Company</b>: ${user.company.name}</p>
+//         </li>`;
+//     })
+//     .join('');
+//   userList.innerHTML = markup;
+// }
