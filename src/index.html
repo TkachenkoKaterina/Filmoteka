@@ -55,9 +55,9 @@
   </head>
 
   <body>
-    <div class="preloader">
-  <div class="preloader__image" ></div>
-</div>
+    <!-- <div class="preloader">
+      <div class="preloader__image"></div>
+    </div> -->
     <!-- ❗️❗️❗️ Add partials like so for every page -->
     <include src="./partials/header.html"></include>
     <include src="./partials/authorization.html"></include>
@@ -70,7 +70,7 @@
     <include src="./partials/snow.html"></include>
 
     <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
-    <script>
+    <!-- <script>
       new Glide('.glide', {
         type: 'slider',
         startAt: 0,
@@ -81,9 +81,8 @@
         bound: true,
         Breakpoints: {
           768: { perView: 3 },
-          // 480: { perView: 2 },
         },
       }).mount();
-    </script>
+    </script> -->
   </body>
 </html>
