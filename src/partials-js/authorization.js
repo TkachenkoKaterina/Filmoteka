@@ -89,10 +89,8 @@ const createUser = async (email, password) => {
       password,
       returnSecureToken: true,
     });
-    //console.log(data);
     return data;
   } catch (error) {
-    //console.log(error);
     return error;
   }
 };
@@ -107,10 +105,8 @@ const authUser = async (email, password) => {
       password,
       returnSecureToken: true,
     });
-    //console.log(data);
     return data;
   } catch (error) {
-    //console.log(error);
     return error;
   }
 };
@@ -120,10 +116,8 @@ const getDb = async () => {
     'https://filmoteks-users-base-default-rtdb.europe-west1.firebasedatabase.app/data.json';
   try {
     const data = await axios.get(baseURL);
-    // console.log(data);
     return data;
   } catch (error) {
-    // console.log(error);
     return error;
   }
 };
@@ -222,13 +216,3 @@ const errorAuth = (elem, message) => {
   }
   document.querySelector(`.error${elem}`).textContent = message;
 };
-
-// const idAuthedUser = () => {
-
-// }
-
-//localStorage.setItem("ui-theme", "light");
-
-// const autoAransition = () => {
-//   loginActive();
-// };
