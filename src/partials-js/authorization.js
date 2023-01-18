@@ -2,14 +2,15 @@ import axios from 'axios';
 
 //const idAuthUser = '';
 document.addEventListener('DOMContentLoaded', () => {
-  const ddd = document.querySelector('.header__item-link.my-library');
-  //const ddd = document.querySelector('a[href=./my-library.html]}');
-  console.log(ddd);
-  ddd.addEventListener('click', ev => {
+  if (location.pathname == '/my-library.html') return;
+  const routeAuth = document.querySelector('.header__item-link.my-library');
+  routeAuth.addEventListener('click', ev => {
     ev.preventDefault();
     const authViewRef = document
       .querySelector('.login-backdrop')
       .classList.remove('full-close');
+    defaultErrorText();
+    clearFields();
   });
 });
 
@@ -201,18 +202,17 @@ signupForm.addEventListener('submit', async ev => {
   const userInfo = await postDb(userItem);
   if (userInfo.status == 200) {
     signupForm.removeEventListener('click', defaultErrorText);
-    console.log(emailLogin.textContent, emailSignup.value);
-    console.log(pswdLogin.textContent, pswdSignup.value);
-    emailLogin.textContent = emailSignup.value;
-    pswdLogin.textContent = pswdSignup.value;
-    //autoAransition();
+    const tempLogin = emailSignup.value;
     defaultErrorText();
 
     loginAccount();
 
     clearFields();
+    emailLogin.value = tempLogin;
   }
 });
+
+//emailLogin.value = 'rrrrr';
 
 const errorAuth = (elem, message) => {
   console.log(elem, message);
