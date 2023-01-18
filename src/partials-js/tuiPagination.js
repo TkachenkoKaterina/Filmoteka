@@ -1,13 +1,14 @@
-// import Pagination from 'tui-pagination';
-export function pagination(totalPages, currentPage) {
+import Pagination from 'tui-pagination';
+import axios from 'axios';
+export function pagination(totalItems, currentPage) {
   const paginationEl =
     '<div id="tui-pagination-container" class="tui-pagination"></div>';
   document
     .querySelector('#gallery')
     .insertAdjacentHTML('beforeend', paginationEl);
   const options = {
-    totalItems: totalPages,
-    itemsPerPage: 9,
+    totalItems: totalItems,
+    itemsPerPage: 20,
     visiblePages: 5,
     page: currentPage,
     centerAlign: true,
@@ -32,5 +33,11 @@ export function pagination(totalPages, currentPage) {
     },
   };
 
-  // const pagination = new Pagination('tui-pagination-container', options);
+  return new Pagination(
+    document.querySelector('#tui-pagination-container'),
+    options
+  );
+}
+export function changePage(urlApi, pageN) {
+  return axios.get(urlApi, { params: { page: pageN } });
 }

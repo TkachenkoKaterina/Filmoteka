@@ -1,37 +1,29 @@
 import Glide from '@glidejs/glide';
 import axios from 'axios';
-import filmsCardSliderTpl from '../templates/card-film-slider.hbs';
 import errorUrl from '../images/oh-no.jpg';
-const sliderContainer = document.querySelector('.js-slider-container');
-console.log(sliderContainer);
-renderTrendy();
+import { requestGet } from './requestGet';
+import { MAIN_PART_URL, TRENDS_REQUEST_PART, API_KEY } from './vars';
+sliderFetch();
 
-const glide = new Glide('.glide', {
-  type: 'slider',
-  startAt: 0,
-  perView: 8,
-  autoplay: 2000,
-  hoverpause: true,
-  bound: true,
-});
-
-glide.mount();
-
-function renderTrendy() {
-  const url = `https://api.themoviedb.org/3/trending/all/day?api_key=c861fc623ae12b9b041c6dade1c99e57`;
-  return fetch(url)
-    .then(response => response.json())
-    .then(({ results }) => {
-      console.log(results);
-      return results;
-    })
-    .then(renderSliderFilms)
-    .catch(err => {
-      console.log('Ошибочка!');
-      sliderContainer.innerHTML = `<img class="catch-error-pagination" src="${errorUrl}" />`;
-    });
+function sliderFetch() {
+  requestGet(MAIN_PART_URL, TRENDS_REQUEST_PART, API_KEY).then(res => {
+    const arr = res.data.results;
+    console.log(arr);
+    return arr;
+  });
 }
 
-function renderSliderFilms(cards) {
-  sliderContainer.innerHTML = filmsCardSliderTpl(cards);
-}
+// sliderRender();
+
+// function sliderRender(arr) {
+//   const markup = arr
+//     .map(arrItem => {
+//       return `<li>
+//           <p><b>Name</b>: ${user.name}</p>
+//           <p><b>Email</b>: ${user.email}</p>
+//           <p><b>Company</b>: ${user.company.name}</p>
+//         </li>`;
+//     })
+//     .join('');
+//   userList.innerHTML = markup;
+// }

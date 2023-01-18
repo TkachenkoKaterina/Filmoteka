@@ -14,6 +14,7 @@ import {
   ALL_GENRES,
 } from './vars';
 import { requestGet } from './requestGet';
+import { pagination, changePage } from './tuiPagination';
 var debounce = require('lodash.debounce');
 import Notiflix from 'notiflix';
 
@@ -38,7 +39,6 @@ requestGet(MAIN_PART_URL, GENRE_REQUEST_PART, API_KEY)
   .then(resl => resl.data)
   .then(resalts => {
     allGenres = resalts.genres;
-    
   })
   .catch(err => {
     console.log(err);
@@ -48,12 +48,13 @@ requestGet(MAIN_PART_URL, GENRE_REQUEST_PART, API_KEY)
 function searchGenres(arrays, lengthArr) {
   let count = lengthArr;
   let stat = 0;
+
+  let strRes = '';
   if (lengthArr > 3) {
     lengthArr = 3;
-
+    count = 3;
     stat = 1;
   }
-  let strRes = '';
   if (lengthArr === 0) {
     return 'Other';
   } else {
@@ -65,20 +66,19 @@ function searchGenres(arrays, lengthArr) {
             if (stat === 1) {
               strRes += 'Other';
             } else {
-              return (strRes += allGenre.name);
+              strRes += allGenre.name;
             }
           } else {
             strRes += allGenre.name + ', ';
           }
         } else {
-          strRes += '';
         }
       });
     }
   }
   return strRes;
 }
-
+//----------------------------------------------------------------------------------------------------------------------------------
 function noFoto(base_url, width, img_file, stub) {
   let strM = '';
   img_file === null ? (strM = stub) : (strM = `${base_url}${width}${img_file}`);
@@ -90,8 +90,7 @@ const articleElement = articls => {
   return articls
     .map(({ id, original_title, poster_path, release_date, genre_ids }) => {
       return `<li class="movie__card">
-        <a class="movie__link open__modal--js link"  data-id="${id}" href="#">
-          <div class="movie__img__box">
+              <div class="movie__img__box">
           <picture class="film-list__img">
                     <source
                       srcset="${noFoto(
@@ -121,7 +120,7 @@ const articleElement = articls => {
                       media="(max-width:767px)"
                     />
                     <img
-              class="movie__img"
+              class="movie__img data-id="${id}"
               src="./images/no-Film-Img.jpg"
               alt="Постер до фільму"
               width="264"
@@ -130,17 +129,14 @@ const articleElement = articls => {
             />
                   </picture>           
           </div>
-        </a>
-        <div class="movie__card__textbox">
-          <a class="movie__link open__modal--js link" data-id="${id}" href="#">
+          <div class="movie__card__textbox">
             <h3 class="movie__title">${original_title}</h3>
             <span class="movie__details">${searchGenres(
               Object.values(genre_ids),
               genre_ids.length
             )} | </span>
             <span class="movie__details">${release_date.slice(0, 4)}</span>
-          </a>
-        </div>
+            </div>
       </li> `;
     })
     .join('');
@@ -177,38 +173,33 @@ const searchFilm = async event => {
         'Sorry, there are no films matching your search query. Please try again.'
       );
     }
-    const res = await requestGet(
-      MAIN_PART_URL,
-      SEARCH_MOVIE,
-      API_KEY,
-      ADULT,
-      valuesString
-    );
-    const articls = res.data.results;
-    console.log(articls);
-    datatotalHits = res.data.total_results;
-    pageTotal = res.data.total_pages;
+    requestGet(MAIN_PART_URL, SEARCH_MOVIE, API_KEY, ADULT, valuesString).then(
+      res => {
+        if (res.data.total_pages > 1) {
+          const pagInst = pagination(res.data.total_results, res.data.page);
+          pagInst.on('afterMove', function (eventData) {
+            ulEl.replaceChildren();
+            changePage(res.request.responseURL, eventData.page).then(res => {
+              ulEl.innerHTML = articleElement(res.data.results);
+            });
+          });
 
-    if (datatotalHits === 0) {
-      divEl.classList.remove('header__error-text--disable');
-      Notiflix.Notify.failure(
-        'Search result not successful. Enter the correct movie name.'
-      );
-
-      return;
-    } else {
-      ulEl.innerHTML = articleElement(articls);
-      if (pageTotal === namberPage) {
-        buttonEl.classList.add('disebl_button_form');
-        Notiflix.Notify.info(
-          "We're sorry, but you've reached the end of search results."
-        );
-      } else {
-        let resM = pageTotal - namberPage;
-        Notiflix.Notify.info(`You can also view ${resM} pages`);
-        namberPage = namberPage + 1;
+        }
+        const articls = res.data.results;
+        console.log(articls);
+        datatotalHits = res.data.total_results;
+        pageTotal = res.data.total_pages;
+        if (datatotalHits === 0) {
+          divEl.classList.remove('header__error-text--disable');
+          Notiflix.Notify.failure(
+            'Search result not successful. Enter the correct movie name.'
+          );
+          return;
+        } else {
+          ulEl.innerHTML = articleElement(articls);
+        }
       }
-    }
+    );
   } catch (error) {
     console.log(error);
     console.log(error.value);
