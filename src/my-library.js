@@ -8,3 +8,4 @@ import './partials-js/addToWatch';
 import './partials-js/watchedQueueSet';
 import './partials-js/tuiPagination';
 import './partials-js/footer-modal';
+import './partials-js/closePreloader';
