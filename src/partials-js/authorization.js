@@ -1,5 +1,18 @@
 import axios from 'axios';
 
+//const idAuthUser = '';
+document.addEventListener('DOMContentLoaded', () => {
+  const ddd = document.querySelector('.header__item-link.my-library');
+  //const ddd = document.querySelector('a[href=./my-library.html]}');
+  console.log(ddd);
+  ddd.addEventListener('click', ev => {
+    ev.preventDefault();
+    const authViewRef = document
+      .querySelector('.login-backdrop')
+      .classList.remove('full-close');
+  });
+});
+
 // auth modal login & signup
 const signUp = document.querySelector('#signupbox');
 const signIn = document.querySelector('#signinbox');
@@ -14,7 +27,7 @@ btnUp.addEventListener('click', () => {
 });
 
 // // Switches to 'Sign In'
-btnIn.addEventListener('click', () => {
+const loginActive = btnIn.addEventListener('click', () => {
   signUp.style.display = 'none';
   signIn.style.display = 'block';
 });
@@ -186,6 +199,7 @@ signupForm.addEventListener('submit', async ev => {
   const userInfo = await postDb(userItem);
   if (userInfo.status == 200) {
     signupForm.removeEventListener('click', defaultErrorText);
+    //autoAransition();
     defaultErrorText();
     clearFields();
   }
@@ -208,3 +222,13 @@ const errorAuth = (elem, message) => {
   }
   document.querySelector(`.error${elem}`).textContent = message;
 };
+
+// const idAuthedUser = () => {
+
+// }
+
+//localStorage.setItem("ui-theme", "light");
+
+// const autoAransition = () => {
+//   loginActive();
+// };
