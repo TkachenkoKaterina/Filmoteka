@@ -79,7 +79,7 @@ function searchGenres(arrays, lengthArr) {
   return strRes;
 }
 //----------------------------------------------------------------------------------------------------------------------------------
-function noFoto(base_url, width, img_file, stub) {
+export function noFoto(base_url, width, img_file, stub) {
   let strM = '';
   img_file === null ? (strM = stub) : (strM = `${base_url}${width}${img_file}`);
   return strM;
