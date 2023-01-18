@@ -199,9 +199,7 @@ signupForm.addEventListener('submit', async ev => {
     signupForm.removeEventListener('click', defaultErrorText);
     const tempLogin = emailSignup.value;
     defaultErrorText();
-
     loginAccount();
-
     clearFields();
     emailLogin.value = tempLogin;
   }
