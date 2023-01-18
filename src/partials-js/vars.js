@@ -20,7 +20,7 @@ export const MOBILE_STUB = './images/no-Film-Img280x402.jpg';
 
 export const GENRE_REQUEST_PART = 'genre/movie/list';
 export const TRENDS_REQUEST_PART = 'trending/movie/week';
-export const SEARCH_MOVIE = 'search/movie/';
+export const SEARCH_MOVIE = 'search/movie';
 
 //_____________________REQUESTS_PARAMETERS________________________
 export const ADULT = '&include_adult=false';
