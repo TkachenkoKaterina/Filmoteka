@@ -1,0 +1,85 @@
+.btnToTop {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FF6B08;
+  
+    border-radius: 20px;
+    border: 3px solid transparent;
+  
+    width: 33px;
+    height: 45px;
+    bottom: 25%;
+    right: 5%;
+  
+    position: fixed;
+    opacity: 0.8;
+    z-index: 10;
+  
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+    cursor: pointer;
+  
+    @media screen and (min-width: 768px) {
+      width: 43px;
+      height: 55px;
+      right: 3%;
+    }
+    @media screen and (min-width: 1000px) and (max-width: 1279px) {
+      width: 53px;
+      height: 65px;
+      right: 10%;
+    }
+    @media screen and (min-width: 1280px) {
+      width: 53px;
+      height: 65px;
+      right: 2%;
+    }
+    @media screen and (min-width: 1600px) {
+      width: 53px;
+      height: 65px;
+      right: 7%;
+    }
+    animation: changefill 2s forwards infinite ease-out 0.5s;
+  
+    &:hover,
+    &:focus {
+      opacity: 1;
+      border: 1px solid #fddadae4;
+      box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.8);
+      animation: none;
+    }
+  }
+  
+  @keyframes changefill {
+    0% {
+      background-color: #fcc8a6;
+    }
+    50% {
+      background-color: #FF6B08;
+    }
+    100% {
+      background-color: #fcc8a6;
+    }
+  }
+  .transitionBtn {
+    transition: 500ms;
+  }
+  
+  .btnToTop__icon {
+    width: 53px;
+    height: 65px;
+    fill: #FFFFFF;
+  
+    &:hover,
+    &:focus {
+      fill: #000000;
+    }
+  }
+  
+  .hidden-btnToTop {
+    opacity: 0;
+    pointer-events: 0;
+    visibility: hidden;
+  }
