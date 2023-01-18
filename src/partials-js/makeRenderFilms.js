@@ -3,9 +3,11 @@ import {
     BASE_IMG_URL,
 } from './vars';
 
+
 const trendsContainerEL = document.querySelector('.movie__collection');
 
-export function makerender(arr) {
+export function makerender(arr, arrOfGenres) {
+    console.log(arrOfGenres);
     const renderEl = arr
         .map(({ id, original_title, release_date, poster_path }) => {
             return `<li class="movie__card">
