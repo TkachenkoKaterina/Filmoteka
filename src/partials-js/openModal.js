@@ -1,7 +1,8 @@
-import { MAIN_PART_URL,
+import {
+    MAIN_PART_URL,
     MOVIE_BY_ID_PART,
     API_KEY
- } from "./vars";
+} from "./vars";
 // import { id } from "./makeRenderFilms";
 import { requestGet } from "./requestGet";
 import axios from "axios";
@@ -24,34 +25,35 @@ refs.backdrop.addEventListener('click', onBackdropClick);
 
 // Fetch movie by id
 async function getOneMovieData(mov_id) {
-    
+
     // const url = `https://api.themoviedb.org/3/movie/${mov_id}${API_KEY}`;
     // return fetch(url)
-    const response = await requestGet( MAIN_PART_URL, MOVIE_BY_ID_PART, '12', API_KEY);
+    const response = await requestGet(MAIN_PART_URL, MOVIE_BY_ID_PART, mov_id, API_KEY);
     console.log(response.data);
     console.log(mov_id);
     const data = {
-        ...data, 
-    popularity: data.popularity.toFixed(1),
+        ...data,
+        popularity: data.popularity.toFixed(1),
     }
 }
 
-async function onOpenModal (evt) {
+async function onOpenModal(evt) {
     document.body.classList.add('show-modal');
     console.log(evt.target.dataset.id);
 
     const data = await getOneMovieData(evt.target.dataset.id)
-    
-        if (evt.target.nodeName !== 'IMG') {
-            evt.preventDefault();
-            console.log(5);
-            return;
-        }
+
+    if (evt.target.nodeName !== 'IMG') {
+        evt.preventDefault();
+        console.log(5);
+        return;
+    }
 }
 
 function onCloseModal() {
     document.body.classList.remove('show-modal');
 }
+
 function onBackdropClick(e) {
     if (e.currentTarget === e.target) {
         onCloseModal();
@@ -66,9 +68,9 @@ function onEsc(evt) {
 
 
 function renderFilmOnModal(arr) {
-    const markup = arr 
-.map(({ title, vote_average, popularity, original_title, each, overview }) => {
-    return `
+    const markup = arr
+        .map(({ title, vote_average, popularity, original_title, each, overview }) => {
+            return `
     <div class="modal">
 <button type="button" class="modal__close-btn" data-action="close-modal">
 <svg class="modal__icon" width="14" height="14">
@@ -127,11 +129,11 @@ function renderFilmOnModal(arr) {
 </div>
 </div>
     `;
-})
-.join("");
+        })
+        .join("");
 
-// const modalMarkup = basicLightbox.create(markup);
-refs.openModalCard.insertAdjacentHTML('beforeend', markup);
+    // const modalMarkup = basicLightbox.create(markup);
+    refs.openModalCard.insertAdjacentHTML('beforeend', markup);
 
 }
 

@@ -1,26 +1,26 @@
 import {
-  MOBILE_SIZES,
-  TABLET_SIZES,
-  DESKTOP_SIZES,
-  BASE_IMG_URL,
+    MOBILE_SIZES,
+    TABLET_SIZES,
+    DESKTOP_SIZES,
+    BASE_IMG_URL,
 } from './vars';
 
 const trendsContainerEL = document.querySelector('.movie__collection');
 
 export function makerender(arr, collectioinGenres) {
-  trendsContainerEL.replaceChildren();
-  const renderEl = arr
-    .map(({ original_title, release_date, poster_path, genre_ids }) => {
-      let genresInCard = [];
-      genre_ids.map(ID =>
-        collectioinGenres.forEach(({ id, name }) => {
-          if (ID === id) {
-            genresInCard.push(name);
-          }
-        })
-      );
+    trendsContainerEL.replaceChildren();
+    const renderEl = arr
+        .map(({ original_title, release_date, poster_path, genre_ids, id }) => {
+            let genresInCard = [];
+            genre_ids.map(ID =>
+                collectioinGenres.forEach(({ id, name }) => {
+                    if (ID === id) {
+                        genresInCard.push(name);
+                    }
+                })
+            );
 
-      return `<li class="movie__card">
+            return `<li class="movie__card">
             
           <div class="movie__img__box">
            <picture class="film-list__img">
@@ -37,6 +37,7 @@ export function makerender(arr, collectioinGenres) {
                     class="movie__img"
                     src="./images/no-Film-Img.jpg"
                     alt="${original_title}"
+                    data-id="${id}"
                     width="450"
                     height="294"
                     name="Poster"
@@ -52,14 +53,14 @@ export function makerender(arr, collectioinGenres) {
                 )}</span>
             </div>
         </li> `;
-    })
-    .join('');
+        })
+        .join('');
 
-  trendsContainerEL.insertAdjacentHTML('beforeend', renderEl);
+    trendsContainerEL.insertAdjacentHTML('beforeend', renderEl);
 }
 
 function filterArrGenres(arrGenres) {
-  if (arrGenres.length > 3) {
-    return [arrGenres[0], arrGenres[1], 'others'];
-  } else return arrGenres;
+    if (arrGenres.length > 3) {
+        return [arrGenres[0], arrGenres[1], 'others'];
+    } else return arrGenres;
 }
