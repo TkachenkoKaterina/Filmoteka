@@ -3,7 +3,11 @@ import axios from 'axios';
 import errorUrl from '../images/oh-no.jpg';
 import { requestGet } from './requestGet';
 import { MAIN_PART_URL, TRENDS_REQUEST_PART, API_KEY } from './vars';
+
+const sliderContainer = document.querySelector('.js-slider-container');
+
 sliderFetch();
+// sliderRender();
 
 function sliderFetch() {
   requestGet(MAIN_PART_URL, TRENDS_REQUEST_PART, API_KEY).then(res => {
@@ -13,17 +17,16 @@ function sliderFetch() {
   });
 }
 
-// sliderRender();
-
-// function sliderRender(arr) {
-//   const markup = arr
-//     .map(arrItem => {
-//       return `<li>
-//           <p><b>Name</b>: ${user.name}</p>
-//           <p><b>Email</b>: ${user.email}</p>
-//           <p><b>Company</b>: ${user.company.name}</p>
-//         </li>`;
-//     })
-//     .join('');
-//   userList.innerHTML = markup;
-// }
+function sliderRender(arr) {
+  console.log(arr);
+  const markup = arr
+    .map(({ backdrop_path }) => {
+      return `
+          <li class="glide__slide">
+            <img class="glide__img" src="./images/1.jpg" alt="" />
+          </li>
+          `;
+    })
+    .join('');
+  sliderContainer.innerHTML = markup;
+}

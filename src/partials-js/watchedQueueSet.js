@@ -12,13 +12,11 @@ import {
 } from './vars';
 import { requestGet } from './requestGet';
 
-refs = {
+const refs = {
     movieList: document.querySelector('.movie__collection'),
     watchedBtn: document.querySelector('input[value="Watched"]'),
     queueBtn: document.querySelector('input[value="Queue"]'),
 }
-
-console.log(refs.movieList);
 
 // --------- Тимчасово-----------//
 
@@ -83,9 +81,7 @@ async function onWatchedBtnClick() {
     const arrPromisesCards = arrOfWatchedId.map(async (el) => {
         const response = await requestGet(MAIN_PART_URL, MOVIE_BY_ID_PART, el, API_KEY);
         const objDataMovie = await response.data;
-        console.log(objDataMovie);
         const genresString = objDataMovie.genres.map(el => el.name).join(', ');
-        // console.log(genresString);
         const card = makeCard(objDataMovie, genresString);
         return card;
     });
