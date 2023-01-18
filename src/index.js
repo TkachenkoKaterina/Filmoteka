@@ -14,6 +14,7 @@ import './partials-js/addToWatch';
 import './partials-js/tuiPagination';
 import './partials-js/footer-modal';
 import '../node_modules/basiclightbox/dist/basicLightbox.min.css';
+import './partials-js/closePreloader'
 
 import './partials-js/requestGet';
 
