@@ -1,6 +1,9 @@
 :root {
     --accent-color: #FF6B08;
     --primary-text-color: #000000;
+    --dark-theme-color-text: #ffff;
+
+
 }
 
 
@@ -95,11 +98,12 @@ img {
         }
   
 }
-
+.movie__title--night {
+    color: var(--dark-theme-color-text);
+}
 
 .movie__title {
     cursor: pointer;
-
     text-transform: uppercase;
     color: var(--primary-text-color);
     font-style: normal;
