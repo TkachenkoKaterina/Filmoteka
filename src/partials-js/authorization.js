@@ -35,11 +35,6 @@ closeButton.addEventListener('click', () => {
 //----------------------
 
 //-------- auth request
-//const loginText = document.querySelector('.title-text .login');
-const loginForm = document.querySelector('form#signinform');
-const signupForm = document.querySelector('form#signupform');
-//const loginBtn = document.querySelector('button#loginsubmit');
-//const signupBtn = document.querySelector('button#signupsubmit');
 
 const createUser = async (email, password) => {
   const baseURL =
@@ -54,7 +49,6 @@ const createUser = async (email, password) => {
     //console.log(data);
     return data;
   } catch (error) {
-    //console.log(error.response.data.error.message.replaceAll('_', ' '));
     //console.log(error);
     return error;
   }
@@ -73,8 +67,6 @@ const authUser = async (email, password) => {
     //console.log(data);
     return data;
   } catch (error) {
-    // console.log(error.response.data.error.message.replace('_', ' '));
-    //console.log('-----------------------------');
     //console.log(error);
     return error;
   }
@@ -105,33 +97,29 @@ const postDb = async item => {
     return error;
   }
 };
-// console.log(createUser(email, password));
-// console.log(authUser(email, password));
-// console.log(postDb());
-// console.log(getDb());
 
 /// ---------- work html
-//const loginForm = document.querySelector('form.login');
-const mailLogin = document.querySelector('[name=mailLogin]');
-const pswdLogin = document.querySelector('[name=pswdLogin]');
-//const error = document.querySelector('#error');
+const loginForm = document.querySelector('form#signinform');
+const signupForm = document.querySelector('form#signupform');
+
+const emailLogin = document.querySelector('[name=emailLogin]');
+const pswdLogin = document.querySelector('[name=passwordLogin]');
 
 const nameSignup = document.querySelector('[name=nameSignup]');
 const emailSignup = document.querySelector('[name=emailSignup]');
-const pswdSignup = document.querySelector('[name=pswdSignup]');
-const pswdSignupConf = document.querySelector('[name=pswdSignupConf]');
-const errorIn = document.querySelector('.errIn');
-const errorUp = document.querySelector('.errUp');
+const pswdSignup = document.querySelector('[name=passwordSignup]');
+const pswdSignupConf = document.querySelector('[name=passwordConfSignup]');
+
+const errorLogin = document.querySelector('.errorLogin');
+const errorSignup = document.querySelector('.errorSignup');
 
 const defaultErrorText = () => {
-  errorIn.textContent = '';
-  errorUp.textContent = '';
-  //   error.textContent = 'enter email and password';
-  //   error.textContent = 'new user';
+  errorLogin.textContent = '';
+  errorSignup.textContent = '';
 };
 
 const clearFields = () => {
-  mailLogin.value = '';
+  emailLogin.value = '';
   pswdLogin.value = '';
   nameSignup.value = '';
   emailSignup.value = '';
@@ -140,31 +128,19 @@ const clearFields = () => {
 };
 
 defaultErrorText();
-//console.dir(mailLogin);
+
+// ------ авторизація
+
 loginForm.addEventListener('submit', async ev => {
   ev.preventDefault();
-  //console.log(mailLogin.value, pswdLogin.value);
-  if (!mailLogin.value || !pswdLogin.value) return;
+  if (!emailLogin.value || !pswdLogin.value) return;
+  emailLogin.value.trim();
 
-  mailLogin.value.trim();
-  const res = await authUser(mailLogin.value, pswdLogin.value);
-  //console.log(await res);
-
+  const res = await authUser(emailLogin.value, pswdLogin.value);
   if ((await res.status) != 200) {
     const message = res.response.data.error.message.replaceAll('_', ' ');
-    //const message = res.data.error.message.replaceAll('_', ' ');
-
-    //console.log(message);
-    errorIn.textContent = message;
     loginForm.addEventListener('click', defaultErrorText);
-    //console.log(message.includes('email'));
-    if (message.includes('EMAIL')) {
-      mailLogin.classList.add('error-border');
-    }
-    console.log(message.includes('PASSWORD'));
-    if (message.includes('PASSWORD')) {
-      pswdLogin.classList.add('error-border');
-    }
+    errorAuth('Login', message);
     return;
   }
 
@@ -176,29 +152,28 @@ loginForm.addEventListener('submit', async ev => {
     clearFields();
     document.location.href = './my-library.html';
   }
-
-  //const itemId = mailLogin.value.replace('@', '').replaceAll('.', '');
 });
+
+// ---- реестрація
 
 signupForm.addEventListener('submit', async ev => {
   ev.preventDefault();
-  //                      console.log(ev);
+
   if (!emailSignup.value || !pswdSignup.value) return;
-  if (pswdSignup.value !== pswdSignupConf.value) return;
-  mailLogin.value.trim();
+  if (pswdSignup.value !== pswdSignupConf.value) {
+    errorAuth('Signup', 'invalid passwordConf');
+    return;
+  }
+  emailSignup.value.trim();
 
   const res = await createUser(emailSignup.value, pswdSignup.value);
-  //console.log(res);
-
   if ((await res.status) != 200) {
     const message = res.response.data.error.message.replaceAll('_', ' ');
-    errorUp.textContent = message;
     signupForm.addEventListener('click', defaultErrorText);
-
+    errorAuth('Signup', message);
     return;
   }
 
-  // console.log('1-----------');
   let idItem = emailSignup.value.replace('@', '').replaceAll('.', '');
   const userItem = {};
   userItem[idItem] = {
@@ -214,5 +189,22 @@ signupForm.addEventListener('submit', async ev => {
     defaultErrorText();
     clearFields();
   }
-  //console.log(idItem);
 });
+
+const errorAuth = (elem, message) => {
+  console.log(elem, message);
+  if (message.includes('EMAIL')) {
+    document.querySelector(`[name=email${elem}]`).classList.add('error-border');
+  }
+  if (message.includes('PASSWORD')) {
+    document
+      .querySelector(`[name=password${elem}]`)
+      .classList.add('error-border');
+  }
+  if (message.includes('passwordConf')) {
+    document
+      .querySelector(`[name=passwordConf${elem}]`)
+      .classList.add('error-border');
+  }
+  document.querySelector(`.error${elem}`).textContent = message;
+};

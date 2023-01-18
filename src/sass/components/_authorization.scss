@@ -1,26 +1,3 @@
-// .bgline {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   height: 100vh;
-//   width: 100%;
-//   z-index: -1;
-// }
-
-// .header-logo {
-//   width: 100%;
-//   height: 40px;
-//   float: left;
-//   margin: 30px 0 40px 0;
-// }
-
-// .login {
-//   height: 100vh;
-//   width: 100%;
-//   max-width: 450px;
-//   margin: 0 auto;
-// }
-
 .login-backdrop {
   position: fixed;
   top: 0;
@@ -44,8 +21,8 @@
   width: calc(100% - 140px);
   max-width: 500px;
   height: 100%;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 16px;
+  padding-right: 16px;
   //padding: calc(50vh - 259px) 70px;
   overflow: auto;
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
@@ -88,7 +65,7 @@
   font-size: 14px;
   border-radius: 14px;
   background: rgba(255, 255, 255, 0);
-  border: white solid 1px;
+  border: white solid 2px;
   color: #fff;
   text-align: center;
   margin-bottom: 30px;
@@ -169,8 +146,8 @@
   float: right;
 }
 
-.errIn,
-.errUp {
+.errorLogin,
+.errorSignup {
   margin-bottom: 20px;
   font-size: 14px;
   font-weight: 500;
@@ -179,7 +156,7 @@
   text-transform: lowercase;
 }
 
-.error-border {
+input.error-border {
   border-color: rgb(255, 118, 118);
 }
 .full-close {
