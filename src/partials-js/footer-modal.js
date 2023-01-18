@@ -15,8 +15,7 @@ import volodymyrBednovUrl from '../images/team/volodymyr-bednov.jpg';
 
 const markup = `
      <div class="modal modal__footer">
-            <h2 class="team-title"> 	
-&#127916; Our team</h2>
+            <h2 class="team-title">&#127916; Our team</h2>
             <ul class="team-list list">
                 <li class="team-member">
                     <div class="thumb">
