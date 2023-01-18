@@ -70,15 +70,15 @@
       new Glide('.glide', {
         type: 'slider',
         startAt: 0,
-        perView: 7,
+        perView: 5,
         autoplay: 2000,
         hoverpause: true,
         keyboard: true,
         bound: true,
-        // Breakpoints: {
-        //   768: { perView: 3 },
-        //   480: { perView: 2 },
-        // },
+        Breakpoints: {
+          768: { perView: 3 },
+          // 480: { perView: 2 },
+        },
       }).mount();
     </script>
   </body>
