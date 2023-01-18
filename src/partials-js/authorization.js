@@ -1,5 +1,42 @@
 import axios from 'axios';
 
+const loginForm = document.querySelector('form#signinform');
+const signupForm = document.querySelector('form#signupform');
+
+const emailLogin = document.querySelector('[name=emailLogin]');
+const pswdLogin = document.querySelector('[name=passwordLogin]');
+
+const nameSignup = document.querySelector('[name=nameSignup]');
+const emailSignup = document.querySelector('[name=emailSignup]');
+const pswdSignup = document.querySelector('[name=passwordSignup]');
+const pswdSignupConf = document.querySelector('[name=passwordConfSignup]');
+
+const errorLogin = document.querySelector('.errorLogin');
+const errorSignup = document.querySelector('.errorSignup');
+
+// auth modal login & signup
+const signUp = document.querySelector('#signupbox');
+const signIn = document.querySelector('#signinbox');
+
+const btnIn = document.querySelector('.btn-in');
+const btnUp = document.querySelector('.btn-up');
+
+const defaultErrorText = () => {
+  errorLogin.textContent = '';
+  errorSignup.textContent = '';
+};
+
+const clearFields = () => {
+  emailLogin.value = '';
+  pswdLogin.value = '';
+  nameSignup.value = '';
+  emailSignup.value = '';
+  pswdSignup.value = '';
+  pswdSignupConf.value = '';
+};
+
+defaultErrorText();
+
 //const idAuthUser = '';
 document.addEventListener('DOMContentLoaded', () => {
   if (location.pathname == '/my-library.html') return;
@@ -13,13 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
     clearFields();
   });
 });
-
-// auth modal login & signup
-const signUp = document.querySelector('#signupbox');
-const signIn = document.querySelector('#signinbox');
-
-const btnIn = document.querySelector('.btn-in');
-const btnUp = document.querySelector('.btn-up');
 
 // // Switches to 'Create Account'
 const createAccount = () => {
@@ -35,7 +65,6 @@ const loginAccount = () => {
 };
 const loginActive = btnIn.addEventListener('click', loginAccount);
 
-//--------------
 //-----close auth modal
 const closeButton = document.querySelector('button.auth-close');
 const authModalRef = document.querySelector('.login-backdrop');
@@ -48,10 +77,8 @@ const fnCloseButton = () => {
 closeButton.addEventListener('click', () => {
   fnCloseButton();
 });
-//----------------------
 
 //-------- auth request
-
 const createUser = async (email, password) => {
   const baseURL =
     'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyC9fG7Shg0PcLy-7vLSSNqMkxzduprzfqU';
@@ -114,39 +141,7 @@ const postDb = async item => {
   }
 };
 
-/// ---------- work html
-const loginForm = document.querySelector('form#signinform');
-const signupForm = document.querySelector('form#signupform');
-
-const emailLogin = document.querySelector('[name=emailLogin]');
-const pswdLogin = document.querySelector('[name=passwordLogin]');
-
-const nameSignup = document.querySelector('[name=nameSignup]');
-const emailSignup = document.querySelector('[name=emailSignup]');
-const pswdSignup = document.querySelector('[name=passwordSignup]');
-const pswdSignupConf = document.querySelector('[name=passwordConfSignup]');
-
-const errorLogin = document.querySelector('.errorLogin');
-const errorSignup = document.querySelector('.errorSignup');
-
-const defaultErrorText = () => {
-  errorLogin.textContent = '';
-  errorSignup.textContent = '';
-};
-
-const clearFields = () => {
-  emailLogin.value = '';
-  pswdLogin.value = '';
-  nameSignup.value = '';
-  emailSignup.value = '';
-  pswdSignup.value = '';
-  pswdSignupConf.value = '';
-};
-
-defaultErrorText();
-
 // ------ авторизація
-
 loginForm.addEventListener('submit', async ev => {
   ev.preventDefault();
   if (!emailLogin.value || !pswdLogin.value) return;
@@ -211,8 +206,6 @@ signupForm.addEventListener('submit', async ev => {
     emailLogin.value = tempLogin;
   }
 });
-
-//emailLogin.value = 'rrrrr';
 
 const errorAuth = (elem, message) => {
   console.log(elem, message);
