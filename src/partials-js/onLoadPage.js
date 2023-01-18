@@ -8,6 +8,15 @@ import {
 import { makerender } from './makeRenderFilms';
 import { pagination, changePage } from './tuiPagination';
 
+
+let arrOfGenres;
+function receiveGenres() {
+  requestGet(MAIN_PART_URL, GENRE_REQUEST_PART, API_KEY).then(res => {
+    arrOfGenres = res.data.genres;
+  });
+}
+receiveGenres();
+
 let arrOfGenres;
 export function receiveGenres() {
   requestGet(MAIN_PART_URL, GENRE_REQUEST_PART, API_KEY).then(res => {
@@ -26,5 +35,6 @@ export function onLoadPage() {
         makerender(res.data.results, arrOfGenres);
       });
     });
+
   });
 }

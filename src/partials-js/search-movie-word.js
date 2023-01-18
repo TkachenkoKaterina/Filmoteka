@@ -48,12 +48,13 @@ requestGet(MAIN_PART_URL, GENRE_REQUEST_PART, API_KEY)
 function searchGenres(arrays, lengthArr) {
   let count = lengthArr;
   let stat = 0;
+
+  let strRes = '';
   if (lengthArr > 3) {
     lengthArr = 3;
-
+    count = 3;
     stat = 1;
   }
-  let strRes = '';
   if (lengthArr === 0) {
     return 'Other';
   } else {
@@ -65,20 +66,19 @@ function searchGenres(arrays, lengthArr) {
             if (stat === 1) {
               strRes += 'Other';
             } else {
-              return (strRes += allGenre.name);
+              strRes += allGenre.name;
             }
           } else {
             strRes += allGenre.name + ', ';
           }
         } else {
-          strRes += '';
         }
       });
     }
   }
   return strRes;
 }
-
+//----------------------------------------------------------------------------------------------------------------------------------
 function noFoto(base_url, width, img_file, stub) {
   let strM = '';
   img_file === null ? (strM = stub) : (strM = `${base_url}${width}${img_file}`);
@@ -187,6 +187,7 @@ const searchFilm = async event => {
               ulEl.innerHTML = articleElement(res.data.results);
             });
           });
+
         }
         const articls = res.data.results;
         datatotalHits = res.data.total_results;
@@ -199,16 +200,6 @@ const searchFilm = async event => {
           return;
         } else {
           ulEl.innerHTML = articleElement(articls);
-          if (pageTotal === namberPage) {
-            buttonEl.classList.add('disebl_button_form');
-            Notiflix.Notify.info(
-              "We're sorry, but you've reached the end of search results."
-            );
-          } else {
-            let resM = pageTotal - namberPage;
-            Notiflix.Notify.info(`You can also view ${resM} pages`);
-            namberPage = namberPage + 1;
-          }
         }
       }
     );
