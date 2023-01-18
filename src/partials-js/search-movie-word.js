@@ -11,18 +11,17 @@ import {
   TABLET_SIZES,
   DESKTOP_SIZES,
   ADULT,
+  ALL_GENRES,
 } from './vars';
 import { requestGet } from './requestGet';
 var debounce = require('lodash.debounce');
 import Notiflix from 'notiflix';
 
 let allGenres = [];
-
 const formEl = document.querySelector('#search-form');
 const inputEl = document.querySelector('.header__search-input');
 const buttonEl = document.querySelector('.header__search-button');
 const divEl = document.querySelector('.header__error-text--disable');
-const spanEl = document.querySelector('#visually-hidden');
 const ulEl = document.querySelector('.movie__collection');
 
 buttonEl.classList.add('disebl_button_form');
@@ -39,6 +38,7 @@ requestGet(MAIN_PART_URL, GENRE_REQUEST_PART, API_KEY)
   .then(resl => resl.data)
   .then(resalts => {
     allGenres = resalts.genres;
+    
   })
   .catch(err => {
     console.log(err);
@@ -47,8 +47,11 @@ requestGet(MAIN_PART_URL, GENRE_REQUEST_PART, API_KEY)
 //-----------------------------------------------------------------------------------------------------------------------------------------
 function searchGenres(arrays, lengthArr) {
   let count = lengthArr;
+  let stat = 0;
   if (lengthArr > 3) {
     lengthArr = 3;
+
+    stat = 1;
   }
   let strRes = '';
   if (lengthArr === 0) {
@@ -56,11 +59,14 @@ function searchGenres(arrays, lengthArr) {
   } else {
     for (let index = 0; index < lengthArr; index++) {
       count = count - 1;
-
       allGenres.map(allGenre => {
         if (arrays[index] === allGenre.id) {
           if (count === 0) {
-            strRes += 'Other';
+            if (stat === 1) {
+              strRes += 'Other';
+            } else {
+              return (strRes += allGenre.name);
+            }
           } else {
             strRes += allGenre.name + ', ';
           }
@@ -179,6 +185,7 @@ const searchFilm = async event => {
       valuesString
     );
     const articls = res.data.results;
+    console.log(articls);
     datatotalHits = res.data.total_results;
     pageTotal = res.data.total_pages;
 
