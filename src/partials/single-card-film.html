@@ -1,42 +1,25 @@
 <section>
-  <container>
-    <ul class="movie__collection list">
-      <!-- <li class="movie__card open__modal--js link"  data-id="${id}">
-         <div class="movie__img__box">
-          <picture class="film-list__img">
-                    <source
-                      srcset="${notFotoDesktop(poster_path, BASE_URL)}"
-                      media="screen and (min-width:1200px)"
-                    />
-                    <source
-                      srcset="${notFotoTab(poster_path, BASE_URL)}"
-                      media="(min-width:768px)"
-                    />
-                    <source
-                      srcset="${notFotoMob(poster_path, BASE_URL)}"
-                      media="(max-width:767px)"
-                    />
-                    <img
-              class="movie__img"
-              src="./images/no-Film-Img.jpg""
-              alt="Постер до фільму"
-              width="450"
-              height="294"
-              name="Poster"
-            />
-                  </picture>           
-          </div>
-        </a>
-        <div class="movie__card__textbox">
-           <h3 class="movie__title">${original_title}</h3>
-            <span class="movie__details">${searchGenres(
-              Object.values(genre_ids),
-              genre_ids.length
-            )} | </span
-            ><span class="movie__details">${release_date.slice(0, 4)}</span>
-          </a>
-        </div>
-      </li> -->
+<container>
+    <ul class="movie__collection">
+        <li class="movie__card">
+            <a class="movie__link open__modal--js" data-id="" href="">
+                <div class="movie__img__box">
+                    <img class="movie__img"
+                    src="./images/no-Film-Img394x574.jpg"
+                    alt="./images/no-Film-Img394x574.jpg"
+                    width="395"
+                    name="Poster"
+                     >
+                </div>
+            </a>
+            <div class="movie__card__textbox">
+                <a class="movie__link open__modal--js" data-id="" href="">
+                    <h3 class="movie__title">Назва фільму</h3>
+                    <span class="movie__details">Жанри | </span><span class="movie__details">Рік</span>
+                
+            </a>
+            </div>
+        </li>
     </ul>
   </container>
 </section>
