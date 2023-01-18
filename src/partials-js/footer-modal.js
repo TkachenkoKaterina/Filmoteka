@@ -14,7 +14,7 @@ import yevheniyKlymovychUrl from '../images/team/yevheniy-klymovych.jpg';
 import volodymyrBednovUrl from '../images/team/volodymyr-bednov.jpg';
 
 const markup = `
-     <div class="modal modal__footer">
+ <div class="modal modal__footer">
             <h2 class="team-title">&#127916; Our team</h2>
             <ul class="team-list list">
                 <li class="team-member">
@@ -24,7 +24,7 @@ const markup = `
                     </div>
 
                     <div class="team-card">
-                        <a class="team-member-title" href="https://github.com/TkachenkoKaterina">
+                        <a class="team-member-title" href="https://github.com/TkachenkoKaterina" target="_blank" rel="noreferrer noopener">
                             Katerina <br> Tkachenko
                         </a>
                         <p class="team-member-position" lang="en">Team lead</p>
@@ -38,7 +38,7 @@ const markup = `
                     </div>
 
                     <div class="team-card">
-                        <a class="team-member-title" href="https://github.com/narovskyi">
+                        <a class="team-member-title" href="https://github.com/narovskyi" target="_blank" rel="noreferrer noopener">
                             Oleksii <br> Narovskyi
                         </a>
                         <p class="team-member-position" lang="en">Scrum master</p>
@@ -52,7 +52,7 @@ const markup = `
                     </div>
 
                     <div class="team-card">
-                        <a class="team-member-title" href="https://github.com/Anton0694">
+                        <a class="team-member-title" href="https://github.com/Anton0694" target="_blank" rel="noreferrer noopener">
                             Anton <br> Sushchenko
                         </a>
                         <p class="team-member-position" lang="en">Developer</p>
@@ -66,7 +66,7 @@ const markup = `
                     </div>
 
                     <div class="team-card">
-                        <a class="team-member-title" href="https://github.com/OlegRosinskyi">
+                        <a class="team-member-title" href="https://github.com/OlegRosinskyi" target="_blank" rel="noreferrer noopener">
                             Oleh <br> Rosinskyi
                         </a>
                         <p class="team-member-position" lang="en">Developer</p>
@@ -80,7 +80,7 @@ const markup = `
                     </div>
 
                     <div class="team-card">
-                        <a class="team-member-title" href="https://github.com/DenFedor">
+                        <a class="team-member-title" href="https://github.com/DenFedor" target="_blank" rel="noreferrer noopener">
                             Denys <br> Fedorenko
                             </a>
                         <p class="team-member-position" lang="en">Developer</p>
@@ -94,7 +94,7 @@ const markup = `
                     </div>
 
                     <div class="team-card">
-                        <a class="team-member-title" href="https://github.com/katekovaliuk">
+                        <a class="team-member-title" href="https://github.com/katekovaliuk" target="_blank" rel="noreferrer noopener">
                             Kateryna <br> Kovaliuk
                         </a>
                         <p class="team-member-position" lang="en">Developer</p>
@@ -108,7 +108,7 @@ const markup = `
                     </div>
 
                     <div class="team-card">
-                        <a class="team-member-title" href="https://github.com/AlexandraCherepania">
+                        <a class="team-member-title" href="https://github.com/AlexandraCherepania" target="_blank" rel="noreferrer noopener">
                             Olexandra <br> Cherepania
                         </a>
                         <p class="team-member-position" lang="en">Developer</p>
@@ -122,7 +122,7 @@ const markup = `
                     </div>
 
                     <div class="team-card">
-                        <a class="team-member-title" href="https://github.com/rollingolya">
+                        <a class="team-member-title" href="https://github.com/rollingolya" target="_blank" rel="noreferrer noopener">
                             Olha <br> Rolinska
                         </a>
                         <p class="team-member-position" lang="en">Developer</p>
@@ -136,7 +136,7 @@ const markup = `
                     </div>
 
                     <div class="team-card">
-                        <a class="team-member-title" href="https://github.com/sabmat">
+                        <a class="team-member-title" href="https://github.com/sabmat" target="_blank" rel="noreferrer noopener">
                            Sabrina <br> Matsyuk
                         </a>
                         <p class="team-member-position" lang="en">Developer</p>
@@ -150,7 +150,7 @@ const markup = `
                     </div>
 
                     <div class="team-card">
-                        <a class="team-member-title" href="https://github.com/Highgradecode">
+                        <a class="team-member-title" href="https://github.com/Highgradecode" target="_blank" rel="noreferrer noopener">
                             Victoria <br> Kushnarova
                         </a>
                         <p class="team-member-position" lang="en">Developer</p>
@@ -164,7 +164,7 @@ const markup = `
                     </div>
 
                     <div class="team-card">
-                        <a class="team-member-title" href="https://github.com/vladdengoit">
+                        <a class="team-member-title" href="https://github.com/vladdengoit" target="_blank" rel="noreferrer noopener">
                             Volodymyr <br> Denysov
                         </a>
                         <p class="team-member-position" lang="en">Developer</p>
@@ -178,7 +178,7 @@ const markup = `
                     </div>
 
                     <div class="team-card">
-                        <a class="team-member-title" href="https://github.com/jullyrud">
+                        <a class="team-member-title" href="https://github.com/jullyrud" target="_blank" rel="noreferrer noopener">
                            Yevheniy <br> Klymovych
                         </a>
                         <p class="team-member-position" lang="en">Developer</p>
@@ -192,7 +192,7 @@ const markup = `
                     </div>
 
                     <div class="team-card">
-                        <a class="team-member-title" href="https://github.com/Volodymyr-Bednov">
+                        <a class="team-member-title" href="https://github.com/Volodymyr-Bednov" target="_blank" rel="noreferrer noopener">
                             Volodymyr <br> Bednov
                         </a>
                         <p class="team-member-position" lang="en">Developer</p>
@@ -201,7 +201,8 @@ const markup = `
                 </li>
                 
             </ul>
-        </div>`;
+        </div>
+`
 
 const container = document.querySelector('.footer__link');
 console.log(container);
@@ -222,3 +223,4 @@ function onEscKeyPress(event) {
     window.removeEventListener('keydown', onEscKeyPress);
   }
 }
+
