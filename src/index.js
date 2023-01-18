@@ -1,7 +1,7 @@
 import './partials-js/refs';
 import './partials-js/vars';
 import './partials-js/requestGet';
-// import './partials-js/slider';
+import './partials-js/slider';
 import './partials-js/onLoadPage';
 import './partials-js/themeSwitch';
 import './partials-js/authorization';

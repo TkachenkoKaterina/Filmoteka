@@ -1,3 +1,4 @@
+
 import {
   MOBILE_SIZES,
   TABLET_SIZES, 
@@ -9,8 +10,7 @@ import {
 const trendsContainerEL = document.querySelector('.movie__collection');
 
 export function makerender(arr, collectioinGenres) {
-  
-  
+  console.log(arr);
   const renderEl = arr
   .map(({ original_title, release_date, poster_path, genre_ids }) => {
     
@@ -50,12 +50,11 @@ export function makerender(arr, collectioinGenres) {
                 </span><span class="movie__details">${release_date.slice(0, 4)}</span>
             </div>
         </li> `;
-        })
-        .join('');
+    })
+    .join('');
 
-    trendsContainerEL.insertAdjacentHTML('beforeend', renderEl);
+  trendsContainerEL.insertAdjacentHTML('beforeend', renderEl);
 }
-
 
 function filterArrGenres(arrGenres) {
   if (arrGenres.length > 3){
@@ -63,8 +62,4 @@ function filterArrGenres(arrGenres) {
   } else 
   return arrGenres
 }
-
-
- 
-
 
