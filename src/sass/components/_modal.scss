@@ -58,6 +58,27 @@ body.show-modal .backdrop {
 
         padding: 40px 12px; 
     }
+
+    &__footer {
+        margin-bottom: 15px;
+        height: 550px;
+        border-radius: 25px;
+     
+        background-color: white;
+
+        @media screen and (min-width: 768px) {
+         
+            padding-top: 25px;
+            padding-right: 36px;
+            padding-bottom: 25px;
+    
+        }
+
+        @media screen and (min-width: 1200px) {
+            height: 500px;
+            width: 920px;
+        }
+    }
 }
 
 .modal__close-btn {
