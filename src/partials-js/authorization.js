@@ -21,16 +21,18 @@ const btnIn = document.querySelector('.btn-in');
 const btnUp = document.querySelector('.btn-up');
 
 // // Switches to 'Create Account'
-btnUp.addEventListener('click', () => {
+const createAccount = () => {
   signUp.style.display = 'block';
   signIn.style.display = 'none';
-});
+};
+btnUp.addEventListener('click', createAccount);
 
 // // Switches to 'Sign In'
-const loginActive = btnIn.addEventListener('click', () => {
+const loginAccount = () => {
   signUp.style.display = 'none';
   signIn.style.display = 'block';
-});
+};
+const loginActive = btnIn.addEventListener('click', loginAccount);
 
 //--------------
 //-----close auth modal
@@ -199,8 +201,15 @@ signupForm.addEventListener('submit', async ev => {
   const userInfo = await postDb(userItem);
   if (userInfo.status == 200) {
     signupForm.removeEventListener('click', defaultErrorText);
+    console.log(emailLogin.textContent, emailSignup.value);
+    console.log(pswdLogin.textContent, pswdSignup.value);
+    emailLogin.textContent = emailSignup.value;
+    pswdLogin.textContent = pswdSignup.value;
     //autoAransition();
     defaultErrorText();
+
+    loginAccount();
+
     clearFields();
   }
 });
