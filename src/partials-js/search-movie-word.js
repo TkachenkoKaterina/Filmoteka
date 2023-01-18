@@ -120,7 +120,7 @@ const articleElement = articls => {
                       media="(max-width:767px)"
                     />
                     <img
-              class="movie__img data-id="${id}"
+              class="movie__img" data-id="${id}"
               src="./images/no-Film-Img.jpg"
               alt="Постер до фільму"
               width="264"
@@ -183,7 +183,6 @@ const searchFilm = async event => {
               ulEl.innerHTML = articleElement(res.data.results);
             });
           });
-
         }
         const articls = res.data.results;
         console.log(articls);
