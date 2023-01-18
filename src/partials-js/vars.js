@@ -24,3 +24,5 @@ export const SEARCH_MOVIE = 'search/movie/';
 
 //_____________________REQUESTS_PARAMETERS________________________
 export const ADULT = '&include_adult=false';
+//_____________________ARRAY_GENRES________________________
+export let ALL_GENRES = [];
