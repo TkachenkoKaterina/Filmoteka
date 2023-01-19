@@ -149,6 +149,7 @@ const articleElement = articls => {
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 const onInput = event => {
   event.preventDefault();
+  formEl.removeEventListener('submit', onInput);
   divEl.classList.add('header__error-text--disable');
   valuelongth = event.target.value.length;
   valuesString = event.target.value;
@@ -168,10 +169,11 @@ const onInput = event => {
 inputEl.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 
 //------------------------------------------------------------------------------------------------------------------------------------
-formEl.removeEventListener('submit', onInput);
+
 //------------------------------------------------------------------------------------------------------------------------------------
 const searchFilm = async event => {
   event.preventDefault();
+  inputEl.removeEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
   try {
     if (event.currentTarget.elements[0].value !== '') {
       if (event.currentTarget.elements[0].value.length > valuelongth) {
@@ -214,4 +216,3 @@ const searchFilm = async event => {
 
 formEl.addEventListener('submit', searchFilm);
 //-------------------------------------------------------------------------------------------------
-inputEl.removeEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
