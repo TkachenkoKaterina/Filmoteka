@@ -11,6 +11,7 @@ import {
     MOBILE_SIZES
 } from './vars';
 import { requestGet } from './requestGet';
+import { Notify } from 'notiflix';
 
 const refs = {
     movieList: document.querySelector('.movie__collection'),
@@ -37,7 +38,7 @@ export async function onQueueBtnClick() {
 
     const arrOfQueueId = JSON.parse(localStorage.getItem("queue"));
     if (arrOfQueueId === null || arrOfQueueId.length === 0) {
-        console.log('фільмів нема');
+        Notify.info("You don't have any movies in the queue yet");
         refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
         return;
     }
@@ -73,7 +74,7 @@ export async function onWatchedBtnClick() {
 
     const arrOfWatchedId = JSON.parse(localStorage.getItem("watched"));
     if (arrOfWatchedId === null || arrOfWatchedId.length === 0) {
-        console.log('фільмів нема');
+        Notify.info('You have no watched movies yet');
         refs.queueBtn.addEventListener('click', onQueueBtnClick);
         return;
     }
