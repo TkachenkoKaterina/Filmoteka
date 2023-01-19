@@ -2,7 +2,7 @@ import { MAIN_PART_URL,
     MOVIE_BY_ID_PART,
     API_KEY
  } from "./vars";
-// import { id } from "./makeRenderFilms";
+import { id } from "./makeRenderFilms";
 import { requestGet } from "./requestGet";
 import axios from "axios";
 import { BasicLightBox } from "basiclightbox";
@@ -13,14 +13,21 @@ import 'basiclightbox/dist/basicLightbox.min.css';
 // const objData = response.data;
 
 const refs = {
-    openModalCard: document.querySelector('.movie__collection'),
+    cardCollection: document.querySelector('.movie__collection'),
     closeModalBtn: document.querySelector('.modal__close-btn'),
     backdrop: document.querySelector('.js-backdrop'),
 };
 
-refs.openModalCard.addEventListener('click', onOpenModal);
+refs.cardCollection.addEventListener('click', onImgClick);
 refs.closeModalBtn.addEventListener('click', onCloseModal);
 refs.backdrop.addEventListener('click', onBackdropClick);
+
+function onImgClick (evt) {
+    if(evt.target.nodeName !== 'IMG'){
+      return;
+    } 
+    onOpenModal(evt);
+  }
 
 // Fetch movie by id
 async function getOneMovieData(mov_id) {
@@ -30,23 +37,30 @@ async function getOneMovieData(mov_id) {
     const response = await requestGet( MAIN_PART_URL, MOVIE_BY_ID_PART, '12', API_KEY);
     console.log(response.data);
     console.log(mov_id);
-    const data = {
-        ...data, 
-    popularity: data.popularity.toFixed(1),
-    }
+    const obj = response.data; 
+    // obj.popularity.toFixed(1);
+    return renderFilmOnModal(obj);
+    console.log(obj);
 }
 
-async function onOpenModal (evt) {
+async function onOpenModal(evt) {
     document.body.classList.add('show-modal');
     console.log(evt.target.dataset.id);
 
-    const data = await getOneMovieData(evt.target.dataset.id)
+    const data = await getOneMovieData(evt.target.dataset.id);
+    console.log(data);
+
+    // renderFilmOnModal
     
-        if (evt.target.nodeName !== 'IMG') {
-            evt.preventDefault();
-            console.log(5);
-            return;
-        }
+        // if (evt.target.nodeName !== 'IMG') {
+        //     evt.preventDefault();
+        //     console.log(5);
+        //     return;
+        // }
+        // const markup = modalFilmData(data);
+        //     const modal = BasicLightBox.create(markup);
+
+        //     modal.show();
 }
 
 function onCloseModal() {
@@ -65,41 +79,22 @@ function onEsc(evt) {
 }
 
 
-function renderFilmOnModal(arr) {
-    const markup = arr 
-.map(({ title, vote_average, popularity, original_title, each, overview }) => {
-    return `
+function renderFilmOnModal({ title, vote_average, popularity, original_title, each, overview }) {
+     refs.backdrop.innerHTML = '';
+     const markupModal =
+     `
     <div class="modal">
 <button type="button" class="modal__close-btn" data-action="close-modal">
 <svg class="modal__icon" width="14" height="14">
 <use href="./images/icons/icons.svg#icon-close"></use>
 </svg>
 </button>
+
 <div class="modal__content">
-
-
-<picture class="film-list__img open__modal--js""> data-id="${id}"
-    <source
-        srcset="${BASE_IMG_URL}${DESKTOP_SIZES}${poster_path}"
-        media="screen and (min-width:1200px)"
-    />
-    <source
-        srcset="${BASE_IMG_URL}${TABLET_SIZES}${poster_path}"
-        media="(min-width:768px)"
-    />
-    <source
-        srcset="${BASE_IMG_URL}${MOBILE_SIZES}${poster_path}"
-        media="(max-width:767px)"
-    />
-    <img
-      class="modal-img"
-      src="./images/no-Film-Img.jpg"
-      alt="${title}"
-      width="394"
-      height="574"
-      name="Poster"
-    />
-</picture> 
+<img
+        class="modal-img"
+        src="./images/no-Film-Img.jpg"
+        alt="картинка фільму"/>
 
 <div class="modal__group">
 <h2 class="modal__title">${title}</h2>
@@ -126,12 +121,10 @@ function renderFilmOnModal(arr) {
 </div>
 </div>
 </div>
-    `;
-})
-.join("");
+`;
 
 // const modalMarkup = basicLightbox.create(markup);
-refs.openModalCard.insertAdjacentHTML('beforeend', markup);
+refs.backdrop.insertAdjacentHTML('beforeend', markupModal);
 
 }
 
