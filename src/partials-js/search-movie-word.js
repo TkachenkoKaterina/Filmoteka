@@ -26,7 +26,7 @@ const divEl = document.querySelector('.header__error-text--disable');
 const ulEl = document.querySelector('.movie__collection');
 
 buttonEl.classList.add('disebl_button_form');
-
+let valuelongth = 0;
 let valuesString = '';
 const DEBOUNCE_DELAY = 300;
 let namberPer_page = 40;
@@ -45,9 +45,8 @@ requestGet(MAIN_PART_URL, GENRE_REQUEST_PART, API_KEY)
     if (JSON.parse(localStorage.getItem(GENRES_ARR_KEY)) !== null) {
       AllGenres = JSON.parse(localStorage.getItem(GENRES_ARR_KEY));
     } else {
-              AllGenres = ALL_GENRES;
-      }
-    
+      AllGenres = ALL_GENRES;
+    }
   })
   .catch(err => {
     console.log(err);
