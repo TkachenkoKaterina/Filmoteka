@@ -149,6 +149,7 @@ const onInput = event => {
   divEl.classList.add('header__error-text--disable');
   valuelongth = event.target.value.length;
   valuesString = event.target.value;
+  console.log(valuesString);
   let element = '';
   for (let index = 0; index < valuelongth; index++) {
     element = element + ' ';
@@ -170,12 +171,16 @@ formEl.removeEventListener('submit', onInput);
 const searchFilm = async event => {
   event.preventDefault();
   try {
-  if (event.currentTarget.elements[0].value !== '') { if (event.currentTarget.elements[0].value.length > valuelongth){valuesString = event.currentTarget.elements[0].value;}}
-  if (valuesString === '') {
-    return alert(
-      'Sorry, there are no films matching your search query. Please try again.'
-    );
-  }
+    if (event.currentTarget.elements[0].value !== '') {
+      if (event.currentTarget.elements[0].value.length > valuelongth) {
+        valuesString = event.currentTarget.elements[0].value;
+      }
+    }
+    if (valuesString === '') {
+      return alert(
+        'Sorry, there are no films matching your search query. Please try again.'
+      );
+    }
     namberPage = 1;
     valuesString = valuesString.trim();
     console.log(valuesString);
