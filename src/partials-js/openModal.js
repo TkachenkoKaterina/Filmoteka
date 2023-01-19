@@ -53,8 +53,7 @@ export async function getOneMovieData(mov_id) {
 
 export async function onOpenModal(evt) {
   document.body.classList.add('show-modal');
-//   console.log(evt.target.dataset.id);
-
+    window.addEventListener('keydown', onEsc);
   const data = await getOneMovieData(evt.target.dataset.id);
 //   console.log(data);
 
@@ -80,9 +79,16 @@ export function onBackdropClick(e) {
   }
 }
 
-export function onEsc(evt) {
+// export function onEsc(evt) {
+//   if (evt.code === 'Escape') {
+//     onCloseModal();
+//   }
+// }
+
+function onEsc(evt) {
   if (evt.code === 'Escape') {
-    onCloseModal();
+      onCloseModal();
+      window.removeEventListener('keydown', onEsc);
   }
 }
 
