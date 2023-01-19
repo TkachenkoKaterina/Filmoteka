@@ -1,8 +1,7 @@
 :root {
   --accent-color: #ff6b08;
   --primary-text-color: #000000;
-  --dark-theme-color-text: #ffff;
-}
+  }
 
 P,
 h1,
@@ -89,8 +88,11 @@ img {
     margin-top: 12px;
   }
 }
-.movie__title--night {
-  color: var(--dark-theme-color-text);
+.color__text--night {
+  color: var(--revers-color);
+}
+.color__text--day {
+  color: var(--revers-color);
 }
 
 .movie__title {
