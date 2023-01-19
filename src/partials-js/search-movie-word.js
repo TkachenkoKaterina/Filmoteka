@@ -12,13 +12,13 @@ import {
   DESKTOP_SIZES,
   ADULT,
   ALL_GENRES,
+  GENRES_ARR_KEY,
 } from './vars';
 import { requestGet } from './requestGet';
 import { pagination, changePage } from './tuiPagination';
 var debounce = require('lodash.debounce');
 import Notiflix from 'notiflix';
 
-let allGenres = [];
 const formEl = document.querySelector('#search-form');
 const inputEl = document.querySelector('.header__search-input');
 const buttonEl = document.querySelector('.header__search-button');
@@ -26,29 +26,35 @@ const divEl = document.querySelector('.header__error-text--disable');
 const ulEl = document.querySelector('.movie__collection');
 
 buttonEl.classList.add('disebl_button_form');
-
+let valuelongth = 0;
 let valuesString = '';
 const DEBOUNCE_DELAY = 300;
 let namberPer_page = 40;
 let namberPage = 1;
 let datatotalHits = 0;
 let pageTotal = 0;
+let AllGenres = [];
+localStorage.removeItem(GENRES_ARR_KEY);
 //__________________________GET GENRES ARR_______________________
+
 requestGet(MAIN_PART_URL, GENRE_REQUEST_PART, API_KEY)
   .then(res => res)
   .then(resl => resl.data)
   .then(resalts => {
-    allGenres = resalts.genres;
+    localStorage.setItem(GENRES_ARR_KEY, JSON.stringify(resalts.genres));
+    if (JSON.parse(localStorage.getItem(GENRES_ARR_KEY)) !== null) {
+      AllGenres = JSON.parse(localStorage.getItem(GENRES_ARR_KEY));
+    } else {
+      AllGenres = ALL_GENRES;
+    }
   })
   .catch(err => {
     console.log(err);
   });
-
 //-----------------------------------------------------------------------------------------------------------------------------------------
 function searchGenres(arrays, lengthArr) {
   let count = lengthArr;
   let stat = 0;
-
   let strRes = '';
   if (lengthArr > 3) {
     lengthArr = 3;
@@ -60,16 +66,16 @@ function searchGenres(arrays, lengthArr) {
   } else {
     for (let index = 0; index < lengthArr; index++) {
       count = count - 1;
-      allGenres.map(allGenre => {
-        if (arrays[index] === allGenre.id) {
+      ALL_GENRES.map(ALL_GENRE => {
+        if (arrays[index] === ALL_GENRE.id) {
           if (count === 0) {
             if (stat === 1) {
               strRes += 'Other';
             } else {
-              strRes += allGenre.name;
+              strRes += ALL_GENRE.name;
             }
           } else {
-            strRes += allGenre.name + ', ';
+            strRes += ALL_GENRE.name + ', ';
           }
         } else {
         }
@@ -84,7 +90,6 @@ export function noFoto(base_url, width, img_file, stub) {
   img_file === null ? (strM = stub) : (strM = `${base_url}${width}${img_file}`);
   return strM;
 }
-
 //----------------------------------------------------------------------------------------------------------------------------
 const articleElement = articls => {
   return articls
@@ -141,12 +146,12 @@ const articleElement = articls => {
     })
     .join('');
 };
-
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 const onInput = event => {
   event.preventDefault();
+  formEl.removeEventListener('submit', onInput);
   divEl.classList.add('header__error-text--disable');
-  const valuelongth = event.target.value.length;
+  valuelongth = event.target.value.length;
   valuesString = event.target.value;
   let element = '';
   for (let index = 0; index < valuelongth; index++) {
@@ -155,37 +160,40 @@ const onInput = event => {
   if (valuesString === element) {
     return (valuesString = '');
   } else {
-    buttonEl.classList.remove('disebl_button_form');
-    valuesString = valuesString.trim();
-    valuesString = `&query=${valuesString}`;
-    namberPage = 1;
+    if (buttonEl.classList.contains('disebl_button_form')) {
+      buttonEl.classList.remove('disebl_button_form');
+    }
   }
 };
 
 inputEl.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 
 //------------------------------------------------------------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------------------------------------------------------------
 const searchFilm = async event => {
+  event.preventDefault();
+  inputEl.removeEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
   try {
-    event.preventDefault();
+    if (event.currentTarget.elements[0].value !== '') {
+      if (event.currentTarget.elements[0].value.length > valuelongth) {
+        valuesString = event.currentTarget.elements[0].value;
+      }
+    }
     if (valuesString === '') {
       return alert(
         'Sorry, there are no films matching your search query. Please try again.'
       );
     }
+    namberPage = 1;
+    valuesString = valuesString.trim();
+    valuesString = '&query=$' + valuesString;
     requestGet(MAIN_PART_URL, SEARCH_MOVIE, API_KEY, ADULT, valuesString).then(
       res => {
         if (res.data.total_pages > 1) {
-          const pagInst = pagination(res.data.total_results, res.data.page);
-          pagInst.on('afterMove', function (eventData) {
-            ulEl.replaceChildren();
-            changePage(res.request.responseURL, eventData.page).then(res => {
-              ulEl.innerHTML = articleElement(res.data.results);
-            });
-          });
+          pagination(res.data.total_pages, res.data.page);
         }
         const articls = res.data.results;
-        console.log(articls);
         datatotalHits = res.data.total_results;
         pageTotal = res.data.total_pages;
         if (datatotalHits === 0) {
@@ -207,3 +215,4 @@ const searchFilm = async event => {
 };
 
 formEl.addEventListener('submit', searchFilm);
+//-------------------------------------------------------------------------------------------------

@@ -11,6 +11,7 @@ import {
     MOBILE_SIZES
 } from './vars';
 import { requestGet } from './requestGet';
+import { Notify } from 'notiflix';
 
 const refs = {
     movieList: document.querySelector('.movie__collection'),
@@ -20,10 +21,10 @@ const refs = {
 
 // --------- Тимчасово-----------//
 
-const arrOfId = ['76600', '550', '12', '1038779'];
-const arrOfIdwatched = ['76600','1038779', '12', '550'];
-localStorage.setItem("queue", JSON.stringify(arrOfId));
-localStorage.setItem("watched", JSON.stringify(arrOfIdwatched));
+// const arrOfId = ['76600', '550', '12', '1038779'];
+// const arrOfIdwatched = ['640146','653851', '674324', '615777'];
+// localStorage.setItem("queue", JSON.stringify(arrOfId));
+// localStorage.setItem("watched", JSON.stringify(arrOfIdwatched));
 
 //------------------------------//
 
@@ -31,13 +32,13 @@ document.addEventListener('DOMContentLoaded', onWatchedBtnClick);
 refs.queueBtn.addEventListener('click', onQueueBtnClick);
 refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
 
-async function onQueueBtnClick() {
+export async function onQueueBtnClick() {
     refs.queueBtn.removeEventListener('click', onQueueBtnClick);
     refs.movieList.innerHTML = '';
 
     const arrOfQueueId = JSON.parse(localStorage.getItem("queue"));
     if (arrOfQueueId === null || arrOfQueueId.length === 0) {
-        console.log('фільмів нема');
+        Notify.info("You don't have any movies in the queue yet");
         refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
         return;
     }
@@ -55,7 +56,7 @@ async function onQueueBtnClick() {
     const arrPromisesCards = arrOfQueueId.map(async (el) => {
         const response = await requestGet(MAIN_PART_URL, MOVIE_BY_ID_PART, el, API_KEY);
         const objDataMovie = await response.data;
-        console.log(objDataMovie);
+        // console.log(objDataMovie);
         const genresString = objDataMovie.genres.map(el => el.name).join(', ');
         // console.log(genresString);
         const card = makeCard(objDataMovie, genresString);
@@ -67,13 +68,13 @@ async function onQueueBtnClick() {
     refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
 }
 
-async function onWatchedBtnClick() {
+export async function onWatchedBtnClick() {
     refs.watchedBtn.removeEventListener('click', onWatchedBtnClick);
     refs.movieList.innerHTML = '';
 
     const arrOfWatchedId = JSON.parse(localStorage.getItem("watched"));
     if (arrOfWatchedId === null || arrOfWatchedId.length === 0) {
-        console.log('фільмів нема');
+        Notify.info('You have no watched movies yet');
         refs.queueBtn.addEventListener('click', onQueueBtnClick);
         return;
     }
