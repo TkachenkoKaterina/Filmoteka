@@ -143,10 +143,11 @@ const articleElement = articls => {
 };
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
 const onInput = event => {
   event.preventDefault();
   divEl.classList.add('header__error-text--disable');
-  const valuelongth = event.target.value.length;
+  valuelongth = event.target.value.length;
   valuesString = event.target.value;
   let element = '';
   for (let index = 0; index < valuelongth; index++) {
@@ -155,37 +156,36 @@ const onInput = event => {
   if (valuesString === element) {
     return (valuesString = '');
   } else {
-    buttonEl.classList.remove('disebl_button_form');
-    valuesString = valuesString.trim();
-    valuesString = `&query=${valuesString}`;
-    namberPage = 1;
+    if (buttonEl.classList.contains('disebl_button_form')) {
+      buttonEl.classList.remove('disebl_button_form');
+    }
   }
 };
 
 inputEl.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 
 //------------------------------------------------------------------------------------------------------------------------------------
+formEl.removeEventListener('submit', onInput);
+//------------------------------------------------------------------------------------------------------------------------------------
 const searchFilm = async event => {
+  event.preventDefault();
   try {
-    event.preventDefault();
-    if (valuesString === '') {
-      return alert(
-        'Sorry, there are no films matching your search query. Please try again.'
-      );
-    }
+  if (event.currentTarget.elements[0].value !== '') { if (event.currentTarget.elements[0].value.length > valuelongth){valuesString = event.currentTarget.elements[0].value;}}
+  if (valuesString === '') {
+    return alert(
+      'Sorry, there are no films matching your search query. Please try again.'
+    );
+  }
+    namberPage = 1;
+    valuesString = valuesString.trim();
+    console.log(valuesString);
+    valuesString = '&query=$' + valuesString;
     requestGet(MAIN_PART_URL, SEARCH_MOVIE, API_KEY, ADULT, valuesString).then(
       res => {
         if (res.data.total_pages > 1) {
-          const pagInst = pagination(res.data.total_results, res.data.page);
-          pagInst.on('afterMove', function (eventData) {
-            ulEl.replaceChildren();
-            changePage(res.request.responseURL, eventData.page).then(res => {
-              ulEl.innerHTML = articleElement(res.data.results);
-            });
-          });
+          pagination(res.data.total_pages, res.data.page);
         }
         const articls = res.data.results;
-        console.log(articls);
         datatotalHits = res.data.total_results;
         pageTotal = res.data.total_pages;
         if (datatotalHits === 0) {
@@ -207,3 +207,5 @@ const searchFilm = async event => {
 };
 
 formEl.addEventListener('submit', searchFilm);
+//-------------------------------------------------------------------------------------------------
+inputEl.removeEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
