@@ -4,6 +4,7 @@ import { requestGet } from './requestGet';
 import axios from 'axios';
 import { BasicLightBox } from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
+import { workWithButton } from './addToWatch';
 
 import {
   TRENDS_REQUEST_PART,
@@ -42,19 +43,20 @@ export async function getOneMovieData(mov_id) {
     mov_id,
     API_KEY
   );
-  console.log(response.data);
-  console.log(mov_id);
+//   console.log(response.data);
+//   console.log(mov_id);
   const obj = response.data;
-  const genresString = obj.genres.map(el => el.name).join(', ');
-  return renderFilmOnModal(obj, genresString);
+    const genresString = obj.genres.map(el => el.name).join(', ');
+    renderFilmOnModal(obj, genresString);
+    workWithButton(mov_id);
 }
 
 export async function onOpenModal(evt) {
   document.body.classList.add('show-modal');
-  console.log(evt.target.dataset.id);
+//   console.log(evt.target.dataset.id);
 
   const data = await getOneMovieData(evt.target.dataset.id);
-  console.log(data);
+//   console.log(data);
 
   // renderFilmOnModal
 
@@ -121,6 +123,7 @@ export function renderFilmOnModal(
 <h2 class="modal__title">${title}</h2>
 <div class="modal__list-container">
   <ul class="modal__list">
+    <li class="visually-hidden movieID">${id}</li>
     <li class="modal__item">Vote / Votes</li>
     <li class="modal__item">Popularity</li>
     <li class="modal__item">Origin Title</li>
@@ -140,7 +143,7 @@ export function renderFilmOnModal(
 <h3 class="modal__subtitle">ABOUT</h3>
 <p class="modal__text">${overview}</p>
 <div class="btn-container">
-  <button class="modal__btn" id="btn-watched" type="button">ADD TO WATCHED</button>
+  <button class="modal__btn" id="btn-watched" type="button" data-id="${id}">ADD TO WATCHED</button>
   <button class="modal__btn" id="btn-queue" type="button">ADD TO QUEUE</button>
 </div>
 </div>
