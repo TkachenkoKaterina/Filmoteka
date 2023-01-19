@@ -166,3 +166,9 @@ input.error-border {
   visibility: hidden;
   pointer-events: none;
 }
+
+.login-wrap .auth-close {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}

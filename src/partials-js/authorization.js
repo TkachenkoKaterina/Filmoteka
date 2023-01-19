@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+let flagLoggedUser = 'none';
 const loginForm = document.querySelector('form#signinform');
 const signupForm = document.querySelector('form#signupform');
 
@@ -41,8 +41,13 @@ defaultErrorText();
 document.addEventListener('DOMContentLoaded', () => {
   if (location.pathname == '/my-library.html') return;
   const routeAuth = document.querySelector('.header__item-link.my-library');
+  if (userLogged()) return;
+  //userLogged();
+  //const routeAuth = document.querySelector('a[href="./my-library.html"]');
+
   routeAuth.addEventListener('click', ev => {
     ev.preventDefault();
+    // if (flagLoggedUser !== 'none') return;
     const authViewRef = document
       .querySelector('.login-backdrop')
       .classList.remove('full-close');
@@ -50,6 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
     clearFields();
   });
 });
+
+// window.addEventListener('closed', event => {
+//   //event.preventDefault();
+//   localStorage.removeItem('currentuser');
+//   localStorage.removeItem('currentuserinfo');
+// });
 
 // // Switches to 'Create Account'
 const createAccount = () => {
@@ -111,9 +122,8 @@ const authUser = async (email, password) => {
   }
 };
 
-const getDb = async () => {
-  const baseURL =
-    'https://filmoteks-users-base-default-rtdb.europe-west1.firebasedatabase.app/data.json';
+const getDb = async idItem => {
+  const baseURL = `https://filmoteks-users-base-default-rtdb.europe-west1.firebasedatabase.app/data.json?orderBy="$key"&equalTo="${idItem}"`; //print=silent&auth=tWeiO5yEVGBN5KucivUx9IwIJRtfqL2eFCzC4GCM';
   try {
     const data = await axios.get(baseURL);
     return data;
@@ -126,7 +136,7 @@ const postDb = async item => {
   const baseURL =
     'https://filmoteks-users-base-default-rtdb.europe-west1.firebasedatabase.app/data.json';
   try {
-    const data = await axios.patch(baseURL, item);
+    const data = await axios.patch(baseURL, { item });
     // console.log(data);
     return data;
   } catch (error) {
@@ -148,11 +158,23 @@ loginForm.addEventListener('submit', async ev => {
     errorAuth('Login', message);
     return;
   }
-
-  const userInfo = await getDb();
+  const idItem = userId(emailLogin.value);
+  console.log(idItem);
+  const userInfo = await getDb(idItem);
 
   if (userInfo.status == 200) {
+    //console.log(userInfo.data);
     loginForm.removeEventListener('click', defaultErrorText);
+    const { email, name } = userInfo.data[idItem];
+    const info = { email, name };
+    flagLoggedUser = email;
+    console.log('flagLoggedUser');
+    console.log(flagLoggedUser);
+    //userLogged(flagLoggedUser);
+    // console.log('------------');
+    // console.log(flagLoggedUser);
+    localStorage.setItem('currentuserinfo', JSON.stringify(info));
+    localStorage.setItem('currentuser', JSON.stringify(email));
     defaultErrorText();
     clearFields();
     document.location.href = './my-library.html';
@@ -179,7 +201,8 @@ signupForm.addEventListener('submit', async ev => {
     return;
   }
 
-  let idItem = emailSignup.value.replace('@', '').replaceAll('.', '');
+  // let idItem = emailSignup.value.replace('@', '').replaceAll('.', '');
+  const idItem = userId(emailSignup.value);
   const userItem = {};
   userItem[idItem] = {
     id: '',
@@ -215,4 +238,21 @@ const errorAuth = (elem, message) => {
       .classList.add('error-border');
   }
   document.querySelector(`.error${elem}`).textContent = message;
+};
+
+const userId = email => {
+  return email.replace('@', '').replaceAll('.', '');
+};
+
+const userLogged = () => {
+  const currentuser = JSON.parse(localStorage.getItem('currentuser'));
+  if (currentuser == null) {
+    console.log('currentuser == null');
+    return false;
+  }
+  // console.log(email, name);
+  // console.log(flagLoggedUser);
+  // console.log('-------------');
+  // console.log(currentuser);
+  return true;
 };
