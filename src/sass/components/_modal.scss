@@ -10,7 +10,6 @@ body.show-modal .backdrop {
     pointer-events: initial;
 }
 
-
 .backdrop {
     display: flex;
     justify-content: center;
@@ -18,8 +17,8 @@ body.show-modal .backdrop {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vw;
+    width: 100%;
+    height: 100vh;
     z-index: 2000; 
 
     pointer-events: none;
@@ -41,7 +40,6 @@ body.show-modal .backdrop {
     width: 280px;
 
     background-color: #FFFFFF;
-    // box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
     border-radius: 4px;
 
@@ -95,9 +93,15 @@ body.show-modal .backdrop {
     align-items: center;
     justify-content: center;
 
-    fill: #000000;
+    fill: var(--dominant-color);
+    color: #000000;
     background-color: #FFFFFF;
     cursor: pointer;
+    outline: 1px red;
+}
+
+.modal__icon {
+    fill: #000000;
 }
 
 // стилі модального вікна
@@ -108,7 +112,6 @@ body.show-modal .backdrop {
         display: flex;
         gap: 68px;
     }
-    
 }
 
 .modal__title {
@@ -171,17 +174,40 @@ body.show-modal .backdrop {
     font-weight: 500;
     font-size: 12px;
     line-height: 1.17;
-    // text-transform: uppercase;
 }
 
-.modal__item-list:hover,
-.modal__item-list:focus {
-    background-color: #FF6B01;
+.modal__item-list-span {
+    color: #8C8C8C;
+}
+
+.modal__list-span-group {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+#vote {
+    min-width: 36px;
+    height: 16px;
+
+    margin-right: 3px;
+    padding: 1px 9px 1px 10px;
+
     color: #FFFFFF;
-    border: transparent;
+    background: #FF6B01;
     border-radius: 5px;
 }
 
+#votes {
+    min-width: 36px;
+    height: 16px;
+
+    margin-left: 3px;
+    padding: 1px 9px 1px 10px;
+
+    background: #F7F7F7;
+    border-radius: 5px;
+}
 
 .modal__subtitle {
     width: 39px;
@@ -205,6 +231,7 @@ body.show-modal .backdrop {
 }
 
 .modal__text {
+    font-weight: 500;
     font-size: 12px;
     line-height: 1.67;
 
