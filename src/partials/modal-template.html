@@ -11,10 +11,11 @@
       <img
         class="modal-img"
         src="./images/no-Film-Img.jpg"
-        alt="картинка фільму"/>
+        alt="картинка фільму"
+      />
 
       <div class="modal__group">
-        <h2 class="modal__title"></h2>
+        <h2 class="modal__title">About film</h2>
         <div class="modal__list-container">
           <ul class="modal__list">
             <li class="modal__item">Vote / Votes</li>
@@ -23,10 +24,14 @@
             <li class="modal__item">Genre</li>
           </ul>
           <ul class="modal__list">
-            <li class="modal__item-list" id="vote"></li>
-            <li class="modal__item-list" id="popularity"></li>
-            <li class="modal__item-list" id="origin-title"></li>
-            <li class="modal__item-list" id="genre"></li>
+            <li class="modal__item-list modal__list-span-group">
+              <span id="vote"></span>
+              <span class="modal__item-list-span">/</span>
+              <span id="votes"></span>
+              </li>
+              <li class="modal__item-list" id="popularity"></li>
+              <li class="modal__item-list" id="origin-title"></li>
+              <li class="modal__item-list" id="genre"></li>
           </ul>
         </div>
         <h3 class="modal__subtitle">ABOUT</h3>
