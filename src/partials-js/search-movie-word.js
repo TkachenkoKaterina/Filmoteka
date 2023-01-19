@@ -149,7 +149,7 @@ const articleElement = articls => {
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 const onInput = event => {
   event.preventDefault();
-  formEl.removeEventListener('submit', onInput);
+  //formEl.removeEventListener('submit', onInput);
   divEl.classList.add('header__error-text--disable');
   valuelongth = event.target.value.length;
   valuesString = event.target.value;
