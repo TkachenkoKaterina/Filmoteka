@@ -26,7 +26,7 @@ export const MOVIE_BY_ID_PART = 'movie/';
 //_____________________REQUESTS_PARAMETERS________________________
 export const ADULT = '&include_adult=false';
 //_____________________ARRAY_GENRES________________________
-export let ALL_GENRES = [
+export const ALL_GENRES = [
   { id: 28, name: 'Action' },
   { id: 12, name: 'Adventure' },
   { id: 16, name: 'Animation' },
