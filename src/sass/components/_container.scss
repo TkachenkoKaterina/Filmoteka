@@ -52,8 +52,20 @@
 
   &__collection {
     display: flex;
+    gap: 20px;
+      justify-content: center;
     flex-wrap: wrap;
-    gap: 16px;
+
+@include tablet {
+    gap: 32px;
+  }
+@include desktop {
+  gap: 16px;
+    
+}
+   
+
+
   }
 
   &__card {
@@ -71,13 +83,8 @@
 
   &__link {
     text-decoration: none;
-    /*transition-duration: var(--animation-time);*/
-    /*transition-property: box-shadow;*/
-    /* transition-timing-function: var(--animation-function);*/
-
     @include tablet-desktop {
-      display: flex;
-      flex-direction: column;
+      
       height: auto;
     }
   }

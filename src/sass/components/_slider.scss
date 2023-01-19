@@ -8,7 +8,6 @@
 
 .slider-wrapper {
   background-color: var(--second-color);
-  padding-bottom: 20px;
   font-size: 13px;
 
   @media screen and (max-width: 767px) {
@@ -17,7 +16,9 @@
 }
 
 .glide__arrow {
-  background-color: var(--accent-color);
+  // background-color: var(--accent-color);
+  color: var(--accent-color);
+  border-color: var(--accent-color);
 }
 
 .glide__slide:hover {

@@ -10,7 +10,7 @@ const trendsContainerEL = document.querySelector('.movie__collection');
 export function makerender(arr, collectioinGenres) {
   trendsContainerEL.replaceChildren();
   const renderEl = arr
-    .map(({ original_title, release_date, poster_path, genre_ids }) => {
+    .map(({ id, original_title, release_date, poster_path, genre_ids }) => {
       let genresInCard = [];
       genre_ids.map(ID =>
         collectioinGenres.forEach(({ id, name }) => {
@@ -37,6 +37,7 @@ export function makerender(arr, collectioinGenres) {
                     class="movie__img"
                     src="./images/no-Film-Img.jpg"
                     alt="${original_title}"
+                    data-id="${id}"
                     width="450"
                     height="294"
                     name="Poster"

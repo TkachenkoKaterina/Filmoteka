@@ -38,7 +38,7 @@
       href="../node_modules/@glidejs/glide/dist/css/glide.theme.min.css"
     /> -->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"
       integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg=="
@@ -56,34 +56,17 @@
 
   <body>
     <div class="preloader">
-  <div class="preloader__image" ></div>
-</div>
+      <div class="preloader__image"></div>
+    </div>
     <!-- ❗️❗️❗️ Add partials like so for every page -->
     <include src="./partials/header.html"></include>
     <include src="./partials/authorization.html"></include>
     <include src="./partials/slider.html"></include>
     <include src="./partials/container.html"></include>
-    <include src="./partials/loader.html"></include>
     <include src="./partials/footer.html"></include>
     <include src="./partials/buttonToTop.html"></include>
     <include src="./partials/modal-template.html"></include>
-    <include src="./partials/snow.html"></include>
 
     <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
-    <script>
-      new Glide('.glide', {
-        type: 'slider',
-        startAt: 0,
-        perView: 5,
-        autoplay: 2000,
-        hoverpause: true,
-        keyboard: true,
-        bound: true,
-        Breakpoints: {
-          768: { perView: 3 },
-          // 480: { perView: 2 },
-        },
-      }).mount();
-    </script>
   </body>
 </html>
