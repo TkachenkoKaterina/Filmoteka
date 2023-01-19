@@ -17,7 +17,7 @@ sliderFetch();
 function sliderFetch() {
   requestGet(MAIN_PART_URL, TRENDS_REQUEST_PART, API_KEY).then(res => {
     const arr = res.data.results;
-    console.log(arr);
+    // console.log(arr);
     sliderRender(arr);
     new Glide('.glide', {
       type: 'slider',
@@ -35,7 +35,7 @@ function sliderFetch() {
 }
 
 function sliderRender(arr) {
-  console.log(arr);
+  // console.log(arr);
   const markup = arr
     .map(({ poster_path, id }) => {
       return `
@@ -45,8 +45,9 @@ function sliderRender(arr) {
           `;
     })
     .join('');
-  // sliderContainer.innerHTML = markup;
-  console.log(markup);
-  console.log(sliderContainer);
+  // console.log(markup);
+  // console.log(sliderContainer);
   sliderContainer.insertAdjacentHTML('beforeend', markup);
+  const sliderCardRef = document.querySelector('.glide__img');
+  console.log(sliderCardRef);
 }
