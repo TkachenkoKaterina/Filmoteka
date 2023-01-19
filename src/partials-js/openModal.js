@@ -4,8 +4,6 @@ import { requestGet } from './requestGet';
 import axios from 'axios';
 import { BasicLightBox } from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
-import { sliderContainer } from './slider';
-console.log(sliderContainer);
 
 // const response = requestGet(MAIN_PART_URL, MOVIE_BY_ID_PART, id, API_KEY);
 // const objData = response.data;
