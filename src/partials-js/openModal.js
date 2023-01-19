@@ -37,10 +37,10 @@ async function getOneMovieData(mov_id) {
     const response = await requestGet( MAIN_PART_URL, MOVIE_BY_ID_PART, '12', API_KEY);
     console.log(response.data);
     console.log(mov_id);
-    const obj = response.data; 
+    const obj = response.data;
+    const genresString = obj.genres.map(el => el.name).join(', '); 
     // obj.popularity.toFixed(1);
-    return renderFilmOnModal(obj);
-    console.log(obj);
+    return renderFilmOnModal(obj, genresString);
 }
 
 async function onOpenModal(evt) {
@@ -79,7 +79,7 @@ function onEsc(evt) {
 }
 
 
-function renderFilmOnModal({ title, vote_average, popularity, original_title, each, overview }) {
+function renderFilmOnModal({ title, vote_average, popularity, original_title, overview }, str) {
      refs.backdrop.innerHTML = '';
      const markupModal =
      `
@@ -109,7 +109,7 @@ function renderFilmOnModal({ title, vote_average, popularity, original_title, ea
     <li class="modal__item-list" id="vote">${vote_average}</li>
     <li class="modal__item-list" id="popularity">${popularity}</li>
     <li class="modal__item-list" id="origin-title">${original_title}</li>
-    <li class="modal__item-list" id="genre">/${each}</li>
+    <li class="modal__item-list" id="genre">/${str}</li>
   </ul>
 </div>
 <h3 class="modal__subtitle">ABOUT</h3>
