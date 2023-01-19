@@ -20,7 +20,7 @@ body.show-modal .backdrop {
     left: 0;
     width: 100vw;
     height: 100vw;
-    z-index: 999; 
+    z-index: 2000; 
 
     pointer-events: none;
     opacity: 0;
@@ -54,7 +54,7 @@ body.show-modal .backdrop {
         padding-bottom: 40px;
     }
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1280px) {
         width: 806px;
 
         padding: 40px 12px; 
@@ -76,7 +76,7 @@ body.show-modal .backdrop {
     
         }
 
-        @media screen and (min-width: 1200px) {
+        @media screen and (min-width: 1280px) {
             height: 500px;
             width: 920px;
         }
@@ -124,7 +124,7 @@ body.show-modal .backdrop {
         margin-top: 0;
     }
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1280px) {
         font-size: 30px;
         line-height: 1.17;
     }
@@ -137,7 +137,7 @@ body.show-modal .backdrop {
         width: 264px;
     }
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1280px) {
         width: 375px;
     }
 }
@@ -146,7 +146,7 @@ body.show-modal .backdrop {
     display: flex;
     gap: 39px;
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1280px) {
         gap: 83px;
     }
 }
@@ -198,7 +198,7 @@ body.show-modal .backdrop {
         height: 16px;
     }
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1280px) {
         width: 65px;
         height: 16px;
     }
@@ -216,7 +216,7 @@ body.show-modal .backdrop {
         width: 264px;
     }
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1280px) {
         width: 391px;
     }
 }
@@ -256,7 +256,7 @@ body.show-modal .backdrop {
         width: 125.03px;
     }
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1280px) {
         width: 136px;
     }
 }
