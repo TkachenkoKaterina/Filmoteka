@@ -43,21 +43,21 @@ img {
   border-radius: 5px;
 
   @media screen and (min-width: 320px) {
-    background-image: url(/src/images/no-Film-Img280x402.jpg);
+    
     background-repeat: no-repeat, repeat;
     width: 280px;
     height: 402px;
   }
 
   @media screen and (min-width: 768px) {
-    background-image: url(/src/images/no-Film-Img336x455.jpg);
+   
     background-repeat: no-repeat, repeat;
     width: 336px;
     height: 455px;
   }
 
   @media screen and (min-width: 1280px) {
-    background-image: url(/src/images/no-Film-Img.jpg);
+    
     background-repeat: no-repeat, repeat;
     width: 396px;
     height: 574px;

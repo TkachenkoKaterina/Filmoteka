@@ -28,7 +28,7 @@ const ulEl = document.querySelector('.movie__collection');
 buttonEl.classList.add('disebl_button_form');
 
 let valuesString = '';
-const DEBOUNCE_DELAY = 300;
+const DEBOUNCE_DELAY = 100;
 let namberPer_page = 40;
 let namberPage = 1;
 let datatotalHits = 0;
