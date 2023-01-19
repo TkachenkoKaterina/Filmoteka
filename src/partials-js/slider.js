@@ -2,6 +2,13 @@ import Glide from '@glidejs/glide';
 import axios from 'axios';
 import errorUrl from '../images/oh-no.jpg';
 import { requestGet } from './requestGet';
+import { getOneMovieData } from './openModal';
+import { onOpenModal } from './openModal';
+import { onCloseModal } from './openModal';
+import { onBackdropClick } from './openModal';
+import { onEsc } from './openModal';
+import { renderFilmOnModal } from './openModal';
+
 import {
   MAIN_PART_URL,
   TRENDS_REQUEST_PART,
@@ -11,6 +18,16 @@ import {
 } from './vars';
 
 const sliderContainer = document.querySelector('.js-slider-container');
+
+const refs = {
+  sliderCollection: document.querySelector('.slider-collection'),
+  closeModalBtn: document.querySelector('.modal__close-btn'),
+  backdrop: document.querySelector('.js-backdrop'),
+};
+
+refs.sliderCollection.addEventListener('click', onImgClick);
+refs.closeModalBtn.addEventListener('click', onCloseModal);
+refs.backdrop.addEventListener('click', onBackdropClick);
 
 sliderFetch();
 
@@ -48,6 +65,14 @@ function sliderRender(arr) {
   // console.log(markup);
   // console.log(sliderContainer);
   sliderContainer.insertAdjacentHTML('beforeend', markup);
+
   const sliderCardRef = document.querySelector('.glide__img');
   console.log(sliderCardRef);
+}
+
+function onImgClick(evt) {
+  if (evt.target.nodeName !== 'IMG') {
+    return;
+  }
+  onOpenModal(evt);
 }

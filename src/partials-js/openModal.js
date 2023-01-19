@@ -1,87 +1,90 @@
-import { MAIN_PART_URL,
-    MOVIE_BY_ID_PART,
-    API_KEY,
- } from "./vars";
-import { id } from "./makeRenderFilms";
-import { requestGet } from "./requestGet";
-import axios from "axios";
-import { BasicLightBox } from "basiclightbox";
+import { MAIN_PART_URL, MOVIE_BY_ID_PART, API_KEY } from './vars';
+import { id } from './makeRenderFilms';
+import { requestGet } from './requestGet';
+import axios from 'axios';
+import { BasicLightBox } from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
-
+import { sliderContainer } from './slider';
+console.log(sliderContainer);
 
 // const response = requestGet(MAIN_PART_URL, MOVIE_BY_ID_PART, id, API_KEY);
 // const objData = response.data;
 
 const refs = {
-    cardCollection: document.querySelector('.movie__collection'),
-    closeModalBtn: document.querySelector('.modal__close-btn'),
-    backdrop: document.querySelector('.js-backdrop'),
+  cardCollection: document.querySelector('.movie__collection'),
+  closeModalBtn: document.querySelector('.modal__close-btn'),
+  backdrop: document.querySelector('.js-backdrop'),
 };
 
 refs.cardCollection.addEventListener('click', onImgClick);
 refs.closeModalBtn.addEventListener('click', onCloseModal);
 refs.backdrop.addEventListener('click', onBackdropClick);
 
-function onImgClick (evt) {
-    if(evt.target.nodeName !== 'IMG'){
-      return;
-    } 
-    onOpenModal(evt);
+function onImgClick(evt) {
+  if (evt.target.nodeName !== 'IMG') {
+    return;
   }
+  onOpenModal(evt);
+}
 
 // Fetch movie by id
-async function getOneMovieData(mov_id) {
-    
-    // const url = `https://api.themoviedb.org/3/movie/${mov_id}${API_KEY}`;
-    // return fetch(url)
-    const response = await requestGet( MAIN_PART_URL, MOVIE_BY_ID_PART, mov_id, API_KEY);
-    console.log(response.data);
-    console.log(mov_id);
-    const obj = response.data;
-    const genresString = obj.genres.map(el => el.name).join(', '); 
-    return renderFilmOnModal(obj, genresString);
+export async function getOneMovieData(mov_id) {
+  // const url = `https://api.themoviedb.org/3/movie/${mov_id}${API_KEY}`;
+  // return fetch(url)
+  const response = await requestGet(
+    MAIN_PART_URL,
+    MOVIE_BY_ID_PART,
+    mov_id,
+    API_KEY
+  );
+  console.log(response.data);
+  console.log(mov_id);
+  const obj = response.data;
+  const genresString = obj.genres.map(el => el.name).join(', ');
+  return renderFilmOnModal(obj, genresString);
 }
 
-async function onOpenModal(evt) {
-    document.body.classList.add('show-modal');
-    console.log(evt.target.dataset.id);
+export async function onOpenModal(evt) {
+  document.body.classList.add('show-modal');
+  console.log(evt.target.dataset.id);
 
-    const data = await getOneMovieData(evt.target.dataset.id);
-    console.log(data);
+  const data = await getOneMovieData(evt.target.dataset.id);
+  console.log(data);
 
-    // renderFilmOnModal
-    
-        // if (evt.target.nodeName !== 'IMG') {
-        //     evt.preventDefault();
-        //     console.log(5);
-        //     return;
-        // }
-        // const markup = modalFilmData(data);
-        //     const modal = BasicLightBox.create(markup);
+  // renderFilmOnModal
 
-        //     modal.show();
+  // if (evt.target.nodeName !== 'IMG') {
+  //     evt.preventDefault();
+  //     console.log(5);
+  //     return;
+  // }
+  // const markup = modalFilmData(data);
+  //     const modal = BasicLightBox.create(markup);
+
+  //     modal.show();
 }
 
-function onCloseModal() {
-    document.body.classList.remove('show-modal');
+export function onCloseModal() {
+  document.body.classList.remove('show-modal');
 }
-function onBackdropClick(e) {
-    if (e.currentTarget === e.target) {
-        onCloseModal();
-    }
-}
-
-function onEsc(evt) {
-    if (evt.code === 'Escape') {
-        onCloseModal();
-    }
+export function onBackdropClick(e) {
+  if (e.currentTarget === e.target) {
+    onCloseModal();
+  }
 }
 
+export function onEsc(evt) {
+  if (evt.code === 'Escape') {
+    onCloseModal();
+  }
+}
 
-function renderFilmOnModal({ id, title, vote_average, vote_count, popularity, original_title, overview }, str) {
-     refs.backdrop.innerHTML = '';
-     const markupModal =
-     `
+export function renderFilmOnModal(
+  { id, title, vote_average, vote_count, popularity, original_title, overview },
+  str
+) {
+  refs.backdrop.innerHTML = '';
+  const markupModal = `
     <div class="modal no-scroll">
 <button type="button" class="modal__close-btn" data-action="close-modal">
 <svg class="modal__icon" width="20" height="20">
@@ -131,10 +134,8 @@ function renderFilmOnModal({ id, title, vote_average, vote_count, popularity, or
 </div>
 `;
 
-refs.backdrop.insertAdjacentHTML('beforeend', markupModal);
-
+  refs.backdrop.insertAdjacentHTML('beforeend', markupModal);
 }
-
 
 // function onGetData() {
 //     let objFilms;
