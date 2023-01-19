@@ -1,6 +1,6 @@
 import { MAIN_PART_URL,
     MOVIE_BY_ID_PART,
-    API_KEY
+    API_KEY,
  } from "./vars";
 import { id } from "./makeRenderFilms";
 import { requestGet } from "./requestGet";
@@ -34,12 +34,11 @@ async function getOneMovieData(mov_id) {
     
     // const url = `https://api.themoviedb.org/3/movie/${mov_id}${API_KEY}`;
     // return fetch(url)
-    const response = await requestGet( MAIN_PART_URL, MOVIE_BY_ID_PART, '12', API_KEY);
+    const response = await requestGet( MAIN_PART_URL, MOVIE_BY_ID_PART, mov_id, API_KEY);
     console.log(response.data);
     console.log(mov_id);
     const obj = response.data;
     const genresString = obj.genres.map(el => el.name).join(', '); 
-    // obj.popularity.toFixed(1);
     return renderFilmOnModal(obj, genresString);
 }
 
@@ -79,22 +78,27 @@ function onEsc(evt) {
 }
 
 
-function renderFilmOnModal({ title, vote_average, popularity, original_title, overview }, str) {
+function renderFilmOnModal({ id, title, vote_average, vote_count, popularity, original_title, overview }, str) {
      refs.backdrop.innerHTML = '';
      const markupModal =
      `
-    <div class="modal">
+    <div class="modal no-scroll">
 <button type="button" class="modal__close-btn" data-action="close-modal">
-<svg class="modal__icon" width="14" height="14">
+<svg class="modal__icon" width="20" height="20">
 <use href="./images/icons/icons.svg#icon-close"></use>
 </svg>
 </button>
 
 <div class="modal__content">
-<img
-        class="modal-img"
-        src="./images/no-Film-Img.jpg"
-        alt="картинка фільму"/>
+
+          <img
+          class="modal-img"
+          src="./images/no-Film-Img.jpg"
+          alt="${title}"
+          data-id="${id}"
+          width="240"
+          height="357"/>
+
 
 <div class="modal__group">
 <h2 class="modal__title">${title}</h2>
@@ -106,10 +110,14 @@ function renderFilmOnModal({ title, vote_average, popularity, original_title, ov
     <li class="modal__item">Genre</li>
   </ul>
   <ul class="modal__list">
-    <li class="modal__item-list" id="vote">${vote_average}</li>
-    <li class="modal__item-list" id="popularity">${popularity}</li>
+    <li class="modal__item-list modal__list-span-group">
+    <span id="vote">${vote_average.toFixed(1)}</span>
+    <span class="modal__item-list-span">/</span>
+    <span id="votes">${vote_count.toFixed(1)}</span>
+    </li>
+    <li class="modal__item-list" id="popularity">${popularity.toFixed(1)}</li>
     <li class="modal__item-list" id="origin-title">${original_title}</li>
-    <li class="modal__item-list" id="genre">/${str}</li>
+    <li class="modal__item-list" id="genre">${str}</li>
   </ul>
 </div>
 <h3 class="modal__subtitle">ABOUT</h3>
@@ -123,18 +131,9 @@ function renderFilmOnModal({ title, vote_average, popularity, original_title, ov
 </div>
 `;
 
-// const modalMarkup = basicLightbox.create(markup);
 refs.backdrop.insertAdjacentHTML('beforeend', markupModal);
 
 }
-
-
-// var buttons = document.querySelectorAll("selector-for-the-buttons");
-// Array.prototype.forEach.call(buttons, function(btn) {
-//     btn.addEventListener("click", handler, false);
-// });
-
-
 
 
 // function onGetData() {
@@ -144,12 +143,5 @@ refs.backdrop.insertAdjacentHTML('beforeend', markupModal);
 
 //         objFilms = res.data.results;
 //         getOneMovieData(objFilms);
-
 //     })
-// }
-
-// function onGetData(base_url, path, key, ...parameters) {
-//     let requestURL = `${base_url}${path}${key}${parameters.join('')}`;
-//     const response = await axios.get(requestURL);
-//     return response;
 // }
