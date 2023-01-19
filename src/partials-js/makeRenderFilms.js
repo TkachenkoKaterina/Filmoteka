@@ -60,6 +60,6 @@ export function makerender(arr, collectioinGenres) {
 
 function filterArrGenres(arrGenres) {
   if (arrGenres.length > 3) {
-    return [arrGenres[0], arrGenres[1], 'others'];
-  } else return arrGenres;
+    return `${arrGenres[0]}, ${arrGenres[1]}, Others`
+  } else return `${arrGenres[0]}, ${arrGenres[1]}, ${arrGenres[2]}`;
 }
