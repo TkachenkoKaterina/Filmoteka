@@ -12,13 +12,13 @@ import {
   DESKTOP_SIZES,
   ADULT,
   ALL_GENRES,
+  GENRES_ARR_KEY,
 } from './vars';
 import { requestGet } from './requestGet';
 import { pagination, changePage } from './tuiPagination';
 var debounce = require('lodash.debounce');
 import Notiflix from 'notiflix';
 
-let allGenres = [];
 const formEl = document.querySelector('#search-form');
 const inputEl = document.querySelector('.header__search-input');
 const buttonEl = document.querySelector('.header__search-button');
@@ -33,22 +33,30 @@ let namberPer_page = 40;
 let namberPage = 1;
 let datatotalHits = 0;
 let pageTotal = 0;
+
+localStorage.removeItem(GENRES_ARR_KEY);
 //__________________________GET GENRES ARR_______________________
+
 requestGet(MAIN_PART_URL, GENRE_REQUEST_PART, API_KEY)
   .then(res => res)
   .then(resl => resl.data)
   .then(resalts => {
-    allGenres = resalts.genres;
+    localStorage.setItem(GENRES_ARR_KEY, JSON.stringify(resalts.genres));
+    if (JSON.parse(localStorage.getItem(GENRES_ARR_KEY)) !== null) {
+      ALL_GENRES = JSON.parse(localStorage.getItem(GENRES_ARR_KEY));
+    } else {
+      if (ALL_GENRES !== JSON.parse(localStorage.getItem(GENRES_ARR_KEY))) {
+        ALL_GENRES = JSON.parse(localStorage.getItem(GENRES_ARR_KEY));
+      }
+    }
   })
   .catch(err => {
     console.log(err);
   });
-
 //-----------------------------------------------------------------------------------------------------------------------------------------
 function searchGenres(arrays, lengthArr) {
   let count = lengthArr;
   let stat = 0;
-
   let strRes = '';
   if (lengthArr > 3) {
     lengthArr = 3;
@@ -60,16 +68,16 @@ function searchGenres(arrays, lengthArr) {
   } else {
     for (let index = 0; index < lengthArr; index++) {
       count = count - 1;
-      allGenres.map(allGenre => {
-        if (arrays[index] === allGenre.id) {
+      ALL_GENRES.map(ALL_GENRE => {
+        if (arrays[index] === ALL_GENRE.id) {
           if (count === 0) {
             if (stat === 1) {
               strRes += 'Other';
             } else {
-              strRes += allGenre.name;
+              strRes += ALL_GENRE.name;
             }
           } else {
-            strRes += allGenre.name + ', ';
+            strRes += ALL_GENRE.name + ', ';
           }
         } else {
         }
@@ -84,7 +92,6 @@ export function noFoto(base_url, width, img_file, stub) {
   img_file === null ? (strM = stub) : (strM = `${base_url}${width}${img_file}`);
   return strM;
 }
-
 //----------------------------------------------------------------------------------------------------------------------------
 const articleElement = articls => {
   return articls
@@ -141,15 +148,12 @@ const articleElement = articls => {
     })
     .join('');
 };
-
-//------------------------------------------------------------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 const onInput = event => {
   event.preventDefault();
   divEl.classList.add('header__error-text--disable');
   valuelongth = event.target.value.length;
   valuesString = event.target.value;
-  console.log(valuesString);
   let element = '';
   for (let index = 0; index < valuelongth; index++) {
     element = element + ' ';
@@ -183,7 +187,6 @@ const searchFilm = async event => {
     }
     namberPage = 1;
     valuesString = valuesString.trim();
-    console.log(valuesString);
     valuesString = '&query=$' + valuesString;
     requestGet(MAIN_PART_URL, SEARCH_MOVIE, API_KEY, ADULT, valuesString).then(
       res => {
