@@ -15,6 +15,7 @@ import {
   API_KEY,
   BASE_IMG_URL,
   MOBILE_SIZES,
+  TABLET_SIZES,
 } from './vars';
 
 const sliderContainer = document.querySelector('.js-slider-container');
@@ -34,7 +35,7 @@ sliderFetch();
 function sliderFetch() {
   requestGet(MAIN_PART_URL, TRENDS_REQUEST_PART, API_KEY).then(res => {
     const arr = res.data.results;
-    // console.log(arr);
+    console.log(arr);
     sliderRender(arr);
     new Glide('.glide', {
       type: 'slider',

@@ -5,6 +5,13 @@ import axios from 'axios';
 import { BasicLightBox } from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 
+import {
+  TRENDS_REQUEST_PART,
+  BASE_IMG_URL,
+  MOBILE_SIZES,
+  TABLET_SIZES,
+} from './vars';
+
 // const response = requestGet(MAIN_PART_URL, MOVIE_BY_ID_PART, id, API_KEY);
 // const objData = response.data;
 
@@ -78,7 +85,16 @@ export function onEsc(evt) {
 }
 
 export function renderFilmOnModal(
-  { id, title, vote_average, vote_count, popularity, original_title, overview },
+  {
+    id,
+    title,
+    vote_average,
+    vote_count,
+    popularity,
+    original_title,
+    overview,
+    poster_path,
+  },
   str
 ) {
   refs.backdrop.innerHTML = '';
@@ -94,7 +110,7 @@ export function renderFilmOnModal(
 
           <img
           class="modal-img"
-          src="./images/no-Film-Img.jpg"
+          src="${BASE_IMG_URL}${MOBILE_SIZES}${poster_path}"
           alt="${title}"
           data-id="${id}"
           width="240"
