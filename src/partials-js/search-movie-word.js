@@ -26,14 +26,14 @@ const divEl = document.querySelector('.header__error-text--disable');
 const ulEl = document.querySelector('.movie__collection');
 
 buttonEl.classList.add('disebl_button_form');
-
+let valuelongth = 0;
 let valuesString = '';
 const DEBOUNCE_DELAY = 300;
 let namberPer_page = 40;
 let namberPage = 1;
 let datatotalHits = 0;
 let pageTotal = 0;
-
+let AllGenres = [];
 localStorage.removeItem(GENRES_ARR_KEY);
 //__________________________GET GENRES ARR_______________________
 
@@ -43,11 +43,9 @@ requestGet(MAIN_PART_URL, GENRE_REQUEST_PART, API_KEY)
   .then(resalts => {
     localStorage.setItem(GENRES_ARR_KEY, JSON.stringify(resalts.genres));
     if (JSON.parse(localStorage.getItem(GENRES_ARR_KEY)) !== null) {
-      ALL_GENRES = JSON.parse(localStorage.getItem(GENRES_ARR_KEY));
+      AllGenres = JSON.parse(localStorage.getItem(GENRES_ARR_KEY));
     } else {
-      if (ALL_GENRES !== JSON.parse(localStorage.getItem(GENRES_ARR_KEY))) {
-        ALL_GENRES = JSON.parse(localStorage.getItem(GENRES_ARR_KEY));
-      }
+      AllGenres = ALL_GENRES;
     }
   })
   .catch(err => {
