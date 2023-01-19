@@ -155,7 +155,8 @@ img {
     overflow: hidden;
     box-shadow: 2px 5px 10px rgba(0, 0, 0, 1), 2px 5px 10px rgba(0, 0, 0, 0.25), 2px 5px 20px rgba(0, 0, 0, 0.2);
 
-    transition-property: transform;
+    // transition-property: transform;
+    transition: var(--main-transition);
 
     @media screen and (min-width: 320px) {
         display: none;   
