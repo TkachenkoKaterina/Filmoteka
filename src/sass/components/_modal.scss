@@ -43,6 +43,9 @@ body.show-modal .backdrop {
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
     border-radius: 4px;
 
+    height: 100vh;
+    overflow-y: scroll;
+    
     @media screen and (min-width: 768px) {
         width: 704px;
 
@@ -236,11 +239,13 @@ body.show-modal .backdrop {
     line-height: 1.67;
 
     width: 240px;
+    height: 100px;
 
     overflow-y: scroll;
 
     @media screen and (min-width: 768px) {
         width: 264px;
+        
     }
 
     @media screen and (min-width: 1280px) {
